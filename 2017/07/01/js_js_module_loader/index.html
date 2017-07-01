@@ -100,7 +100,7 @@
 <meta property="og:url" content="https://keeppassionalways.github.io/2017/07/01/js_js_module_loader/index.html">
 <meta property="og:site_name" content="郭天琦的前端博客">
 <meta property="og:description" content="Foreword随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试……我们不得不使用软件工程的方法，来管理网页的业务逻辑。 于是，JavaScript 的模块化成为迫切需求。在 ES6 Module 来临之前，JavaScript 社区提供了强大支持，尝试在现有的运行环境下，实现模块的效果">
-<meta property="og:updated_time" content="2017-07-01T04:16:40.000Z">
+<meta property="og:updated_time" content="2017-07-01T04:23:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript Module Loader">
 <meta name="twitter:description" content="Foreword随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试……我们不得不使用软件工程的方法，来管理网页的业务逻辑。 于是，JavaScript 的模块化成为迫切需求。在 ES6 Module 来临之前，JavaScript 社区提供了强大支持，尝试在现有的运行环境下，实现模块的效果">
@@ -390,7 +390,7 @@
 <p>前端模块化的事实标准之一，2009 年 8 月，<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a> 诞生。</p>
 <p>CommonJS 本质上只是一套规范（API 定义），而 Node.js 采用并实现了部分规范，CommonJS Module 的写法也因此广泛流行。</p>
 <p>让我们看看 Node 中的实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 由于 Node 原生支持模块的作用域，并不需要额外的 wrapper</div><div class="line">// &quot;as though the module was wrapped in a function&quot;</div><div class="line"></div><div class="line">var a = require(&apos;./a&apos;)  // 加载模块（同步加载）</div><div class="line">a.doSomething()         // 等上一句执行完才会执行</div><div class="line"></div><div class="line">exports.b = function()&#123; // 暴露 b 函数接口</div><div class="line">  // do something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 由于 Node 原生支持模块的作用域，并不需要额外的 wrapper</span></div><div class="line"><span class="comment">// "as though the module was wrapped in a function"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>)  <span class="comment">// 加载模块（同步加载）</span></div><div class="line">a.doSomething()         <span class="comment">// 等上一句执行完才会执行</span></div><div class="line"></div><div class="line">exports.b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 暴露 b 函数接口</span></div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><code>exports</code>是一个内置对象，就像<code>require</code>是一个内置加载函数一样。如果你希望直接赋值一个完整的对象或者构造函数，覆写<code>module.exports</code>就可以了。</p>
 <p>CommonJS 前身叫 ServerJS ，后来希望能更加 COMMON，成为通吃各种环境的模块规范，改名为 CommonJS 。CommonJS 最初只专注于 Server-side 而非浏览器环境，因此它采用了同步加载的机制，这对服务器环境（硬盘 I/O 速度）不是问题，而对浏览器环境（网速）来说并不合适。</p>
 <p>因此，各种适用于浏览器环境的模块框架与标准逐个诞生，他们的共同点是：</p>
@@ -534,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/28/html_test/" rel="next" title="测试html">
-                <i class="fa fa-chevron-left"></i> 测试html
+              <a href="/2017/06/28/css_test/" rel="next" title="测试css">
+                <i class="fa fa-chevron-left"></i> 测试css
               </a>
             
           </div>
