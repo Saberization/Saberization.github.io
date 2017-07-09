@@ -1,0 +1,933 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言贪婪模式和非贪婪模式是正则匹配中的重要特性 在理解贪婪和非贪婪的区别时，可以根据实例，一步一步的循序渐进 大纲 匹配规则简介  贪婪模式与非贪婪模式快速理解  实例练习  匹配失败与回溯   匹配规则简介123456var str = &apos;aabcab&apos;;var reg = /ab/;var res = str.match(reg);// ab index 为 1console.log(res)">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【正则表达式系列】贪婪与非贪婪模式">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/06/js_regularExpressionGreedyAndLazy/index.html">
+<meta property="og:site_name" content="郭天琦的前端博客">
+<meta property="og:description" content="前言贪婪模式和非贪婪模式是正则匹配中的重要特性 在理解贪婪和非贪婪的区别时，可以根据实例，一步一步的循序渐进 大纲 匹配规则简介  贪婪模式与非贪婪模式快速理解  实例练习  匹配失败与回溯   匹配规则简介123456var str = &apos;aabcab&apos;;var reg = /ab/;var res = str.match(reg);// ab index 为 1console.log(res)">
+<meta property="og:updated_time" content="2017-07-09T15:39:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【正则表达式系列】贪婪与非贪婪模式">
+<meta name="twitter:description" content="前言贪婪模式和非贪婪模式是正则匹配中的重要特性 在理解贪婪和非贪婪的区别时，可以根据实例，一步一步的循序渐进 大纲 匹配规则简介  贪婪模式与非贪婪模式快速理解  实例练习  匹配失败与回溯   匹配规则简介123456var str = &apos;aabcab&apos;;var reg = /ab/;var res = str.match(reg);// ab index 为 1console.log(res)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://keeppassionalways.github.io/2017/07/06/js_regularExpressionGreedyAndLazy/"/>
+
+
+
+
+
+  <title>【正则表达式系列】贪婪与非贪婪模式 | 郭天琦的前端博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郭天琦的前端博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">html5、css3、javascript、nodejs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-html">
+          <a href="/categories/html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            html
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-css">
+          <a href="/categories/css" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-css3"></i> <br />
+            
+            css
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-javascript">
+          <a href="/categories/javascript" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            javascript
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'yourswiftypekey','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://keeppassionalways.github.io/2017/07/06/js_regularExpressionGreedyAndLazy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭天琦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/toux.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭天琦的前端博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【正则表达式系列】贪婪与非贪婪模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-06T23:56:13+08:00">
+                2017-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>贪婪模式和非贪婪模式是正则匹配中的重要特性 在理解贪婪和非贪婪的区别时，可以根据实例，一步一步的循序渐进</p>
+<h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul>
+<li><p>匹配规则简介</p>
+</li>
+<li><p>贪婪模式与非贪婪模式快速理解</p>
+</li>
+<li><p>实例练习</p>
+</li>
+<li><p>匹配失败与回溯</p>
+</li>
+</ul>
+<h2 id="匹配规则简介"><a href="#匹配规则简介" class="headerlink" title="匹配规则简介"></a>匹配规则简介</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'aabcab'</span>;</div><div class="line"><span class="keyword">var</span> reg = <span class="regexp">/ab/</span>;</div><div class="line"><span class="keyword">var</span> res = str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// ab index 为 1</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p>要快速理解正则的匹配规则，可以先尝试理解上述的例子</p>
+<p>匹配步骤是这样的:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- 初始 <span class="string">`index = 0`</span>, 匹配到了字符<span class="string">`a`</span></div><div class="line"></div><div class="line">- 接下来匹配下一个字符<span class="string">`a`</span>, 但是由于<span class="string">`aa`</span>和<span class="string">`/ab/`</span>不匹配，因此此次匹配失败</div><div class="line"></div><div class="line">- <span class="string">`index`</span>挪到下一个，从<span class="string">`1`</span>开始，又重新匹配了<span class="string">`a`</span></div><div class="line"></div><div class="line">- 接下来匹配下一个字符<span class="string">`b`</span>，刚好和<span class="string">`/ab/`</span>匹配，因此此次匹配成功，返回了<span class="string">`ab`</span>，<span class="string">`index=1`</span></div><div class="line"></div><div class="line">- 如果正则的匹配后面有<span class="string">`g`</span>这种关键字，则会继续开始下一组的匹配(但是本例中没有g，因此只有一组结果)</div></pre></td></tr></table></figure>
+<p><strong>要点</strong></p>
+<ul>
+<li>最先开始的匹配拥有最高的优先权</li>
+</ul>
+<p>这一个要点的详细解释是: 例如第一个匹配的字符是<code>a</code>，假设之后的匹配没有出现匹配失败的情况。则它将一直匹配下去，直到匹配成功，也就是说<code>index=0</code>不会变，直到匹配成功 这一点适用于下面的贪婪模式与非贪婪模式中(并且优先级高于它们)，因此请谨记</p>
+<h2 id="贪婪模式与非贪婪模式快速理解"><a href="#贪婪模式与非贪婪模式快速理解" class="headerlink" title="贪婪模式与非贪婪模式快速理解"></a>贪婪模式与非贪婪模式快速理解</h2><h3 id="贪婪匹配模式"><a href="#贪婪匹配模式" class="headerlink" title="贪婪匹配模式"></a>贪婪匹配模式</h3><p><strong>定义</strong></p>
+<p>正则表达式去匹配时，会尽量多的匹配符合条件的内容</p>
+<p><strong>标识符</strong></p>
+<p><code>+</code>，<code>?</code>，<code>*</code>，<code>{n}</code>，<code>{n,}</code>，<code>{n,m}</code></p>
+<p>匹配时，如果遇到上述标识符，代表是贪婪匹配，会尽可能多的去匹配内容</p>
+<p><strong>示例1</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">'aacbacbc'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/a.*b/</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// aacbacb index为0</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p>上例中，匹配到第一个<code>a</code>后，开始匹配<code>.*</code>，由于是贪婪模式，它会一直往后匹配，直到最后一个满足条件的<code>b</code>为止，因此匹配结果是<code>aacbacb</code></p>
+<p><strong>示例2</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">'aacbacbc'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/ac.*b/</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// acbacb index为1</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p>第一个匹配的是<code>a</code>，然后再匹配下一个字符<code>a</code>时，和正则不匹配，因此匹配失败，<code>index</code>挪到<code>1</code>，接下来匹配成功了<code>ac</code>，继续往下匹配，由于是贪婪模式，尽可能多的去匹配结果，直到最后一个符合要求的<code>b</code>为止，因此匹配结果是<code>acbacb</code></p>
+<h3 id="非贪婪匹配模式"><a href="#非贪婪匹配模式" class="headerlink" title="非贪婪匹配模式"></a>非贪婪匹配模式</h3><p><strong>定义</strong></p>
+<p>正则表达式去匹配时，会尽量少的匹配符合条件的内容 也就是说，一旦发现匹配符合要求，立马就匹配成功，而不会继续匹配下去(除非有<code>g</code>，开启下一组匹配)</p>
+<p><strong>标识符</strong></p>
+<p><code>+?</code>，<code>??</code>，<code>*?</code>，<code>{n}?</code>，<code>{n,}?</code>，<code>{n,m}?</code></p>
+<p>可以看到，非贪婪模式的标识符很有规律，就是贪婪模式的标识符后面加上一个<code>?</code></p>
+<p><strong>示例1</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">'aacbacbc'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/a.*?b/</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// aacb index为0</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p>上例中，匹配到第一个<code>a</code>后，开始匹配<code>.*?</code>，由于是非贪婪模式，它在匹配到了第一个<code>b</code>后，就匹配成功了，因此匹配结果是<code>aacb</code></p>
+<p>为什么是<code>aacb</code>而不是<code>acb</code>呢？ 因为前面有提到过一个正在匹配的优先规则: <code>最先开始的匹配拥有最高的优先权</code> 第一个<code>a</code>匹配到了，只要之后没有发生匹配失败的情况，它就会一直匹配下去，直到匹配成功</p>
+<p><strong>示例2</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">'aacbacbc'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/ac.*?b/</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// acb index为1</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p>先匹配的<code>a</code>，接下来匹配第二个<code>a</code>时，匹配失败了<code>index</code>变为<code>1</code>，继续匹配<code>ac</code>成功，继续匹配<code>b</code>，由于是非贪婪模式，此时<code>acb</code>已经满足了正则的最低要求了，因此匹配成功，结果为<code>acb</code></p>
+<p><strong>示例3</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">'aacbacbc'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/a.*?/</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// a index为0</span></div><div class="line"><span class="built_in">console</span>.log(res);</div><div class="line"></div><div class="line"><span class="keyword">var</span> reg2=<span class="regexp">/a.*/</span>;</div><div class="line"><span class="keyword">var</span> res2=str.match(reg2);</div><div class="line"></div><div class="line"><span class="comment">// aacbacbc index为0</span></div><div class="line"><span class="built_in">console</span>.log(res2);</div></pre></td></tr></table></figure>
+<p>这一个例子则是对示例1的补充，可以发现，当后面没有<code>b</code>时，由于是非贪婪模式，匹配到第一个<code>a</code>就直接匹配成功了 而后面一个贪婪模式的匹配则是会匹配所有</p>
+<h2 id="实例练习"><a href="#实例练习" class="headerlink" title="实例练习"></a>实例练习</h2><p>在初步理解了贪婪模式与非贪婪模式后，可以通过练习加深理解</p>
+<h3 id="提取HTML中的Div标签"><a href="#提取HTML中的Div标签" class="headerlink" title="提取HTML中的Div标签"></a>提取<code>HTML</code>中的<code>Div</code>标签</h3><p>给出一个<code>HTML</code>字符串，如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其它元素</div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>用户:<span class="tag">&lt;<span class="name">span</span>/&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>张三<span class="tag">&lt;<span class="name">span</span>/&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>密码:<span class="tag">&lt;<span class="name">span</span>/&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>123456<span class="tag">&lt;<span class="name">span</span>/&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">其它元素</div></pre></td></tr></table></figure>
+<p><strong>需求</strong>: 提取出div包裹的内容(包括div标签本身)，并将各个结果存入数组</p>
+<p><strong>代码</strong>: 通过非贪婪模式的全局匹配来完成，如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/&lt;div&gt;.*?&lt;\/div&gt;/g</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// ["&lt;div&gt;&lt;span&gt;用户:&lt;span/&gt;&lt;span&gt;张三&lt;span/&gt;&lt;/div&gt;", "&lt;div&gt;&lt;span&gt;密码:&lt;span/&gt;&lt;span&gt;123456&lt;span/&gt;&lt;/div&gt;"]</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p><strong>详解</strong>: 用到了两个知识点，<code>.*?</code>的非贪婪模式匹配以及<code>g</code>全局匹配</p>
+<ul>
+<li><p><code>&lt;div&gt;.*?&lt;\/div&gt;</code>代表每次只会匹配一次<code>div</code>，这样可以确保每一个<code>div</code>不会越界</p>
+</li>
+<li><p>最后的<code>g</code>代表全局匹配，即第一次匹配成功后，会将匹配结果放入数组，然后从下一个<code>index</code>重新开始匹配新的结果</p>
+</li>
+</ul>
+<p>另外: 假设使用了<code>/&lt;div&gt;.*&lt;\/div&gt;/g</code>进行贪婪模式的匹配，结果则是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="string">"&lt;div&gt;&lt;span&gt;用户:&lt;span/&gt;&lt;span&gt;张三&lt;span/&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;密码:&lt;span/&gt;&lt;span&gt;123456&lt;span/&gt;&lt;/div&gt;"</span>]</div></pre></td></tr></table></figure>
+<p>因为贪婪模式匹配了第一个<code>&lt;div&gt;</code>后会无限贪婪的匹配接下来的字符，直到最后一个符合条件的<code>&lt;/div&gt;</code>为止，导致了将中间所有的<code>div</code>标签都一起匹配上了</p>
+<h2 id="提取两个-quot-quot-中的子串，其中不能再包含-quot-quot"><a href="#提取两个-quot-quot-中的子串，其中不能再包含-quot-quot" class="headerlink" title="提取两个&quot;&quot;中的子串，其中不能再包含&quot;&quot;"></a>提取两个<code>&quot;&quot;</code>中的子串，其中不能再包含<code>&quot;&quot;</code></h2><p>示例引用自: <a href="http://www.jb51.net/article/31491.htm" target="_blank" rel="external">正则表达式之 贪婪与非贪婪模式详解</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;The phrase \&quot;regular expression\&quot; is called \&quot;Regex\&quot; for short&quot;</div></pre></td></tr></table></figure>
+<p><strong>需求:</strong> 提取两个引号之间的子串，其中不能再包括引号，例如上述的提取结果应该是: <code>&quot;regular expression&quot;</code> 与 <code>&quot;Regex&quot;</code>(每一个结束的”后面都接空格)</p>
+<p><strong>错误解法:</strong> 通过如下的非贪婪匹配(请注意空格)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">'"The phrase \"regular expression\" is called \"Regex\" for short"'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/".*?" /g</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// [""The phrase "regular expression" ", ""Regex" "]</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p>可以看到，上述的匹配完全就是匹配错误了，这个正则匹配到第一个符合条件的<code>&quot;+空格</code>后就自动停下来了</p>
+<p><strong>正确解法</strong>: 使用贪婪模式进行匹配</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/"[^"]*" /g</span>;</div><div class="line"><span class="keyword">var</span> res=str.match(reg);</div><div class="line"></div><div class="line"><span class="comment">// [""regular expression" ", ""Regex" "]</span></div><div class="line"><span class="built_in">console</span>.log(res);</div></pre></td></tr></table></figure>
+<p>这个匹配中</p>
+<ul>
+<li><p>从第一个<code>&quot;</code>开始匹配，接下来到<code>12</code>位时(<code>&quot;r</code>的<code>&quot;</code>)，不满足<code>[^&quot;]</code>，也不满足之后的<code>&quot;+空格</code>，因此匹配失败了，<code>index</code>挪到下一个，开始下一次匹配</p>
+</li>
+<li><p>第二个匹配从<code>&quot;r</code>的<code>&quot;</code>开始，一直匹配到<code>n&quot;空格</code>的<code>空格</code>，这一组刚刚好匹配成功(因为最后符合了正则的<code>&quot;空格</code>)，匹配好了<code>&quot;regular expression&quot;空格</code></p>
+</li>
+<li><p>第三个匹配匹配到了<code>&quot;Regex&quot;空格</code>(过程不再复述)</p>
+</li>
+<li><p>到最后时，仅剩一个<code>&quot;</code>直接匹配失败(因为首先得符合<code>&quot;</code>才能开始挣扎匹配)</p>
+</li>
+<li><p>至此，正则匹配结束，匹配成功，并且符合预期</p>
+</li>
+</ul>
+<p><strong>最后:</strong> 这个例子相对来说复杂一点，如要更好的理解，可以参考引用来源中的文章，里面有就原理进行介绍 另外，参考文章中还有对非贪婪模式的匹配失败，回溯影响性能等特性进行原理分析与讲解</p>
+<h2 id="回溯现象与匹配失败"><a href="#回溯现象与匹配失败" class="headerlink" title="回溯现象与匹配失败"></a>回溯现象与匹配失败</h2><p>你真的已经理解了贪婪模式和非贪婪模式么？</p>
+<h2 id="回溯现象"><a href="#回溯现象" class="headerlink" title="回溯现象"></a>回溯现象</h2><p>不知道对上面最后例子中提到的<code>回溯</code>这词有没有概念？ 这里仍然以上例引用来源中的示例来分析</p>
+<p><strong>原字符串</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;Regex&quot;</div></pre></td></tr></table></figure>
+<p><strong>贪婪匹配过程分析</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;.*&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>第一个<code>&quot;</code>取得控制权，匹配正则中的<code>&quot;</code>，匹配成功，控制权交给<code>.*</code></p>
+</li>
+<li><p><code>.*</code>取得控制权后，匹配接下来的字符，<code>.</code>代表匹配任何字符，<code>*</code>代表可匹配可不匹配，这属于贪婪模式的标识符，会优先尝试匹配，于是接下来从1位置处的R开始匹配，依次成功匹配了<code>R</code>，<code>e</code>，<code>g</code>，<code>e</code>，<code>x</code>，接着继续匹配最后一个字符<code>&quot;</code>，匹配成功，这时候已经匹配到了字符串的结尾，所以<code>.*</code>匹配结束，将控制符交给正则式中最后的<code>&quot;</code></p>
+</li>
+<li><p><code>&quot;</code>取得控制权后，由于已经是到了字符串的结尾，因此匹配失败，向前查找可供回溯的状态，控制权交给<code>.*</code>，<code>.*</code>让出一个字符<code>&quot;</code>，再把控制权交给<code>&quot;</code>，此时刚好匹配成功</p>
+</li>
+<li><p>至此，整个正则表达式匹配完毕，匹配结果为<code>&quot;Regex&quot;</code>，匹配过程中回溯了<code>1</code>次</p>
+</li>
+</ul>
+<p><strong>非贪婪匹配表达式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;.*?&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>第一个<code>&quot;</code>取得控制权，匹配正则中的<code>&quot;</code>，匹配成功，控制权交给<code>.*?</code></p>
+</li>
+<li><p><code>.*?</code>取得控制权后，由于这是非贪婪模式下的标识符，因此在可匹配可不匹配的情况下会优先不匹配，因此尝试不匹配任何内容，将控制权交给<code>&quot;</code>，此时<code>index</code>在<code>1</code>处(<code>R</code>字符处)</p>
+</li>
+<li><p><code>&quot;</code>取得控制权后，开始匹配<code>1</code>处的<code>R</code>，匹配失败，向前查找可供回溯的状态，控制权交给<code>.*?</code>，<code>.*?</code>吃进一个字符，<code>index</code>到了<code>2</code>处，再把控制权交给<code>&quot;</code></p>
+</li>
+<li><p><code>&quot;</code>取得控制权后，开始匹配<code>2</code>处的<code>e</code>，匹配失败，重复上述的回溯过程，直到<code>.*?</code>吃进了<code>x</code>字符，再将控制权交给<code>&quot;</code></p>
+</li>
+<li><p><code>&quot;</code>取得控制权后，开始匹配<code>6</code>处的<code>&quot;</code>，匹配成功</p>
+</li>
+<li><p>至此，整个正则表达式匹配完毕，匹配结果为”Regex”，匹配过程中回溯了<code>5</code>次</p>
+</li>
+</ul>
+<p><strong>优化去除回溯</strong></p>
+<p>上述的贪婪匹配中，出现了一次回溯现象，其实也可以通过优化表达式来防止回溯的，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;[^&quot;]*&quot;</div></pre></td></tr></table></figure>
+<p>这个表达式中构建了一个子表达式-<code>[]</code>中的<code>^&quot;</code>，它的作用是排除<code>&quot;</code>匹配，这样<code>*</code>的贪婪匹配就不会主动吃进<code>&quot;</code>，这样最后就直接是<code>&quot;</code>匹配<code>&quot;</code>，匹配成功，不会进行回溯</p>
+<p><strong>总结</strong></p>
+<p>上述的分析中可以看出，在匹配成功的情况下，贪婪模式进行了更少的回溯(可以自行通过更多的实验进行验证)，因此在应用中，在对正则掌握不是很精通的情况下，可以优先考虑贪婪模式的匹配，这样可以避免很多性能上的问题</p>
+<h2 id="匹配失败的情况"><a href="#匹配失败的情况" class="headerlink" title="匹配失败的情况"></a>匹配失败的情况</h2><p>上述的回溯分析都是基于匹配成功的情况，那如果是匹配失败呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'"Regex'</span></div><div class="line"><span class="keyword">var</span> reg = <span class="regexp">/"[^"]*"/g</span>;</div></pre></td></tr></table></figure>
+<p>这个原字符中，没有最好的”，因此匹配是会失败的，它的过程大致如下</p>
+<ul>
+<li><p><code>&quot;</code>匹配<code>&quot;</code>，接着<code>[]</code>的<code>^&quot;</code>与<code>*</code>匹配<code>R</code>，<code>e</code>，<code>g</code>，<code>e</code>，<code>x</code></p>
+</li>
+<li><p>接着到了最后，<code>&quot;</code>获取控制权，由于到了最后，开始回溯</p>
+</li>
+<li><p>依次回溯的结果是<code>*</code>让出<code>x</code>，<code>e</code>，<code>g</code>，<code>e</code>，<code>R</code>，直到<code>*</code>已经无法再让出字符，第一轮匹配失败</p>
+</li>
+<li><p>接着<code>index</code>开始往下挪，依次用<code>&quot;</code>匹配<code>R</code>，<code>e</code>，<code>g</code>，<code>e</code>，<code>x</code>都失败了，一直到最后也没有再匹配到结果，因此此次正则表达式的匹配失败，没有匹配到结果(或者返回<code>null</code>)</p>
+</li>
+</ul>
+<p>那非贪婪模式呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/&quot;[^&quot;]*?&quot;/g</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>&quot;</code>匹配<code>&quot;</code>，接着<code>*</code>尝试不匹配，<code>&quot;</code>匹配<code>R</code>，失败，然后回溯，<code>*</code>吃进<code>R</code></p>
+</li>
+<li><p>接下来类似于上一步，<code>*</code>依次回溯吃进<code>e</code>，<code>g</code>，<code>e</code>，<code>x</code>，一直到最后，*再次回溯想吃进时，已经到了字符串结尾了，无法继续，因此第一轮匹配失败</p>
+</li>
+<li><p>接着<code>index</code>开始往下挪，依次用<code>&quot;</code>匹配<code>R</code>，<code>e</code>，<code>g</code>，<code>e</code>，<code>x</code>都失败了，返回<code>null</code></p>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<p>通过匹配失败的例子可以看出贪婪和非贪婪的模式区别。贪婪是<code>先吃进，回溯再让出</code>，非贪婪是<code>先忽略，回溯再吃进</code></p>
+<p>而且，在匹配失败的情况下，贪婪模式也会进行不少的回溯(非贪婪当然一直都很多回溯)</p>
+<p>但是，实际情况中是可以通过子表达式优化的，比如构建<code>^xxx</code>，可以当匹配到不符合条件的时候提前匹配失败，这样就会少很多回溯</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'"cccccc'</span></div><div class="line"><span class="keyword">var</span> reg = <span class="regexp">/"[^"c]*"/g</span>;</div></pre></td></tr></table></figure>
+<p>这个由于直接排除了<code>c</code>，因此<code>*</code>不会吃进它，直接就匹配失败了，减少了很多回溯(当然，上述只是最简单的例子，实际情况要更复杂)</p>
+<h2 id="写在最后的话"><a href="#写在最后的话" class="headerlink" title="写在最后的话"></a>写在最后的话</h2><p>正则匹配中，贪婪模式与非贪婪模式乍看之下一看便知，很容易理解，但是真正的深入理解需要掌握正则的原理才行，并且，真正理解它们后，就不仅仅只是写出普通的正则表达式，而是高性能的正则表达式了，比如理解非贪婪模式中的回溯特性后更容易写出高性能的表达式</p>
+<p>本文也只是做一些浅显的分析与引导，更多是起到抛砖引玉的作用，要深入理解还请去了解正则的原理</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><p><a href="http://www.runoob.com/regexp/regexp-metachar.html" target="_blank" rel="external">正则表达式元字符</a></p>
+</li>
+<li><p><a href="http://www.jb51.net/article/31491.htm" target="_blank" rel="external">正则表达式之 贪婪与非贪婪模式详解</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/chenmeng0818/p/6370819.html" target="_blank" rel="external">js中的正则表达式入门</a></p>
+</li>
+</ul>
+<p><strong>原文转载：</strong><a href="https://dailc.github.io/2017/07/06/regularExpressionGreedyAndLazy.html" target="_blank" rel="external">【正则表达式系列】贪婪与非贪婪模式</a>;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/06/js_promise/" rel="next" title="Promise 对象">
+                <i class="fa fa-chevron-left"></i> Promise 对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/toux.jpg"
+               alt="郭天琦" />
+          <p class="site-author-name" itemprop="name">郭天琦</p>
+           
+              <p class="site-description motion-element" itemprop="description">不积跬步无以至千里，不积小流无以成江海</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大纲"><span class="nav-number">2.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配规则简介"><span class="nav-number">3.</span> <span class="nav-text">匹配规则简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪模式与非贪婪模式快速理解"><span class="nav-number">4.</span> <span class="nav-text">贪婪模式与非贪婪模式快速理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪匹配模式"><span class="nav-number">4.1.</span> <span class="nav-text">贪婪匹配模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非贪婪匹配模式"><span class="nav-number">4.2.</span> <span class="nav-text">非贪婪匹配模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例练习"><span class="nav-number">5.</span> <span class="nav-text">实例练习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提取HTML中的Div标签"><span class="nav-number">5.1.</span> <span class="nav-text">提取HTML中的Div标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提取两个-quot-quot-中的子串，其中不能再包含-quot-quot"><span class="nav-number">6.</span> <span class="nav-text">提取两个""中的子串，其中不能再包含""</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯现象与匹配失败"><span class="nav-number">7.</span> <span class="nav-text">回溯现象与匹配失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯现象"><span class="nav-number">8.</span> <span class="nav-text">回溯现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配失败的情况"><span class="nav-number">9.</span> <span class="nav-text">匹配失败的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后的话"><span class="nav-number">10.</span> <span class="nav-text">写在最后的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">11.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">11.1.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭天琦</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
