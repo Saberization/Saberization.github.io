@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="css," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -93,21 +93,17 @@
 
 
 
-<meta name="description" content="~=代码： 12345678&amp;lt;style&amp;gt;	/* 只需要for(自定义属性) 中包含weight即可 */	[for~=&quot;weight&quot;] &amp;#123;		color: #f00;	&amp;#125;&amp;lt;/style&amp;gt;&amp;lt;output for=&quot;weight width&quot;&amp;gt;内容&amp;lt;/output&amp;gt;  ^=代码： 123456789&amp;lt;style&amp;gt;	/*">
-<meta name="keywords" content="css">
+<meta name="description" content="同域指页面URL的协议，端口号和host(document.domain)一样。 方法1:用 postMessage两个页面需要如果存在如下两种关系之一，才可以用 postMessage 来传递数据。  关系1: 页面1 用 window.open 打开 页面2  关系2: 页面1 有 iframe，iframe的地址为页面2   原理是： 可以用 targetWindow.postMessage">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css 自定义选择器 ~=、^=、*=">
-<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/01/css_自定义选择器/index.html">
+<meta property="og:title" content="同域的页面间传递数据的方法汇总">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/10/js_同域的页面间传递数据的方法汇总/index.html">
 <meta property="og:site_name" content="郭天琦的前端博客">
-<meta property="og:description" content="~=代码： 12345678&amp;lt;style&amp;gt;	/* 只需要for(自定义属性) 中包含weight即可 */	[for~=&quot;weight&quot;] &amp;#123;		color: #f00;	&amp;#125;&amp;lt;/style&amp;gt;&amp;lt;output for=&quot;weight width&quot;&amp;gt;内容&amp;lt;/output&amp;gt;  ^=代码： 123456789&amp;lt;style&amp;gt;	/*">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006HJ39wgy1fftvzo8t0uj309m034t8r.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1fftw5do6tzj30hs04eq35.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1fftw9cvt15j30b003u0su.jpg">
-<meta property="og:updated_time" content="2017-07-01T04:53:50.000Z">
+<meta property="og:description" content="同域指页面URL的协议，端口号和host(document.domain)一样。 方法1:用 postMessage两个页面需要如果存在如下两种关系之一，才可以用 postMessage 来传递数据。  关系1: 页面1 用 window.open 打开 页面2  关系2: 页面1 有 iframe，iframe的地址为页面2   原理是： 可以用 targetWindow.postMessage">
+<meta property="og:updated_time" content="2017-07-10T16:03:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css 自定义选择器 ~=、^=、*=">
-<meta name="twitter:description" content="~=代码： 12345678&amp;lt;style&amp;gt;	/* 只需要for(自定义属性) 中包含weight即可 */	[for~=&quot;weight&quot;] &amp;#123;		color: #f00;	&amp;#125;&amp;lt;/style&amp;gt;&amp;lt;output for=&quot;weight width&quot;&amp;gt;内容&amp;lt;/output&amp;gt;  ^=代码： 123456789&amp;lt;style&amp;gt;	/*">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006HJ39wgy1fftvzo8t0uj309m034t8r.jpg">
+<meta name="twitter:title" content="同域的页面间传递数据的方法汇总">
+<meta name="twitter:description" content="同域指页面URL的协议，端口号和host(document.domain)一样。 方法1:用 postMessage两个页面需要如果存在如下两种关系之一，才可以用 postMessage 来传递数据。  关系1: 页面1 用 window.open 打开 页面2  关系2: 页面1 有 iframe，iframe的地址为页面2   原理是： 可以用 targetWindow.postMessage">
 
 
 
@@ -135,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://keeppassionalways.github.io/2017/07/01/css_自定义选择器/"/>
+  <link rel="canonical" href="https://keeppassionalways.github.io/2017/07/10/js_同域的页面间传递数据的方法汇总/"/>
 
 
 
 
 
-  <title>css 自定义选择器 ~=、^=、*= | 郭天琦的前端博客</title>
+  <title>同域的页面间传递数据的方法汇总 | 郭天琦的前端博客</title>
   
 
 
@@ -330,7 +326,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://keeppassionalways.github.io/2017/07/01/css_自定义选择器/">
+    <link itemprop="mainEntityOfPage" href="https://keeppassionalways.github.io/2017/07/10/js_同域的页面间传递数据的方法汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郭天琦">
@@ -347,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">css 自定义选择器 ~=、^=、*=</h1>
+          <h1 class="post-title" itemprop="name headline">同域的页面间传递数据的方法汇总</h1>
         
 
         <div class="post-meta">
@@ -359,8 +355,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-01T12:46:47+08:00">
-                2017-07-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T23:48:49+08:00">
+                2017-07-10
               </time>
             
 
@@ -382,8 +378,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -416,15 +412,33 @@
       
 
       
-        <h2 id=""><a href="#" class="headerlink" title="~="></a>~=</h2><p>代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">	<span class="comment">/* 只需要for(自定义属性) 中包含weight即可 */</span></div><div class="line">	<span class="selector-attr">[for~="weight"]</span> &#123;</div><div class="line">		<span class="attribute">color</span>: <span class="number">#f00</span>;</div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">for</span>=<span class="string">"weight width"</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">output</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><img src="http://ww3.sinaimg.cn/large/006HJ39wgy1fftvzo8t0uj309m034t8r.jpg" alt="效果图"></p>
-<h2 id="-1"><a href="#-1" class="headerlink" title="^="></a>^=</h2><p>代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">	<span class="comment">/* 匹配开头是weight的 */</span></div><div class="line">	<span class="selector-attr">[class^="weight"]</span> &#123;</div><div class="line">		<span class="attribute">color</span>: <span class="number">#f00</span>;</div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">class</span>=<span class="string">"weight width"</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">output</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">class</span>=<span class="string">"width weight"</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">output</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1fftw5do6tzj30hs04eq35.jpg" alt="效果图"></p>
-<h2 id="-2"><a href="#-2" class="headerlink" title="*="></a>*=</h2><p>代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">	<span class="comment">/* 只要包含width的 */</span></div><div class="line">	<span class="selector-attr">[class*="width"]</span> &#123;</div><div class="line">        <span class="attribute">color</span>: <span class="number">#f00</span>;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">class</span>=<span class="string">"weight width"</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">output</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">class</span>=<span class="string">"width weight"</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">output</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1fftw9cvt15j30b003u0su.jpg" alt="效果图"></p>
+        <p>同域指页面URL的协议，端口号和host(document.domain)一样。</p>
+<h2 id="方法1-用-postMessage"><a href="#方法1-用-postMessage" class="headerlink" title="方法1:用 postMessage"></a>方法1:用 postMessage</h2><p>两个页面需要如果存在如下两种关系之一，才可以用 postMessage 来传递数据。</p>
+<ul>
+<li><p>关系1: 页面1 用 <code>window.open</code> 打开 页面2</p>
+</li>
+<li><p>关系2: 页面1 有 iframe，iframe的地址为页面2</p>
+</li>
+</ul>
+<p>原理是： 可以用 <code>targetWindow.postMessage</code> 向目标页面发数据，页面可以监听 <code>onmessage</code> 事件来接收其他页面发的数据。</p>
+<h3 id="实现如下"><a href="#实现如下" class="headerlink" title="实现如下"></a>实现如下</h3><p><strong>页面1</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> popup = <span class="built_in">window</span>.open(<span class="string">'page2.html'</span>) <span class="comment">// 关系1</span></div><div class="line"><span class="keyword">var</span> iframe = <span class="built_in">window</span>.frames[<span class="number">0</span>] <span class="comment">// 关系2</span></div><div class="line"></div><div class="line">popup.postMessage(<span class="string">'向页面2发的数据'</span>, <span class="string">'*'</span>)</div><div class="line">iframe.postMessage(<span class="string">'向页面2发的数据'</span>, <span class="string">'*'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 接收页面2发送的数据</span></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">  event.data <span class="comment">// 收到的页面2发送的数据</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>页面2</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">  event.data <span class="comment">// 页面1发送的数据</span></div><div class="line">  event.source.postMessage(<span class="string">'向页面1发的数据'</span>, <span class="string">'*'</span>)</div><div class="line">&#125;, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<p>更详细的描述见<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage" target="_blank" rel="external">这里</a>。</p>
+<h2 id="方法2-监视-window-name-的变化"><a href="#方法2-监视-window-name-的变化" class="headerlink" title="方法2:监视 window.name 的变化"></a>方法2:监视 window.name 的变化</h2><p>两个页面需要如果存在用 postMessage 一样的关系。才可以用监视 window.name 的变化来传递数据。</p>
+<p>原理是：满足上面关系的页面可以修改打开各自 <code>window</code> 的 <code>name</code> 值，通过修改 <code>name</code> 值来传递数据。</p>
+<h3 id="实现如下-1"><a href="#实现如下-1" class="headerlink" title="实现如下"></a>实现如下</h3><p><strong>页面1</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popup.name = <span class="string">'向页面2发的数据'</span>;</div><div class="line">iframe.name = <span class="string">'向页面2发的数据'</span>;</div></pre></td></tr></table></figure>
+<p><strong>页面2</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">window</span>.name  <span class="comment">// 页面1发送的数据</span></div><div class="line">  <span class="keyword">var</span> sourceWindow = <span class="built_in">window</span>.opener || <span class="built_in">window</span>.top</div><div class="line">  sourceWindow.name = <span class="string">'向页面1发的数据'</span></div><div class="line">&#125;, <span class="number">2000</span>);</div></pre></td></tr></table></figure>
+<h2 id="方法3-监视-webStroge-的变化"><a href="#方法3-监视-webStroge-的变化" class="headerlink" title="方法3:监视 webStroge 的变化"></a>方法3:监视 webStroge 的变化</h2><p>原理是，当某个页面的webStroge的值发生变化后，会触发其他页面的 <code>onstorage</code> 事件。</p>
+<h3 id="实现如下-2"><a href="#实现如下-2" class="headerlink" title="实现如下"></a>实现如下</h3><p><strong>页面1</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">localStorage.setItem(<span class="string">'xx-item'</span>, <span class="string">'向页面2发的数据'</span>)</div><div class="line"></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'storage'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  localStorage.getItem(<span class="string">'xx-item2'</span>) <span class="comment">// 收到的页面2发送的数据</span></div><div class="line">&#125;, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<p><strong>页面2</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">localStorage.setItem(<span class="string">'xx-item2'</span>, <span class="string">'向页面1发的数据'</span>)</div><div class="line"></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'storage'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  localStorage.getItem(<span class="string">'xx-item'</span>) <span class="comment">// 收到的页面1发送的数据</span></div><div class="line">&#125;, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<p>更详细的描述见<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Responding_to_storage_changes_with_the_StorageEvent" target="_blank" rel="external">这里</a>。</p>
+<h2 id="方法4-借助服务器"><a href="#方法4-借助服务器" class="headerlink" title="方法4:借助服务器"></a>方法4:借助服务器</h2><p>用 WebSocket 或 通过某个接口来修改数据，通过某个接口来获得数据。</p>
 
       
     </div>
@@ -454,7 +468,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css/" rel="tag"># css</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
         </div>
       
@@ -467,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/01/html_路径/" rel="next" title="相对路径与绝对路径">
-                <i class="fa fa-chevron-left"></i> 相对路径与绝对路径
+              <a href="/2017/07/10/css_移动端开发需要加的meta/" rel="next" title="移动端开发需要加的meta">
+                <i class="fa fa-chevron-left"></i> 移动端开发需要加的meta
               </a>
             
           </div>
@@ -476,10 +490,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/03/js_正则表达式快速入门/" rel="prev" title="【正则表达式系列】快速入门">
-                【正则表达式系列】快速入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -608,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">~=</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">2.</span> <span class="nav-text">^=</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-2"><span class="nav-number">3.</span> <span class="nav-text">*=</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1-用-postMessage"><span class="nav-number">1.</span> <span class="nav-text">方法1:用 postMessage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现如下"><span class="nav-number">1.1.</span> <span class="nav-text">实现如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2-监视-window-name-的变化"><span class="nav-number">2.</span> <span class="nav-text">方法2:监视 window.name 的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现如下-1"><span class="nav-number">2.1.</span> <span class="nav-text">实现如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法3-监视-webStroge-的变化"><span class="nav-number">3.</span> <span class="nav-text">方法3:监视 webStroge 的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现如下-2"><span class="nav-number">3.1.</span> <span class="nav-text">实现如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法4-借助服务器"><span class="nav-number">4.</span> <span class="nav-text">方法4:借助服务器</span></a></li></ol></div>
             
 
           </div>
