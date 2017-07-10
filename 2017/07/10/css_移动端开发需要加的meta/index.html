@@ -1,0 +1,786 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。 12345678910111213141516&amp;lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width&quot;&amp;gt;/* 禁止点击数字拨打电话 */&amp;lt;m">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端开发需要加的meta">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/10/css_移动端开发需要加的meta/index.html">
+<meta property="og:site_name" content="郭天琦的前端博客">
+<meta property="og:description" content="移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。 12345678910111213141516&amp;lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width&quot;&amp;gt;/* 禁止点击数字拨打电话 */&amp;lt;m">
+<meta property="og:updated_time" content="2017-07-10T15:38:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端开发需要加的meta">
+<meta name="twitter:description" content="移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。 12345678910111213141516&amp;lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width&quot;&amp;gt;/* 禁止点击数字拨打电话 */&amp;lt;m">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://keeppassionalways.github.io/2017/07/10/css_移动端开发需要加的meta/"/>
+
+
+
+
+
+  <title>移动端开发需要加的meta | 郭天琦的前端博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郭天琦的前端博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">html5、css3、javascript、nodejs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-html">
+          <a href="/categories/html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            html
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-css">
+          <a href="/categories/css" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-css3"></i> <br />
+            
+            css
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-javascript">
+          <a href="/categories/javascript" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br />
+            
+            javascript
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'yourswiftypekey','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://keeppassionalways.github.io/2017/07/10/css_移动端开发需要加的meta/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭天琦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/toux.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭天琦的前端博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端开发需要加的meta</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T23:31:41+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width"&gt;</div><div class="line"></div><div class="line">/* 禁止点击数字拨打电话 */</div><div class="line">&lt;meta content="telephone=no" name="format-detection"&gt;</div><div class="line"></div><div class="line">/* 这个meta标签,表示页面同时适合在移动设备和PC上进行浏览。 */</div><div class="line">&lt;meta name="applicable-device" content="mobile"&gt;</div><div class="line"></div><div class="line">/* 这meta的作用就是删除默认的苹果工具栏和菜单栏。 */</div><div class="line">&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</div><div class="line"></div><div class="line">/* 作用是控制状态栏显示样式 */</div><div class="line">&lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt;</div><div class="line"></div><div class="line">/* 格式检测 */</div><div class="line">&lt;meta name="format-detection" content="telephone=no,email=no"&gt;</div></pre></td></tr></table></figure>
+<h2 id="css-适应不同手机"><a href="#css-适应不同手机" class="headerlink" title="css 适应不同手机"></a>css 适应不同手机</h2><p><strong>iphone 4和4s</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen</div><div class="line"></div><div class="line">and (min-device-width:<span class="number">320px</span>)</div><div class="line"></div><div class="line">and (max-device-width:<span class="number">480px</span>)</div><div class="line"></div><div class="line">and (-webkit-min-device-pixel-ratio:<span class="number">2</span>) &#123;&#125;</div></pre></td></tr></table></figure>
+<p><strong>iphone 5 and 5s</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen</div><div class="line"></div><div class="line">and (min-device-width:<span class="number">320px</span>)</div><div class="line"></div><div class="line">and (max-device-width:<span class="number">568px</span>)</div><div class="line"></div><div class="line">and (-webkit-min-device-pixel-ratio:<span class="number">2</span>) &#123;&#125;</div></pre></td></tr></table></figure>
+<p><strong>Android width360</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen</div><div class="line"></div><div class="line">and (min-device-width:<span class="number">360px</span>)</div><div class="line"></div><div class="line">and (max-device-width:<span class="number">640px</span>) &#123;</div><div class="line"></div><div class="line"><span class="selector-tag">html</span> &#123;<span class="attribute">font-size</span>:<span class="number">112.5px</span>;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Android width411</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">著作权归作者所有。</div><div class="line">商业转载请联系作者获得授权,非商业转载请注明出处。</div><div class="line">链接:http://caibaojian.com/mobile-meta-2.html</div><div class="line">来源:http://caibaojian.com</div><div class="line"></div><div class="line">@media only screen</div><div class="line"></div><div class="line">and (min-device-width:400px)</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">html &#123;font-size:128.4375px;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>iphone  6+</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen</div><div class="line"></div><div class="line">and (min-device-width:<span class="number">375px</span>)</div><div class="line"></div><div class="line">and (max-device-width:<span class="number">667px</span>)</div><div class="line"></div><div class="line">and (-webkit-min-device-pixel-ratio:<span class="number">2</span>) &#123;</div><div class="line"></div><div class="line"><span class="selector-tag">html</span> &#123;<span class="attribute">font-size</span>:<span class="number">117.1875px</span>;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>iphone  6</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen</div><div class="line"></div><div class="line">and (min-device-width:<span class="number">375px</span>)</div><div class="line"></div><div class="line">and (max-device-width:<span class="number">667px</span>)</div><div class="line"></div><div class="line">and (-webkit-min-device-pixel-ratio:<span class="number">2</span>)&#123;</div><div class="line"></div><div class="line"><span class="selector-tag">html</span> &#123;<span class="attribute">font-size</span>:<span class="number">129.375px</span>;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>初始化样式</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">*&#123; <span class="attribute">-webkit-tap-highlight-color</span>:transparent;<span class="attribute">outline</span>:<span class="number">0</span>;<span class="attribute">margin</span>:<span class="number">0</span>;<span class="attribute">padding</span>:<span class="number">0</span>;<span class="attribute">vertical-align</span>:baseline;<span class="attribute">fone-size</span>:inherit;<span class="attribute">line-height</span>:inherit;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">body</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">hr</span>,<span class="selector-tag">p</span>,<span class="selector-tag">blockquote</span>,<span class="selector-tag">dl</span>,<span class="selector-tag">dt</span>,<span class="selector-tag">dd</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">li</span>,<span class="selector-tag">pre</span>,<span class="selector-tag">form</span>,<span class="selector-tag">field</span>,<span class="selector-tag">legend</span>,<span class="selector-tag">button</span>,<span class="selector-tag">input</span>,<span class="selector-tag">textarea</span>,<span class="selector-tag">th</span>,<span class="selector-tag">td</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>,padding:<span class="number">0</span>,vertical-align:baseline;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">i</span>,<span class="selector-tag">em</span>&#123;<span class="attribute">font-style</span>:normal;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">ol</span>,<span class="selector-tag">ul</span>&#123;<span class="attribute">list-style</span>:none;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">strong</span>,<span class="selector-tag">b</span>&#123;<span class="attribute">font-weight</span>:normal;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">input</span>,<span class="selector-tag">select</span>,<span class="selector-tag">button</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>&#123;<span class="attribute">font-size</span>:inherit;<span class="attribute">font-family</span>:inherit;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">table</span>&#123;<span class="attribute">border-collapse</span>:collapse;<span class="attribute">border-spacing</span>:<span class="number">0</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">text-decoration</span>:none;<span class="attribute">color</span>:<span class="number">#666</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span> auto;<span class="attribute">min-width</span>:<span class="number">320px</span>;<span class="attribute">max-width</span>:<span class="number">640px</span>;<span class="attribute">height</span>:<span class="number">100%</span>;<span class="attribute">font-family</span>:Microsoft Yahei,Helvetica;<span class="attribute">line-height</span>:<span class="number">1.5</span>;<span class="attribute">color</span>:<span class="number">#666</span>;<span class="attribute">-webkit-text-size-adjust</span>:<span class="number">100%</span>!importtant;<span class="attribute">text-size-adjust</span>:<span class="number">100%</span> <span class="meta">!important</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">textarea</span>&#123;<span class="attribute">resize</span>:none;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">input</span><span class="selector-attr">[type="text"]</span>,<span class="selector-tag">input</span><span class="selector-attr">[type="tel"]</span>,<span class="selector-tag">input</span><span class="selector-attr">[type="button"]</span>,<span class="selector-tag">textarea</span>&#123;<span class="attribute">-webkit-appearance</span>:none;<span class="attribute">-moz-appearance</span>:none;<span class="attribute">appearance</span>:none;<span class="attribute">border</span>:nione;&#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font-size</span>:<span class="number">0.14rem</span>;<span class="attribute">-webkit-overflow-scrolling</span>:touch;&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">html</span>&#123;<span class="attribute">box-sizing</span>:border-box;<span class="attribute">font-size</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100%</span>;<span class="attribute">-webkit-text-size-adjust</span>:none&#125;</div><div class="line"></div><div class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;<span class="attribute">content</span>:<span class="string">"020"</span>,display:block;<span class="attribute">height</span>:<span class="number">0</span>;<span class="attribute">overflow</span>:hidden;<span class="attribute">clear</span>:both&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/06/js_regularExpressionGreedyAndLazy/" rel="next" title="【正则表达式系列】贪婪与非贪婪模式">
+                <i class="fa fa-chevron-left"></i> 【正则表达式系列】贪婪与非贪婪模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/toux.jpg"
+               alt="郭天琦" />
+          <p class="site-author-name" itemprop="name">郭天琦</p>
+           
+              <p class="site-description motion-element" itemprop="description">不积跬步无以至千里，不积小流无以成江海</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#css-适应不同手机"><span class="nav-number">1.</span> <span class="nav-text">css 适应不同手机</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭天琦</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
