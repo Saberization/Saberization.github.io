@@ -100,16 +100,16 @@
 <meta property="og:url" content="https://keeppassionalways.github.io/2017/07/11/js_httpSessionCookie/index.html">
 <meta property="og:site_name" content="郭天琦的前端博客">
 <meta property="og:description" content="1. 使用Cookie来管理状态HTTP 是无状态协议，说明它不能以状态来区分和管理请求和响应。也就是说，无法根据之前的状态进行本次的请求处理。 不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的CPU 及内存资源的消耗。从另一侧面来说，也正是因为HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。  我们登录淘宝的时候首先要登录，我们看到了一个商品点进去，进行了页">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-dde997503ed9d450e2f39042d53d4307_r.png">
-<meta property="og:image" content="https://pic1.zhimg.com/v2-85622297a93f493c891ffb90b67fd5e0_b.png">
-<meta property="og:image" content="https://pic2.zhimg.com/v2-1f49734871c5e2da2d264d28ac310a65_b.png">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-b1147a2e2c3fbb6d6b46fdebda122ba3_r.png">
-<meta property="og:image" content="https://pic2.zhimg.com/v2-0b02fa4a73a8072eb03cdf78270235e1_r.png">
-<meta property="og:updated_time" content="2017-07-13T02:32:51.000Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi1yn8bgij30v50d744j.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi1z3i8epj30go081tae.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi1zdzrizj30go074dh9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi2072f3nj30u40ff430.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi20um0yyj30vx0fr771.jpg">
+<meta property="og:updated_time" content="2017-07-13T02:36:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="认识HTTP----Cookie和Session篇">
 <meta name="twitter:description" content="1. 使用Cookie来管理状态HTTP 是无状态协议，说明它不能以状态来区分和管理请求和响应。也就是说，无法根据之前的状态进行本次的请求处理。 不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的CPU 及内存资源的消耗。从另一侧面来说，也正是因为HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。  我们登录淘宝的时候首先要登录，我们看到了一个商品点进去，进行了页">
-<meta name="twitter:image" content="https://pic4.zhimg.com/v2-dde997503ed9d450e2f39042d53d4307_r.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi1yn8bgij30v50d744j.jpg">
 
 
 
@@ -420,7 +420,7 @@
       
         <h2 id="1-使用Cookie来管理状态"><a href="#1-使用Cookie来管理状态" class="headerlink" title="1. 使用Cookie来管理状态"></a>1. 使用Cookie来管理状态</h2><p>HTTP 是无状态协议，说明它不能以状态来区分和管理请求和响应。也就是说，无法根据之前的状态进行本次的请求处理。</p>
 <p>不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的CPU 及内存资源的消耗。从另一侧面来说，也正是因为HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。</p>
-<p><img src="https://pic4.zhimg.com/v2-dde997503ed9d450e2f39042d53d4307_r.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi1yn8bgij30v50d744j.jpg" alt=""></p>
 <p>我们登录淘宝的时候首先要登录，我们看到了一个商品点进去，进行了页面跳转/刷新，按照HTTP的无状态协议岂不是又要登录一次？</p>
 <p>所以为了解决这个问题，Cookie诞生了，在保留无状态协议这个特征的同时又要解决类似记录状态的矛盾问题。Cookie 技术通过在请求和响应报文中写入Cookie 信息来控制客户端的状态。</p>
 <p>Cookie 会根据从服务器端发送的响应报文内的一个叫做Set-Cookie的首部字段信息，通知客户端保存Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie 值后发送出去。</p>
@@ -428,11 +428,11 @@
 <ul>
 <li>没有Cookie信息状态下的请求</li>
 </ul>
-<p><img src="https://pic1.zhimg.com/v2-85622297a93f493c891ffb90b67fd5e0_b.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi1z3i8epj30go081tae.jpg" alt=""></p>
 <ul>
 <li>第2次以后（存有Cookie信息状态）的请求</li>
 </ul>
-<p><img src="https://pic2.zhimg.com/v2-1f49734871c5e2da2d264d28ac310a65_b.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi1zdzrizj30go074dh9.jpg" alt=""></p>
 <p>上图很清晰地展示了发生Cookie 交互的情景。</p>
 <p>HTTP 请求报文和响应报文的内容如下（数字和图中对应）。</p>
 <ul>
@@ -468,7 +468,7 @@
 </tr>
 </tbody>
 </table>
-<p><img src="https://pic4.zhimg.com/v2-b1147a2e2c3fbb6d6b46fdebda122ba3_r.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi2072f3nj30u40ff430.jpg" alt=""></p>
 <h3 id="2-1-Set-Cookie"><a href="#2-1-Set-Cookie" class="headerlink" title="2.1 Set-Cookie"></a>2.1 Set-Cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Set</span>-Cookie: status=enable; expires=Tue, <span class="number">05</span> Jul <span class="number">2011</span> <span class="number">07</span>:<span class="number">26</span>:<span class="number">31</span> GMT; ⇒</div><div class="line">path=<span class="regexp">/; domain=.hackr.jp;</span></div></pre></td></tr></table></figure>
 <p>当服务器准备开始管理客户端的状态时，会事先告知各种信息。下面的表格列举了Set-Cookie 的字段值。</p>
 <h3 id="2-1-1Set-Cookie-字段的属性"><a href="#2-1-1Set-Cookie-字段的属性" class="headerlink" title="2.1.1Set-Cookie 字段的属性"></a>2.1.1Set-Cookie 字段的属性</h3><table>
@@ -511,7 +511,7 @@
 <h2 id="3-Session-管理及Cookie-应用"><a href="#3-Session-管理及Cookie-应用" class="headerlink" title="3 Session 管理及Cookie 应用"></a>3 Session 管理及Cookie 应用</h2><h3 id="3-1-什么是Session"><a href="#3-1-什么是Session" class="headerlink" title="3.1 什么是Session"></a>3.1 什么是Session</h3><p>在计算机中，尤其是在网络应用中，称为“会话控制”。Session 对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。当用户请求来自应用程序的 Web 页时，如果该用户还没有会话，则 Web 服务器将自动创建一个 Session 对象。当会话过期或被放弃后，服务器将终止该会话。Session 对象最常见的一个用法就是存储用户的首选项。例如，如果用户指明不喜欢查看图形，就可以将该信息存储在 Session 对象中。</p>
 <h3 id="3-2-通过Cookie来管理Session"><a href="#3-2-通过Cookie来管理Session" class="headerlink" title="3.2 通过Cookie来管理Session"></a>3.2 通过Cookie来管理Session</h3><p>基于表单认证的标准规范尚未有定论，一般会使用Cookie 来管理Session（会话）。<br>基于表单认证本身是通过服务器端的Web 应用，将客户端发送过来的用户ID 和密码与之前登录过的信息做匹配来进行认证的。</p>
 <p>但鉴于HTTP 是无状态协议，之前已认证成功的用户状态无法通过协议层面保存下来。即，无法实现状态管理，因此即使当该用户下一次继续访问，也无法区分他与其他的用户。于是我们会使用Cookie 来管理Session，以弥补HTTP 协议中不存在的状态管理功能。</p>
-<p><img src="https://pic2.zhimg.com/v2-0b02fa4a73a8072eb03cdf78270235e1_r.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhi20um0yyj30vx0fr771.jpg" alt=""></p>
 <p><strong>Session 管理及Cookie 状态管理</strong></p>
 <ul>
 <li><p>步骤一：客户端把用户ID 和密码等登录信息放入报文的实体部分，通常是以POST 方法把请求发送给服务器。而这时，会使用HTTPS 通信来进行HTML 表单画面的显示和用户输入数据的发送。</p>
@@ -568,8 +568,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/11/html_HTML5表单功能/" rel="next" title="HTML5表单功能">
-                <i class="fa fa-chevron-left"></i> HTML5表单功能
+              <a href="/2017/07/11/js_ajax跨域解决方案/" rel="next" title="ajax跨域解决方案">
+                <i class="fa fa-chevron-left"></i> ajax跨域解决方案
               </a>
             
           </div>
@@ -578,8 +578,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/11/js_ajax跨域解决方案/" rel="prev" title="ajax跨域解决方案">
-                ajax跨域解决方案 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/11/js_javascript实现数据双向绑定的三种方式/" rel="prev" title="javascript实现数据双向绑定的三种方式">
+                javascript实现数据双向绑定的三种方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
