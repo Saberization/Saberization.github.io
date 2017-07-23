@@ -1,0 +1,921 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言在快速入门一文中，示例都是通过test()方法演示，本文会继续介绍正则的其它用法(以JS语言为例) 大纲 正则对象  生成正则对象  可选项标记  子表达式  正则的 test 方法  正则的 compile 方法  正则的 exec 方法    字符串的正则应用  字符串的 match 方法  字符串的 replace 方法  字符串的 search 方法  字符串的 split 方法">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【正则表达式系列】基本用法">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/23/js_正则基本用法/index.html">
+<meta property="og:site_name" content="郭天琦的个人博客">
+<meta property="og:description" content="前言在快速入门一文中，示例都是通过test()方法演示，本文会继续介绍正则的其它用法(以JS语言为例) 大纲 正则对象  生成正则对象  可选项标记  子表达式  正则的 test 方法  正则的 compile 方法  正则的 exec 方法    字符串的正则应用  字符串的 match 方法  字符串的 replace 方法  字符串的 search 方法  字符串的 split 方法">
+<meta property="og:updated_time" content="2017-07-23T14:35:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【正则表达式系列】基本用法">
+<meta name="twitter:description" content="前言在快速入门一文中，示例都是通过test()方法演示，本文会继续介绍正则的其它用法(以JS语言为例) 大纲 正则对象  生成正则对象  可选项标记  子表达式  正则的 test 方法  正则的 compile 方法  正则的 exec 方法    字符串的正则应用  字符串的 match 方法  字符串的 replace 方法  字符串的 search 方法  字符串的 split 方法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://keeppassionalways.github.io/2017/07/23/js_正则基本用法/"/>
+
+
+
+
+
+  <title>【正则表达式系列】基本用法 | 郭天琦的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郭天琦的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">html5、css3、javascript、nodejs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-html">
+          <a href="/categories/html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            html
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-css">
+          <a href="/categories/css" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-css3"></i> <br />
+            
+            css
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-javascript">
+          <a href="/categories/javascript" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br />
+            
+            javascript
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'yourswiftypekey','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://keeppassionalways.github.io/2017/07/23/js_正则基本用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭天琦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/toux.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭天琦的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【正则表达式系列】基本用法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-23T15:47:38+08:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<code>快速入门</code>一文中，示例都是通过<code>test()</code>方法演示，本文会继续介绍正则的其它用法(以<code>JS</code>语言为例)</p>
+<h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul>
+<li><p>正则对象</p>
+<ul>
+<li><p>生成正则对象</p>
+</li>
+<li><p>可选项标记</p>
+</li>
+<li><p>子表达式</p>
+</li>
+<li><p>正则的 <code>test</code> 方法</p>
+</li>
+<li><p>正则的 <code>compile</code> 方法</p>
+</li>
+<li><p>正则的 <code>exec</code> 方法</p>
+</li>
+</ul>
+</li>
+<li><p>字符串的正则应用</p>
+<ul>
+<li><p>字符串的 <code>match</code> 方法</p>
+</li>
+<li><p>字符串的 <code>replace</code> 方法</p>
+</li>
+<li><p>字符串的 <code>search</code> 方法</p>
+</li>
+<li><p>字符串的 <code>split</code> 方法</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="正则对象"><a href="#正则对象" class="headerlink" title="正则对象"></a>正则对象</h2><h3 id="生成正则对象"><a href="#生成正则对象" class="headerlink" title="生成正则对象"></a>生成正则对象</h3><p>有两种方法可以创建并得到一个正则表达式对象</p>
+<ul>
+<li>字面量声明方式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg = <span class="regexp">/abc/g</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>显式创建</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"abc"</span>, <span class="string">"g"</span>);</div></pre></td></tr></table></figure>
+<h3 id="可选项标记"><a href="#可选项标记" class="headerlink" title="可选项标记"></a>可选项标记</h3><p>上文生成正则对象中最后有用到<code>g</code>，其实这就是生成正则的可选项标记，可以组合使用，如下</p>
+<ul>
+<li><p><code>g</code> 全文匹配，即匹配一个成功后，如果没有结束，会继续匹配</p>
+</li>
+<li><p><code>i</code> 忽略大小写匹配</p>
+</li>
+<li><p><code>m</code> 多行匹配</p>
+</li>
+</ul>
+<p>可以通过如下示例进一步了解</p>
+<p><strong><code>/g</code>的用法</strong></p>
+<p>加上<code>/g</code>后会全局搜索所有匹配结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abcabcabc'</span>;</div><div class="line"></div><div class="line"><span class="comment">// ['abc', index: 0, input: "abcabcabc"]</span></div><div class="line">str.match(<span class="regexp">/abc/</span>);</div><div class="line"></div><div class="line"><span class="comment">// ['abc', 'abc', 'abc']</span></div><div class="line">str.match(<span class="regexp">/abc/g</span>);</div></pre></td></tr></table></figure>
+<p><strong><code>/i</code>的用法</strong></p>
+<p>加上<code>/i</code>后大小写一视同仁，很多时候，如果不加<code>/i</code>，很容易出现大小写不匹配的错误(比如去除字符串中<code>script</code>标签时)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'Script'</span>;</div><div class="line"></div><div class="line"><span class="comment">// null</span></div><div class="line">str.match(<span class="regexp">/script/</span>);</div><div class="line"></div><div class="line"><span class="comment">// ["Script", index: 0, input: "Script"]</span></div><div class="line">str.match(<span class="regexp">/script/i</span>);</div></pre></td></tr></table></figure>
+<p><strong><code>/m</code>的用法</strong></p>
+<p>多行匹配比较少用到，但在一些场景下不得不用，比如下例中，只有<code>\m</code>多行匹配的情况下才能正常的将每一行的行尾(<code>\n</code>形成不同的行)的数字替换成<code>#</code>，否则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a1\nb1\nc1\nd1\ne1\nf1'</span>;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * a1</div><div class="line"> * b1</div><div class="line"> * c1</div><div class="line"> * d1</div><div class="line"> * e1</div><div class="line"> * f#</div><div class="line"> */</div><div class="line">str.replace(<span class="regexp">/\d+$/g</span>, <span class="string">'#'</span>)</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * a#</div><div class="line"> * b#</div><div class="line"> * c#</div><div class="line"> * d#</div><div class="line"> * e#</div><div class="line"> * f#</div><div class="line"> */</div><div class="line">str.replace(<span class="regexp">/\d+$/mg</span>, <span class="string">'#'</span>)</div></pre></td></tr></table></figure>
+<h3 id="子表达式"><a href="#子表达式" class="headerlink" title="子表达式"></a>子表达式</h3><p>正则表达式中，用圆括号包围的就是子表达式(子模式)</p>
+<p>一般，在<code>match</code>的非全局匹配中或<code>exec</code>中，在匹配完整个正则表达表达式后，都会再次匹配子表达式</p>
+<p>另外，在字符串的<code>replace</code>与<code>split</code>中，子表达式也会经常用到</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a1.b2.c3.d4'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 第一个结果是 整个正则表达式的匹配，之后则分别是子表达式的匹配</span></div><div class="line">/(\w)(\d)[.]/.exec(str); <span class="comment">// ["a1.", "a", "1", index: 0, input: "a1.b2.c3.d4"]</span></div></pre></td></tr></table></figure>
+<h3 id="正则的test"><a href="#正则的test" class="headerlink" title="正则的test()"></a>正则的test()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pattern.test(str);</div></pre></td></tr></table></figure>
+<p>检索字符串中是否存在指定模式，匹配成功则返回<code>true</code>，否则返回<code>false</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abcdefg'</span>;</div><div class="line"></div><div class="line"><span class="regexp">/^abc/</span>.test(str); <span class="comment">// true</span></div><div class="line"></div><div class="line">/^abce/.test(str); <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<h3 id="正则的compile"><a href="#正则的compile" class="headerlink" title="正则的compile()"></a>正则的compile()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reg.compile(pattern);</div></pre></td></tr></table></figure>
+<p>编译正则表达式，编译之后正则的执行速度会提高</p>
+<p>编译的时候也可以改变检索模式或者改变可选项标识</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abcdabcdabc'</span>;</div><div class="line"><span class="keyword">var</span> reg = <span class="regexp">/abc/</span>;</div><div class="line"></div><div class="line">reg.test(str)； <span class="comment">// true</span></div><div class="line"></div><div class="line">reg.compile();</div><div class="line"></div><div class="line">reg.test(str); <span class="comment">// true，仅仅是被编译，没有被改变</span></div><div class="line"></div><div class="line">reg.compile(<span class="regexp">/aB/</span>); </div><div class="line"></div><div class="line">reg.test(str); <span class="comment">// false，匹配式改成了aB，因此不匹配</span></div><div class="line"></div><div class="line">reg.compile(<span class="regexp">/aB/i</span>); </div><div class="line"></div><div class="line">reg.test(str); <span class="comment">// true，改成了aB并且忽略大小的形式，因此匹配</span></div></pre></td></tr></table></figure>
+<h3 id="正则的exec"><a href="#正则的exec" class="headerlink" title="正则的exec()"></a>正则的exec()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pattern.exec(str);</div></pre></td></tr></table></figure>
+<p>在字符串中检索特定的模式，匹配成功则返回找到的值，否则返回 <code>null</code></p>
+<p>有两种情况</p>
+<p><strong>第一种:非全局匹配</strong></p>
+<p>如果没有找到，则返回 <code>null</code></p>
+<p>找到则返回一个数组，<code>arr[0]</code>是匹配结果，余下元素是<code>arr[0]</code>中匹配圆括号中子表达式的结果，以及最后的<code>index</code>和<code>input</code></p>
+<p>而且非全局模式中，不会保存<code>index</code>，也就是说不管匹配多少次，结果都是一样的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a1.b2.c3.d4'</span>;</div><div class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/(\w)(\d)[.]/</span>;</div><div class="line"></div><div class="line">reg1.exec(str); <span class="comment">// ["a1.", "a", "1", index: 0, input: "a1.b2.c3.d4"]</span></div><div class="line">reg1.exec(str); <span class="comment">// ["a1.", "a", "1", index: 0, input: "a1.b2.c3.d4"]</span></div><div class="line">reg1.exec(str); <span class="comment">// ["a1.", "a", "1", index: 0, input: "a1.b2.c3.d4"]</span></div><div class="line"></div><div class="line">/abc/.exec(str); <span class="comment">// null</span></div></pre></td></tr></table></figure>
+<p><strong>第二种:<code>g</code>全局匹配</strong></p>
+<p>正则的<code>exec</code>全局匹配可以保存<code>index</code>，并且下一次继续匹配时，将不会是重新从<code>0</code>开始，而是从保存的<code>index</code>开始</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a1.b2.c3.d4'</span>;</div><div class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/(\w)(\d)[.]/g</span>;</div><div class="line"></div><div class="line">reg2.exec(str); <span class="comment">// ["a1.", "a", "1", index: 0, input: "a1.b2.c3.d4"]</span></div><div class="line">reg2.exec(str); <span class="comment">// ["b2.", "b", "2", index: 3, input: "a1.b2.c3.d4"]</span></div><div class="line">reg2.exec(str); <span class="comment">// ["c3.", "c", "3", index: 6, input: "a1.b2.c3.d4"]</span></div><div class="line"></div><div class="line">/abc/.exec(str); <span class="comment">// null</span></div></pre></td></tr></table></figure>
+<h2 id="字符串的正则应用"><a href="#字符串的正则应用" class="headerlink" title="字符串的正则应用"></a>字符串的正则应用</h2><p>上文中提到的都是正则对象上的方法，但实际上，<code>JS</code>的<code>String</code>对象也支持正则表达式</p>
+<h3 id="字符串的match"><a href="#字符串的match" class="headerlink" title="字符串的match()"></a>字符串的match()</h3><p><code>match</code>是字符串中最常用的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.match(pattern);</div></pre></td></tr></table></figure>
+<p>如果<code>pattern</code>中有<code>g</code>，代表全局匹配，则返回的数组包含所有匹配结果</p>
+<p>如果无<code>g</code>，则返回的数组的第<code>1</code>个元素(<code>arr[0]</code>)是第一个匹配结果，余下元素是<code>arr[0]</code>中匹配圆括号中子表达式的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a.b2.c3.d445.e'</span>;</div><div class="line"></div><div class="line">str.match(<span class="regexp">/\d[.]/</span>); <span class="comment">// ["2.", index: 3, input: "a.b2.c3.d445.e"]</span></div><div class="line"></div><div class="line"><span class="comment">// 非全局匹配下，并且有圆括号子表达式，先匹配整个正则表达式一次</span></div><div class="line"><span class="comment">// 然后在匹配结果中再匹配子表达式</span></div><div class="line">str.match(<span class="regexp">/(\d)[.]/</span>); <span class="comment">// ["2.", "2", index: 3, input: "a.b2.c3.d445.e"]</span></div><div class="line"></div><div class="line"><span class="comment">// g 模式下是对整个正则表达式(包括圆括号子表达式)进行全局匹配</span></div><div class="line">str.match(<span class="regexp">/(\d)[.]/g</span>); <span class="comment">// ["2.", "3.", "5."]</span></div></pre></td></tr></table></figure>
+<h3 id="字符串的replace"><a href="#字符串的replace" class="headerlink" title="字符串的replace()"></a>字符串的replace()</h3><p>字符串中用来快速替换的方法，有多种用法</p>
+<p><strong>第一种情况</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.replace(str1, str2);</div></pre></td></tr></table></figure>
+<p>第一个参数是字符串，那么返回的结果只有<code>str1</code>被替换成<code>str2</code>了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a.b2.c3.d4'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 只会替换 . 一次</span></div><div class="line">str.replace(<span class="string">'.'</span>, <span class="string">'#'</span>); <span class="comment">// a#b2.c3.d445.e</span></div></pre></td></tr></table></figure>
+<p><strong>第二种情况</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.replace(pattern, str2);</div></pre></td></tr></table></figure>
+<p>第一个参数是正则表达式，此时如果是<code>g</code>全局匹配模式，会替换所有的匹配结果为<code>str2</code>，否则只会替换一个匹配结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a.b2.c3.d4'</span>;</div><div class="line"></div><div class="line">str.replace(<span class="regexp">/[.]/</span>, <span class="string">'#'</span>); <span class="comment">// a#b2.c3.d445.e</span></div><div class="line"></div><div class="line">str.replace(<span class="regexp">/[.]/g</span>, <span class="string">'#'</span>); <span class="comment">// a#b2#c3#d445#e</span></div></pre></td></tr></table></figure>
+<p>另外此模式下，<code>str2</code>还可以使用一些有特殊含义的特殊字符，例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a1.b2.c3.d4'</span>;</div><div class="line"></div><div class="line"><span class="comment">// $2和$1分别代表第2个,第1个子表达式</span></div><div class="line">str.replace(<span class="regexp">/(\w)(\d)[.]*/g</span>, <span class="string">'$2$1~'</span>); <span class="comment">// 1a~2b~3c~4d~</span></div></pre></td></tr></table></figure>
+<p><code>str2</code>中可用的特殊字符表</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>替换</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$1,$2,…,$99</td>
+<td>匹配第1~99个pattern中的圆括号子表达式的文本</td>
+</tr>
+<tr>
+<td>$&amp;</td>
+<td>匹配pattern的子串</td>
+</tr>
+<tr>
+<td>$`</td>
+<td>匹配子串的左边文本</td>
+</tr>
+<tr>
+<td>$’</td>
+<td>匹配子串的右边文本</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>美元符号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>第三种情况</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.replace(pattern, func);</div></pre></td></tr></table></figure>
+<p>这种模式下，第二个参数为一个函数，<code>func</code>将会在每一个匹配结果中调用，<code>func</code>返回的字符串将作为替换文本，<code>func</code>接收的参数，第一个是匹配<code>pattern</code>的字符串，之后的参数(可能是多个)是匹配该<code>pattern</code>中某个圆括号子表达式的字符串，在这之后的参数就是<code>index</code>(匹配结果的位置)，再之后就是完整的<code>input</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = a1.b2.c3.d4;</div><div class="line"></div><div class="line"><span class="comment">// 最终结果为: 1a~2b~3c~4d~</span></div><div class="line">str.replace(<span class="regexp">/(\w)(\d)[.]*/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">word, child1, child2, index, input</span>) </span>&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">console</span>.log(word); <span class="comment">// 依次打印的是a1. b2. c3. d4</span></div><div class="line">    <span class="built_in">console</span>.log(child1); <span class="comment">// 依次打印的是a b c d</span></div><div class="line">    <span class="built_in">console</span>.log(child2); <span class="comment">// 依次打印的是1 2 3 4</span></div><div class="line">    <span class="built_in">console</span>.log(index); <span class="comment">// 依次打印的是0 3 6 9</span></div><div class="line">    <span class="built_in">console</span>.log(input); <span class="comment">// 每次都是打印 a1.b2.c3.d4</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> child2 + child1 + <span class="string">'~'</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="字符串的search"><a href="#字符串的search" class="headerlink" title="字符串的search()"></a>字符串的search()</h3><p>返回第<code>1</code>个与patten匹配的字符串子串的起始位置，如果找不到，则返回<code>-1</code>，不支持全局检索，也就是说，会省略<code>g</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abcdefg1234567'</span>;</div><div class="line"></div><div class="line">str.search(<span class="regexp">/efg/</span>); <span class="comment">// 4</span></div><div class="line">str.search(<span class="regexp">/efg/g</span>); <span class="comment">// 4</span></div><div class="line">str.search(<span class="regexp">/aabc/g</span>); <span class="comment">// -1</span></div></pre></td></tr></table></figure>
+<h3 id="字符串的split"><a href="#字符串的split" class="headerlink" title="字符串的split()"></a>字符串的split()</h3><p><code>split</code>方法可以让一个字符串分割成数组，同样忽略<code>g</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.split(pattern, limit); <span class="comment">// pattern为字符串或正则</span></div></pre></td></tr></table></figure>
+<p>将<code>str</code>拆分为子串组成的数组，子串中不包括<code>pattern</code>（特例除外）。<code>limit</code>是可选参数，指定返回的数组的最大长度</p>
+<p>特例: 如果<code>pattern</code>包含圆括号子表达式，<code>则在匹配结果，中加入返回匹配子匹配式的子串</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'a1.b2.c3.d4'</span>;</div><div class="line"></div><div class="line">str.split(<span class="regexp">/\d[.]/</span>); <span class="comment">// ["a", "b", "c", "d4"]</span></div><div class="line"></div><div class="line"><span class="comment">// 包含了圆括号的子串，返回数组中出现了匹配圆括号的子串</span></div><div class="line">str.split(<span class="regexp">/(\d)[.]/</span>); <span class="comment">// ["a", "1", "b", "2", "c", "3", "d4"]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> str2 = <span class="string">'.b2.c3.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3.后面没有字符了，但是由于它符合匹配，所以后续结果中会多一个""</span></div><div class="line">str2.split(<span class="regexp">/\d[.]/</span>); <span class="comment">// [".b", "c", ""]</span></div><div class="line"></div><div class="line"><span class="comment">// 同上，只不过圆括号中的内容也在返回结果中</span></div><div class="line">str2.split(<span class="regexp">/(\d)[.]/</span>); <span class="comment">// [".b", "2", "c", "3", ""]</span></div></pre></td></tr></table></figure>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li><p><a href="http://www.runoob.com/regexp/regexp-metachar.html" target="_blank" rel="external">正则表达式元字符</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/chenmeng0818/p/6370819.html" target="_blank" rel="external">js中的正则表达式入门</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/seven7seven/p/4778726.html" target="_blank" rel="external">js中正则表达式的模式匹配</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/aaronjs/archive/2012/06/30/2570970.html" target="_blank" rel="external">精通 JS正则表达式</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/16/eassy_新框架使用情况/" rel="next" title="新框架使用情况">
+                <i class="fa fa-chevron-left"></i> 新框架使用情况
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/toux.jpg"
+               alt="郭天琦" />
+          <p class="site-author-name" itemprop="name">郭天琦</p>
+           
+              <p class="site-description motion-element" itemprop="description">不积跬步无以至千里，不积小流无以成江海</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大纲"><span class="nav-number">2.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则对象"><span class="nav-number">3.</span> <span class="nav-text">正则对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成正则对象"><span class="nav-number">3.1.</span> <span class="nav-text">生成正则对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可选项标记"><span class="nav-number">3.2.</span> <span class="nav-text">可选项标记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子表达式"><span class="nav-number">3.3.</span> <span class="nav-text">子表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则的test"><span class="nav-number">3.4.</span> <span class="nav-text">正则的test()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则的compile"><span class="nav-number">3.5.</span> <span class="nav-text">正则的compile()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则的exec"><span class="nav-number">3.6.</span> <span class="nav-text">正则的exec()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的正则应用"><span class="nav-number">4.</span> <span class="nav-text">字符串的正则应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的match"><span class="nav-number">4.1.</span> <span class="nav-text">字符串的match()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的replace"><span class="nav-number">4.2.</span> <span class="nav-text">字符串的replace()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的search"><span class="nav-number">4.3.</span> <span class="nav-text">字符串的search()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的split"><span class="nav-number">4.4.</span> <span class="nav-text">字符串的split()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭天琦</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
