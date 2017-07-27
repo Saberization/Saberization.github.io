@@ -172,6 +172,258 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js_函数式变成(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/27/js_函数式变成(一)/">JS 函数式编程（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/27/js_函数式变成(一)/" class="archive-article-date">
+  	<time datetime="2017-07-27T10:09:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><p>数据抽象或抽象过程</p>
+</li>
+<li><p>纯函数</p>
+<ul>
+<li><p>函数式编程能够减少系统中的非纯函数</p>
+</li>
+<li><p>Ramda.js</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>目前前端界（以及其他一些领域）对函数式编程大体上两种态度，一些人是觉得函数式编程特牛逼，尤其是现在许多新生的框架和库都在标榜自己的函数式特征。而另一些人，又觉得函数式编程学起来很难，而且似乎也没有什么卵用，理由是在自己经历的项目里面很难看到具体的函数式编程应用场景，甚至其中许多人认同一个观点，觉得函数式编程只适合于学术研究，很难在工程项目中实际使用。</p>
+<p>不管你在阅读本文之前属于哪一种人，又或者你是刚接触函数式编程的新人，都没有关系。本文不是研究函数式编程范式的学术研究，而函数式编程作为一个可以说是程序设计理论中最古老的编程范式，在它几十年上百年的发展历史中，已经积累了大量的资料和素材，对于想要在学术领域里完全弄明白它的同学，完全可以在网上、书店里找到各种资料。本文的重点不在于概念，而在于实战。因此，你不会听到太多各种函数式编程的名词讨论，比如诸如 Curry、Mond 之类的专业术语。相反，我们主要来讨论函数式编程在前端领域内使用的一些实际例子，了解为什么前端需要学习函数式编程，使用函数式编程写代码能给我们带来什么。如果弄明白了这些，那么关于函数式编程不实用的谣言也就不攻自破了。</p>
+<h3 id="数据抽象或过程抽象"><a href="#数据抽象或过程抽象" class="headerlink" title="数据抽象或过程抽象"></a>数据抽象或过程抽象</h3><p>为什么我们接受面向过程或面向对象思想很容易，而我们要完全接受函数式编程却感觉难得多？</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhylychzbtj30go0cidh0.jpg" alt=""></p>
+<p>我认为这个问题大体上可以这么解释：</p>
+<p>人脑本能地容易理解<code>看得见</code>、<code>摸得着</code>的物体，对于<code>运动</code>和<code>变化</code>一类不着形的东西，人脑理解起来要略微地费劲一些。而人类要做好一件复杂的事情，大脑有两种抽象方向，一种是对实体进行抽象，另一种是对过程进行抽象：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhym05wwlvj30dw099qdu.jpg" alt=""></p>
+<p>简答来说，即在软件设计的过程中，如果要保证软件产品的功能稳定可用，同时要保证它的灵活性和可扩展性，那么系统就要有变化的部分和不变的部分。哪些部分应当设计成“不变”，哪些部分应当设计成“可变”，在这个取舍过程中，FP（函数式编程）和 OOP（面向对象编程）正是走了两条不同的路线。</p>
+<p>面向对象对数据进行抽象，将行为以对象方法的方式封装到数据实体内部，从而降低系统的耦合度。而函数式编程，选择对过程进行抽象，将数据以输入输出流的方式封装进过程内部，从而也降低系统的耦合度。两者虽是截然不同，然而在系统设计的目标上可以说是殊途同归的。</p>
+<p>面向对象思想和函数式编程思想也是不矛盾的，因为一个庞大的系统，可能既要对数据进行抽象，又要对过程进行抽象，或者一个局部适合进行数据抽象，另一个局部适合进行过程抽象，这都是可能的。数据抽象不一定以对象实体为形式，同样过程抽象也不是说形式上必然是 functional 的，比如流式对象（InputStream、OutputStream）、Express 的 middleware，就带有明显的过程抽象的特征。但是在通常情况下，OOP更适合用来做数据抽象，FP更适合用来做过程抽象。</p>
+<h3 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h3><p>再具体深入下去之前，我们先来解答一个问题，那就是为什么用 FP 或过程抽象能够降低系统的耦合度。这里我们要先理解一个概念，这个概念叫<code>纯函数</code>.</p>
+<p>根据定义，如果一个函数符合两个条件，它被称为<code>纯函数</code>:</p>
+<p>此函数在相同的输入值时，总是产生相同的输出。函数的输出和当前运行环境的<code>上下文状态</code>无关。</p>
+<p>此函数运行过程不影响运行环境，比如不会触发事件、更改环境中的对象、终端输出值等。</p>
+<p>简单来说，也就是<code>当一个函数的输出不受外部环境影响</code>，<code>同时也不影响外部环境时</code>，<code>该函数就是纯函数</code>。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhymlouhenj309h0bnglq.jpg" alt=""></p>
+<p>JavaScript 内置函数中有不少纯函数，也有不少非纯函数。</p>
+<p>比如以下函数是纯函数：</p>
+<ul>
+<li><p>String.prototype.toUpperCase</p>
+</li>
+<li><p>Array.prototype.map</p>
+</li>
+<li><p>Function.prototype.bind</p>
+</li>
+</ul>
+<p>以下函数不是纯函数：</p>
+<ul>
+<li><p>Math.random</p>
+</li>
+<li><p>Date.now</p>
+</li>
+<li><p>document.body.appendChild</p>
+</li>
+<li><p>Array.prototype.sort</p>
+</li>
+</ul>
+<p>为什么要区分纯函数和非纯函数呢？因为在系统里，纯函数与非纯函数相比，在可测试性、可维护性、可移植性、并行计算和可扩展性方面都有着巨大的优势。</p>
+<p>在这里我用可测试性来举例：</p>
+<p>对于纯函数，因为是<code>无状态</code>的，测试的时候不需要构建运行时环境，也不需要用特定的顺序进行测试：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">test(<span class="function"><span class="params">t</span> =&gt;</span> &#123;</div><div class="line">    t.is(add(<span class="number">10</span>, <span class="number">20</span>), <span class="number">30</span>); <span class="comment">//add(x,y) 是个纯函数，不需要为它构建测试环境</span></div><div class="line">    ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>函数式编程能够减少系统中的非纯函数</p>
+<p><strong>实例</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>7<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>8<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>9<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setColor</span>(<span class="params">el, color</span>)</span>&#123;</div><div class="line">  el.style.color = color;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setColors</span>(<span class="params">els, color</span>)</span>&#123;</div><div class="line">  els.forEach(<span class="function"><span class="params">el</span> =&gt;</span> setColor(el, color));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> items1 = <span class="built_in">document</span>.querySelectorAll(<span class="string">'ul &gt; li:nth-child(2n + 1)'</span>);</div><div class="line"><span class="keyword">let</span> items2 = <span class="built_in">document</span>.querySelectorAll(<span class="string">'ul &gt; li:nth-child(3n + 1)'</span>);</div><div class="line"></div><div class="line">setColors(items2, <span class="string">'green'</span>);</div><div class="line">setColors(items1, <span class="string">'red'</span>);</div></pre></td></tr></table></figure>
+<p>在这里我们有两个彼此依赖的非纯函数，setColor(el, color) 和 setColors(els, color)。在测试的时候，我们需要构建环境来测试两个函数。</p>
+<p>现在，我们用函数式编程思想来改造这个系统：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">batch</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">target, ...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(target.length &gt;= <span class="number">0</span>)&#123;</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Array</span>.from(target).map(<span class="function"><span class="params">item</span> =&gt;</span> fn.apply(<span class="keyword">this</span>, [item, ...args]));</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">      <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, [target, ...args]);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setColor</span>(<span class="params">el, color</span>)</span>&#123;</div><div class="line">  el.style.color = color;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> setColors = batch(setColor);</div><div class="line"></div><div class="line"><span class="keyword">let</span> items1 = <span class="built_in">document</span>.querySelectorAll(<span class="string">'ul &gt; li:nth-child(2n + 1)'</span>);</div><div class="line"><span class="keyword">let</span> items2 = <span class="built_in">document</span>.querySelectorAll(<span class="string">'ul &gt; li:nth-child(3n + 1)'</span>);</div><div class="line"></div><div class="line">setColors(items2, <span class="string">'green'</span>);</div><div class="line">setColors(items1, <span class="string">'red'</span>);</div></pre></td></tr></table></figure>
+<p>在这里，我们建立一个过程抽象的高阶函数 batch(fn)，这个函数的作用是，对它的输入函数返回一个新的函数，这个函数与输入函数的区别是，如果调用的第一个实参是一个数组，那么将这个数组展开，用每一个值依次调用输入函数，返回一个数组，包活每次调用返回的结果。</p>
+<p>batch(fn) 本身虽然看似复杂，但是有意思的事，这个函数无疑是纯函数，所以 batch(fn) 自身的测试是非常简单的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">test(<span class="function"><span class="params">t</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> add = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x + y;</div><div class="line">  <span class="keyword">let</span> listAdd = batch(add);</div><div class="line"></div><div class="line">  t.deepEqual(listAdd([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">1</span>), [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>由于我们上面举的例子 setColor 和 setColors 虽然不是纯函数，但是却非常简单，因此似乎设计 batch(fn) 的意义不大，有把系统变得更复杂的嫌疑。然而，对于有许多操作 DOM 的函数的框架或库，有了 batch(fn)，我们就可以实现很简单的接口（对单一元素操作），然后利用 batch(fn) 获得更复杂接口（对元素进行批量操作），从而大大降低系统本身的复杂的，提升可维护性。</p>
+<p>注意一点，batch(fn) 输出的函数有副作用，然而 batch(fn) 用闭包将输出的函数的副作用限制在了 batch(fn) 的作用域内。</p>
+<h3 id="Ramda-js-的-lift-方法"><a href="#Ramda-js-的-lift-方法" class="headerlink" title="Ramda.js 的 lift 方法"></a><a href="http://ramdajs.com/" target="_blank" rel="external">Ramda.js</a> 的 lift 方法</h3><p>Ramda.js 的 lift 方法和 batch 有一点点类似，不过功能更强大。让我们来用它实现一个有一点点“烧脑”的效果，来作为这篇文章的结尾：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">promise, action</span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> promise;</div><div class="line">  <span class="keyword">return</span> action(res);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">continuous</span>(<span class="params">...functors</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">input</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">await</span> functors.reduce(reducer, input)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">ms</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, ms));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">setColor</span>(<span class="params">item, color</span>)</span>&#123;</div><div class="line">  <span class="keyword">await</span> sleep(<span class="number">500</span>);</div><div class="line">  item.style.color = color;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> comb = R.lift(<span class="function">(<span class="params">el, color</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> [el, color];</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> changeColorTo = <span class="function">(<span class="params">args</span>) =&gt;</span> R.partial(setColor, args);</div><div class="line"></div><div class="line"><span class="keyword">let</span> items = <span class="built_in">Array</span>.from(list.children);</div><div class="line"></div><div class="line"><span class="keyword">let</span> task = R.map(changeColorTo, comb(</div><div class="line">  items,</div><div class="line">  [<span class="string">'red'</span>, <span class="string">'orange'</span>, <span class="string">'yellow'</span>]</div><div class="line">));</div><div class="line"></div><div class="line">continuous(...task)(<span class="number">0</span>);</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/27/js_函数式变成(一)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js_worksocket" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/27/js_worksocket/">认识HTML5的WebSocket</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/27/js_worksocket/" class="archive-article-date">
+  	<time datetime="2017-07-27T09:08:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="认识HTML5的WebSocket"><a href="#认识HTML5的WebSocket" class="headerlink" title="认识HTML5的WebSocket"></a>认识HTML5的WebSocket</h2><p>在HTML5规范中，我最喜欢的Web技术就是正迅速变得流行的WebSocket API。WebSocket提供了一个受欢迎的技术，以替代我们过去几年一直在用的Ajax技术。这个新的API提供了一个方法，从客户端使用简单的语法有效地推动消息到服务器。让我们看一看HTML5的WebSocket API：它可用于客户端、服务器端。而且有一个优秀的第三方API，名为Socket.IO。</p>
+<h3 id="一、什么是WebSocket-API"><a href="#一、什么是WebSocket-API" class="headerlink" title="一、什么是WebSocket API?"></a>一、什么是WebSocket API?</h3><p>WebSocket API是下一代客户端-服务器的异步通信方法。该通信取代了单个的TCP套接字，使用ws或wss协议，可用于任意的客户端和服务器程序。WebSocket目前由W3C进行标准化。WebSocket已经受到Firefox 4、Chrome 4、Opera 10.70以及Safari 5等浏览器的支持。</p>
+<p>WebSocket API最伟大之处在于服务器和客户端可以在给定的时间范围内的任意时刻，相互推送信息。WebSocket并不限于以Ajax(或XHR)方式通信，因为Ajax技术需要客户端发起请求，而WebSocket服务器和客户端可以彼此相互推送信息；XHR受到域的限制，而WebSocket允许跨域通信。</p>
+<p>Ajax技术很聪明的一点是没有设计要使用的方式。WebSocket为指定目标创建，用于双向推送消息。</p>
+<h3 id="二、WebSocket-API的用法"><a href="#二、WebSocket-API的用法" class="headerlink" title="二、WebSocket API的用法"></a>二、WebSocket API的用法</h3><p>只专注于客户端的API，因为每个服务器端语言有自己的API。下面的代码片段是打开一个连接，为连接创建事件监听器，断开连接，消息时间，发送消息返回到服务器，关闭连接。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个Socket实例</span></div><div class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:8080'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 打开Socket</span></div><div class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">	<span class="comment">// 发送一个初始化消息</span></div><div class="line">	socket.send(<span class="string">'I am the client and I\'m listening!'</span>);</div><div class="line"></div><div class="line">	<span class="comment">// 监听消息</span></div><div class="line">	socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'Client received a message'</span>,event);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment">// 监听Socket的关闭</span></div><div class="line">	socket.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'Client notified socket has closed'</span>,event);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment">// 关闭Socket</span></div><div class="line">	socket.close();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>让我们来看看上面的初始化片段。参数为URL，ws表示WebSocket协议。onopen、onclose和onmessage方法把事件连接到Socket实例上。每个方法都提供了一个事件，以表示Socket的状态。</p>
+<p>onmessage事件提供了一个data属性，它可以包含消息的Body部分。消息的Body部分必须是一个字符串，可以进行序列化/反序列化操作，以便传递更多的数据。</p>
+<p>WebSocket的语法非常简单，使用WebSockets是难以置信的容易……除非客户端不支持WebSocket。IE浏览器目前不支持WebSocket通信。如果你的客户端不支持WebSocket通信，下面有几个后备方案供你使用：</p>
+<p><code>Flash技术</code> —— Flash可以提供一个简单的替换。 使用Flash最明显的缺点是并非所有客户端都安装了Flash，而且某些客户端，如iPhone/iPad，不支持Flash。</p>
+<p><code>AJAX Long-Polling技术</code> —— 用AJAX的long-polling来模拟WebSocket在业界已经有一段时间了。它是一个可行的技术，但它不能优化发送的信息。也就是说，它是一个解决方案，但不是最佳的技术方案。</p>
+<p>由于目前的IE等浏览器不支持WebSocket，要提供WebSocket的事件处理、返回传输、在服务器端使用一个统一的API，那么该怎么办呢？幸运的是，Guillermo Rauch创建了一个Socket.IO技术。</p>
+<h3 id="三、带Socket-IO的WebSocket"><a href="#三、带Socket-IO的WebSocket" class="headerlink" title="三、带Socket.IO的WebSocket"></a>三、带Socket.IO的WebSocket</h3><p>Socket.IO是Guillermo Rauch创建的WebSocket API，Guillermo Rauch是LearnBoost公司的首席技术官以及LearnBoost实验室的首席科学家。Socket.IO使用检测功能来判断是否建立WebSocket连接，或者是AJAX long-polling连接，或Flash等。可快速创建实时的应用程序。Socket.IO还提供了一个NodeJS API，它看起来非常像客户端API。<br>建立客户端Socket.IO</p>
+<p>Socket.IO可以从GitHub下载，可以把socket.io.js文件包含到页面中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.socket.io/stable/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>此时，Socket.IO在此页面上是有效的，是时候创建Socket了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建Socket.IO实例，建立连接</span></div><div class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> io.Socket(<span class="string">'localhost'</span>,&#123;</div><div class="line">  <span class="attr">port</span>: <span class="number">8080</span></div><div class="line">&#125;);</div><div class="line">socket.connect();</div><div class="line"></div><div class="line"><span class="comment">// 添加一个连接监听器</span></div><div class="line">socket.on(<span class="string">'connect'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Client has connected to the server!'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 添加一个连接监听器</span></div><div class="line">socket.on(<span class="string">'message'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Received a message from the server!'</span>,data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 添加一个关闭连接的监听器</span></div><div class="line">socket.on(<span class="string">'disconnect'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'The client has disconnected!'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 通过Socket发送一条消息到服务器</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMessageToServer</span>(<span class="params">message</span>) </span>&#123;</div><div class="line">  socket.send(message);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Socket.IO简化了WebSocket API，统一了返回运输的API。传输包括：</p>
+<ul>
+<li>WebSocket</li>
+<li>Flash Socket</li>
+<li>AJAX long-polling</li>
+<li>AJAX multipart streaming</li>
+<li>IFrame</li>
+<li>JSONP polling</li>
+</ul>
+<p>你还可以设置任意的Socket.IO构造器的第二个选项，选项包括：</p>
+<ul>
+<li><p>port - 待连接的端口</p>
+</li>
+<li><p>transports - 一个数组，包含不同的传输类型</p>
+</li>
+<li><p>transportOptions - 传输的参数使用的对象，带附加属性</p>
+</li>
+</ul>
+<p>Socket.IO还提供了由本地WebSocket API提供的普通连接、断开连接、消息事件。Socket还提供了封装每个事件类型的方法。</p>
+<h3 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h3><p>再具体深入下去之前，我们先来解答一个问题，那就是为什么用 FP 或过程抽象能够降低系统的耦合度。这里我们要先理解一个概念，这个概念叫“纯函数”。</p>
+<p>根据定义，如果一个函数符合两个条件，它被称为<code>纯函数</code>:</p>
+<p>此函数在相同的输入值时，总是产生相同的输出。函数的输出和当前运行环境的<code>上下文状态</code>无关。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/27/js_worksocket/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js_mobile_swipe" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -552,162 +804,9 @@
 
 
   
-    <article id="post-js_正则基本用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/23/js_正则基本用法/">【正则表达式系列】基本用法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/23/js_正则基本用法/" class="archive-article-date">
-  	<time datetime="2017-07-23T07:47:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<code>快速入门</code>一文中，示例都是通过<code>test()</code>方法演示，本文会继续介绍正则的其它用法(以<code>JS</code>语言为例)</p>
-        
-          <a class="article-more-a" href="/2017/07/23/js_正则基本用法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/23/js_正则基本用法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eassy_新框架使用情况" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/16/eassy_新框架使用情况/">新框架使用情况</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/16/eassy_新框架使用情况/" class="archive-article-date">
-  	<time datetime="2017-07-16T15:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="代码方面"><a href="#代码方面" class="headerlink" title="代码方面"></a>代码方面</h1><h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p><strong>总结：</strong></p>
-<p><code>老框架</code>默认未集成常用css样式，<code>新框架</code>在mui.extend.css中继承了常用的工具类样式，例如: <code>l</code>、<code>r</code>，详见<a href="http://fe.epoint.com.cn:8080/mfdoc/index/index.php#page=util_style_class/util_style_class.md" target="_blank" rel="external">点击这里</a>，extend中的样式，与mui.css中相同的样式通过gulp进行打包合并，无需担心多余的开销，开发者也不需要浪费时间，在去css文件中去找某个类名加通用样式，css将更加精简。</p>
-        
-          <a class="article-more-a" href="/2017/07/16/eassy_新框架使用情况/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/16/eassy_新框架使用情况/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
