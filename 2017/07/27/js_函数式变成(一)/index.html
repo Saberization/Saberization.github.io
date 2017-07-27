@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
   <title>JS 函数式编程（一） | 郭天琦的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言 数据抽象或抽象过程  纯函数  函数式编程能够减少系统中的非纯函数  Ramda.js     目前前端界（以及其他一些领域）对函数式编程大体上两种态度，一些人是觉得函数式编程特牛逼，尤其是现在许多新生的框架和库都在标榜自己的函数式特征。而另一些人，又觉得函数式编程学起来很难，而且似乎也没有什么卵用，理由是在自己经历的项目里面很难看到具体的函数式编程应用场景，甚至其中许多人认同一个观点，觉得">
+  <meta name="description" content="前言 数据抽象或抽象过程  纯函数  函数式编程能够减少系统中的非纯函数  Ramda.js">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS 函数式编程（一）">
 <meta property="og:url" content="https://keeppassionalways.github.io/2017/07/27/js_函数式变成(一)/index.html">
 <meta property="og:site_name" content="郭天琦的个人博客">
-<meta property="og:description" content="前言 数据抽象或抽象过程  纯函数  函数式编程能够减少系统中的非纯函数  Ramda.js     目前前端界（以及其他一些领域）对函数式编程大体上两种态度，一些人是觉得函数式编程特牛逼，尤其是现在许多新生的框架和库都在标榜自己的函数式特征。而另一些人，又觉得函数式编程学起来很难，而且似乎也没有什么卵用，理由是在自己经历的项目里面很难看到具体的函数式编程应用场景，甚至其中许多人认同一个观点，觉得">
+<meta property="og:description" content="前言 数据抽象或抽象过程  纯函数  函数式编程能够减少系统中的非纯函数  Ramda.js">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhylychzbtj30go0cidh0.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhym05wwlvj30dw099qdu.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhymlouhenj309h0bnglq.jpg">
-<meta property="og:updated_time" content="2017-07-27T10:54:22.000Z">
+<meta property="og:updated_time" content="2017-07-27T11:25:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 函数式编程（一）">
-<meta name="twitter:description" content="前言 数据抽象或抽象过程  纯函数  函数式编程能够减少系统中的非纯函数  Ramda.js     目前前端界（以及其他一些领域）对函数式编程大体上两种态度，一些人是觉得函数式编程特牛逼，尤其是现在许多新生的框架和库都在标榜自己的函数式特征。而另一些人，又觉得函数式编程学起来很难，而且似乎也没有什么卵用，理由是在自己经历的项目里面很难看到具体的函数式编程应用场景，甚至其中许多人认同一个观点，觉得">
+<meta name="twitter:description" content="前言 数据抽象或抽象过程  纯函数  函数式编程能够减少系统中的非纯函数  Ramda.js">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhylychzbtj30go0cidh0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="郭天琦的个人博客" type="application/atom+xml">
@@ -208,6 +208,7 @@
 </ul>
 </li>
 </ul>
+<a id="more"></a>
 <p>目前前端界（以及其他一些领域）对函数式编程大体上两种态度，一些人是觉得函数式编程特牛逼，尤其是现在许多新生的框架和库都在标榜自己的函数式特征。而另一些人，又觉得函数式编程学起来很难，而且似乎也没有什么卵用，理由是在自己经历的项目里面很难看到具体的函数式编程应用场景，甚至其中许多人认同一个观点，觉得函数式编程只适合于学术研究，很难在工程项目中实际使用。</p>
 <p>不管你在阅读本文之前属于哪一种人，又或者你是刚接触函数式编程的新人，都没有关系。本文不是研究函数式编程范式的学术研究，而函数式编程作为一个可以说是程序设计理论中最古老的编程范式，在它几十年上百年的发展历史中，已经积累了大量的资料和素材，对于想要在学术领域里完全弄明白它的同学，完全可以在网上、书店里找到各种资料。本文的重点不在于概念，而在于实战。因此，你不会听到太多各种函数式编程的名词讨论，比如诸如 Curry、Mond 之类的专业术语。相反，我们主要来讨论函数式编程在前端领域内使用的一些实际例子，了解为什么前端需要学习函数式编程，使用函数式编程写代码能给我们带来什么。如果弄明白了这些，那么关于函数式编程不实用的谣言也就不攻自破了。</p>
 <h3 id="数据抽象或过程抽象"><a href="#数据抽象或过程抽象" class="headerlink" title="数据抽象或过程抽象"></a>数据抽象或过程抽象</h3><p>为什么我们接受面向过程或面向对象思想很容易，而我们要完全接受函数式编程却感觉难得多？</p>
