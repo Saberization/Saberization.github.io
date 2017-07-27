@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
-  <title>Archives | 郭天琦的个人博客</title>
+  <title>移动端touch事件影响click事件以及在touchmove添加preventDefault导致页面无法滚动的解决方法 | 郭天琦的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="郭天琦的个人博客">
-<meta property="og:url" content="https://keeppassionalways.github.io/archives/index.html">
+  <meta name="description" content="这两天自己在写一个手机网页，用到了触屏滑动的特效，就是往右滑动的时候左侧隐藏的菜单从左边划出来。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端touch事件影响click事件以及在touchmove添加preventDefault导致页面无法滚动的解决方法">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/27/js_mobile_swipe/index.html">
 <meta property="og:site_name" content="郭天琦的个人博客">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="这两天自己在写一个手机网页，用到了触屏滑动的特效，就是往右滑动的时候左侧隐藏的菜单从左边划出来。">
+<meta property="og:updated_time" content="2017-07-27T08:37:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="郭天琦的个人博客">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="移动端touch事件影响click事件以及在touchmove添加preventDefault导致页面无法滚动的解决方法">
+<meta name="twitter:description" content="这两天自己在写一个手机网页，用到了触屏滑动的特效，就是往右滑动的时候左侧隐藏的菜单从左边划出来。">
   
     <link rel="alternative" href="/atom.xml" title="郭天琦的个人博客" type="application/atom+xml">
   
@@ -170,36 +172,103 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-js_mobile_swipe" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      移动端touch事件影响click事件以及在touchmove添加preventDefault导致页面无法滚动的解决方法
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/27/js_mobile_swipe/" class="archive-article-date">
+
+        
+        <a href="/2017/07/27/js_mobile_swipe/" class="archive-article-date">
   	<time datetime="2017-07-27T08:13:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/27/js_mobile_swipe/">移动端touch事件影响click事件以及在touchmove添加preventDefault导致页面无法滚动的解决方法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这两天自己在写一个手机网页，用到了触屏滑动的特效，就是往右滑动的时候左侧隐藏的菜单从左边划出来。</p>
+<a id="more"></a>
+<p>做完之后在手机原生浏览器中运行正常，但在QQ和微信中打开，发现touchmove只会触发一次，而且touchend也经常不触发。</p>
+<p><strong>原因是：</strong></p>
+<ul>
+<li><p>主要是由于200ms超时导致内核不一定会一直处理touchmove事件，一旦超时会将后续所有的事件转交给UI处理，导致touchmove不会一直触发。</p>
+</li>
+<li><p>为了解决开发者需要，建议开发者在touchstart时调用event.preventDefault，这样就可以保证内核会一起触发touchmove事件了。</p>
+</li>
+</ul>
+<p>根据上面所说，在touchstart中添加了event.preventDefault()方法，在QQ和微信中果然正常了。</p>
+<p>但是！！！页面中的超链接点击没反应了！！！给其他地方加的click事件也不触发了！！！</p>
+<p>之后继续百度，得知当在移动端上点击屏幕时，会依次触发touchstart,touchmove,touchend,click事件。</p>
+<p>之后测试了一下，发现正确的触发过程应该是：<code>touchstart → touchmove → touchend 或者 touchstart → touchend → click。</code></p>
+<p>如果在点击屏幕的时候手指滑动的话，是不会触发click事件的。</p>
+<p>event.preventDefault()的方法，会阻止事件的默认行为。可以通过调用preventDefault()方法，可以阻止后面事件的触发。</p>
+<p>我知道event.preventDefault()会阻止a标签默认的动作(跳转到href指定的页面)，但是为什么click也不触发了呢？</p>
+<p><strong>之后我大胆推测了一下：</strong></p>
+<ul>
+<li><p>会不会是因为在移动端click事件的触发条件就是必须touchstart和touchend同时触发才能触发click呢？</p>
+</li>
+<li><p>我在touchstart中调用了event.preventDefault方法，是不是让浏览器误以为没有触发touchstart事件，只触发了touchend事件，所以没有触发click事件呢？</p>
+</li>
+</ul>
+<p>之后我删除了touchstart中的event.preventDefault方法，果然超链接和click事件都触发了，但是前面说的问题又出现了，在QQ和微信中touchmove和touchend又出问题了。</p>
+<p>怎么办呢？</p>
+<p>后来突然脑袋灵光一闪，既然在touchstart中加了event.preventDefault会导致不触发click事件，那我在touchmove中加可以吧？</p>
+<p>抱着试一试的心态，果然好了，click能顺利触发，QQ和微信中也没有问题，我以为这样就好了，但是为什么页面不能滚动了？</p>
+<p>原来touchmove中添加event.preventDefault方法之后会阻止浏览器默认的滚动。。。</p>
+<p>查找了一下开源组件的源码</p>
+<p>在<code>touchmove</code>中有这样一段代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> w = x&lt;<span class="number">0</span>?x*<span class="number">-1</span>:x;     <span class="comment">//x轴的滑动值</span></div><div class="line"><span class="keyword">var</span> h = y&lt;<span class="number">0</span>?y*<span class="number">-1</span>:y;     <span class="comment">//y轴的滑动值</span></div><div class="line"><span class="keyword">if</span>(w&gt;h)&#123;                <span class="comment">//如果是在x轴中滑动</span></div><div class="line">   event.preventDefault();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就是在<code>touchmove</code>中判断<code>x轴</code>和<code>y轴</code>的移动值，判断当前是往哪个方向滑动，如果是在x轴上滑动（左右），就调用event.preventDefault()方法，如果是在y轴上滑动（上下），就不调用event.preventDefault()。</p>
+<p>然后测试一下，QQ和微信中特效没有问题，click事件和a标签链接也可以顺利触发，页面滚动也没有问题。</p>
+<p>问题解决。</p>
+<h3 id="总结一下："><a href="#总结一下：" class="headerlink" title="总结一下："></a>总结一下：</h3><p>在QQ和微信（当然还包括其他浏览器，不过我没测试过）中如果有需要用到touch事件做的特效一定要在touchstart或者touchmove中添加event.preventDefault()方法。</p>
+<p>在touchstart中如果有event.preventDefault()方法， 将不会触发click事件和a标签方法。在这里可以使用tap代替click，但是a标签的话就不太方便了。</p>
+<p>如果在touchmove中有event.preventDefault()方法，最好加上方向判断，当然如果你页面内容不需要滚动条就不需要加判断了。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -211,250 +280,103 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://keeppassionalways.github.io/2017/07/27/js_mobile_swipe/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/26/js_fetch/" class="archive-article-date">
-  	<time datetime="2017-07-26T04:53:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/26/js_fetch/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript中使用fetch进行异步请求</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/js_fetch/">JavaScript中使用fetch进行异步请求</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/26/css_img_vertical_middle/" class="archive-article-date">
-  	<time datetime="2017-07-26T04:45:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/css_img_vertical_middle/">图片水平垂直居中对齐的四种做法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/25/eassy_CSRF/" class="archive-article-date">
-  	<time datetime="2017-07-25T07:57:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/25/eassy_CSRF/">跨站请求伪造CSRF</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/23/eassy_组件设计规则/" class="archive-article-date">
-  	<time datetime="2017-07-23T15:04:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/23/eassy_组件设计规则/">组件设计规则</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/23/js_正则基本用法/" class="archive-article-date">
-  	<time datetime="2017-07-23T07:47:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/23/js_正则基本用法/">【正则表达式系列】基本用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/16/eassy_新框架使用情况/" class="archive-article-date">
-  	<time datetime="2017-07-16T15:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/16/eassy_新框架使用情况/">新框架使用情况</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -475,8 +397,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
