@@ -6,26 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
-  <title>前端的意义是什么？ | 郭天琦的个人博客</title>
+  <title>Fetch 与 Promise 的区别 | 郭天琦的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="感受了下前端到底是干什么的">
-<meta name="keywords" content="eassy">
+  <meta name="description" content="FetchJavaScript 异步请求  具体标准参考如下 点击这里 FetchAPI 基本用法(ES6 语法)：">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端的意义是什么？">
-<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/01/eassy_前端的意义/index.html">
+<meta property="og:title" content="Fetch 与 Promise 的区别">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/28/js_fetch与promise的区别/index.html">
 <meta property="og:site_name" content="郭天琦的个人博客">
-<meta property="og:description" content="感受了下前端到底是干什么的">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3dxgvnuj30go09qaiz.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3et1aexj30go0bwwey.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3j31hnbj30go0b4ta5.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006HJ39wgy1ffn3khb04cj30dh08874h.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3lce72qj30go09eaaf.jpg">
-<meta property="og:updated_time" content="2017-07-25T07:21:57.000Z">
+<meta property="og:description" content="FetchJavaScript 异步请求  具体标准参考如下 点击这里 FetchAPI 基本用法(ES6 语法)：">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhzd2lvvysj30yg0am0ur.jpg">
+<meta property="og:updated_time" content="2017-07-28T01:54:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端的意义是什么？">
-<meta name="twitter:description" content="感受了下前端到底是干什么的">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg">
+<meta name="twitter:title" content="Fetch 与 Promise 的区别">
+<meta name="twitter:description" content="FetchJavaScript 异步请求  具体标准参考如下 点击这里 FetchAPI 基本用法(ES6 语法)：">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhzd2lvvysj30yg0am0ur.jpg">
   
     <link rel="alternative" href="/atom.xml" title="郭天琦的个人博客" type="application/atom+xml">
   
@@ -179,52 +174,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-eassy_前端的意义" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js_fetch与promise的区别" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      前端的意义是什么？
+      Fetch 与 Promise 的区别
     </h1>
   
 
         
-        <a href="/2017/07/01/eassy_前端的意义/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:03:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
+        <a href="/2017/07/28/js_fetch与promise的区别/" class="archive-article-date">
+  	<time datetime="2017-07-28T01:48:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>感受了下前端到底是干什么的</p>
-</blockquote>
+        <h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h3><p><code>JavaScript</code> 异步请求 </p>
+<p>具体标准参考如下 <a href="https://fetch.spec.whatwg.org/#goals" target="_blank" rel="external">点击这里</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="external">FetchAPI</a></p>
+<p>基本用法(ES6 语法)：</p>
 <a id="more"></a>
-<h3 id="前端面临的问题其实是一个难题"><a href="#前端面临的问题其实是一个难题" class="headerlink" title="前端面临的问题其实是一个难题"></a>前端面临的问题其实是一个难题</h3><p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg" alt=""></p>
-<h5 id="为什么说它是难题呢？"><a href="#为什么说它是难题呢？" class="headerlink" title="为什么说它是难题呢？"></a>为什么说它是难题呢？</h5><p>因为软件工程的核心目标是用通用的模型解决一切问题，比如人工智能和机器学习。构筑在软件设计模型和程序设计理论的基石之上的一条道路，最终的终点指向一个目的地——抽象。不断深入研究各种问题，总结各种模式，直到将来某一天，机器能够代替人类思考，甚至机器能够代替人类存在，这才是终极目标。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3dxgvnuj30go09qaiz.jpg" alt=""></p>
-<p>然而从这方面来说，前端这个领域简直太难太难了。因为 AI 可以代替人类思考，甚至 AI 可以代替人类存在，但是 AI 可能永远也不会是人类，因为 AI 不会有人类的感觉，AI 不像人类那样拥有一颗脆弱、感性、多变、追求美的心，AI 可能不具有贪、嗔、痴、爱、慢、疑。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3et1aexj30go0bwwey.jpg" alt=""></p>
-<p>AI 可能也不会像人类一样对一个行业的前途忧心忡忡，在这种问题下面瞎比比。</p>
-<p>人类对美的体验是极致的，从形象到抽象，从一维到多维，从远古到未来……</p>
-<p>看过大刘的科幻小说《诗云》后，我认为诗云中的事情不会发生，因为有一天也许 AI 能够学会作诗，毕竟之前我们都认为 AI 不会下围棋，但是现在他们已经比世界最好的人类棋手还要厉害了。</p>
-<p>但是，AI 也许永远也不能欣赏美，因为 AI 不能代替人类自身去感知这个世界。</p>
-<p>从某种意义上说，<em>前端追求的一些东西是与人类软件工程的核心背道而驰的，是与极致抽象精神背道而驰的，因为人类追求的是个性，不是共性，因为人心多变。</em> 所以我们期望用统一的方法论来解决人类与世界、人类与自身交互问题，有可能很难做得完美。</p>
-<p>前端不像任何其他的软件工程领域，因为前端直面人心，前端掌握的方法论，不管内容怎样，前端掌握的工具，不管形式是什么，最终要解决的问题直击人心——帮助人类感受美，从而获得愉悦的心情，快速完成工作。要想用一个程序来彻底解决这个问题，很可能如同计算 <em>终极答案</em> ，在人类探寻宇宙的过程中，任重道远。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3j31hnbj30go0b4ta5.jpg" alt=""></p>
-<p>也许在很多年以后，很多问题都可以用一段代码来解决。但是人心不可以，前端面对的问题依然是五花八门，前端寻求真理的路依然看不到尽头。</p>
-<p>说了那么多，我想表达一点，许多做前端的人只把前端当成一个工作来看（当然其他领域也一样），从来没有思考过前端的本质是什么，我们究竟要解决什么问题。</p>
-<p>不能因为一些人干苦力，一些人瞎折腾，就对行业悲观，觉得行业可有可无。任何行业都一样，不管前端后端，高端低端，永远有一些人干苦力，一些人瞎折腾。</p>
-<p>自己明白就好，别跟着人瞎起哄瞎折腾。别把自己限制在自己的工作领域，我们要学习的东西很多，除非自己你想要瞎折腾一辈子，没人逼你天天瞎折腾。</p>
-<p>不管怎么样，切页面是我们的工作职责之一，然而整天做简单的事情，重复地切各种页面，难道是不去学习，不去追求的理由么？</p>
-<p><img src="http://ww3.sinaimg.cn/large/006HJ39wgy1ffn3khb04cj30dh08874h.jpg" alt=""></p>
-<p>Any way，前端只是软件工程和程序世界里很小很小的一部分，而整个软件工程和程序世界也只是人类文明海洋里的一朵不起眼的浪花。我们每个人都在这个世界上承担一小部分工作，但是因着我们的努力，人类总有一天终将飞出地球，畅游在宇宙无尽的时空中。</p>
-<p>总之，一句话，不要恐慌。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3lce72qj30go09eaaf.jpg" alt=""></p>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fetch(url,option)</div><div class="line"> .then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</div><div class="line">     <span class="comment">// do something</span></div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<p>其中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> option = &#123;</div><div class="line">    <span class="attr">method</span>: <span class="string">'POST'</span>,</div><div class="line">    <span class="attr">head</span>: &#123;</div><div class="line">        <span class="attr">Accept</span>: <span class="string">'application/json'</span>,</div><div class="line">        <span class="string">'Content-type'</span>: <span class="string">'application/json'</span>,</div><div class="line">        <span class="attr">Authorization</span>: <span class="string">`Basic <span class="subst">$&#123;btoa(<span class="string">`<span class="subst">$&#123;username&#125;</span>:<span class="subst">$&#123;password&#125;</span>`</span>)&#125;</span>`</span>,</div><div class="line">        &#125;,</div><div class="line">    <span class="attr">body</span>: ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p><code>javascript</code>对象，用来异步运算。 </p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="comment">/* executor */</span>  (resolve, reject) =&gt; &#123;</div><div class="line">    <span class="comment">//</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>当executor 会立马调用，在Promise 构造函数返回创建的对象前。 resolve 和 reject 函数将会被调用。 通常executor用来初始化一些异步工作。</p>
+<p>Promise 有三个状态</p>
+<ul>
+<li><p>pending : 初始化状态，没有完成或拒绝</p>
+</li>
+<li><p>fulfilled: 操作成功完成</p>
+</li>
+<li><p>rejected: 操作失败</p>
+</li>
+</ul>
+<p>一个pending 的promise 可以fulfilled一个值，或者rejected带有一个error。当这些都发生后，then 方法会被调用。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhzd2lvvysj30yg0am0ur.jpg" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Promise</span>().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">     <span class="comment">// first</span></div><div class="line">     <span class="keyword">return</span> <span class="built_in">Promise</span>.reject();  <span class="comment">// second then will not be called.</span></div><div class="line"></div><div class="line">  &#125;).then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">     <span class="comment">// second</span></div><div class="line"></div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
       
 
       
@@ -268,7 +261,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
@@ -324,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://keeppassionalways.github.io/2017/07/01/eassy_前端的意义/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://keeppassionalways.github.io/2017/07/28/js_fetch与promise的区别/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -338,15 +331,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/07/01/js_js_module_loader/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JavaScript Module Loader
-        
-      </div>
-    </a>
   
+    <a href="/2017/07/27/js_函数式变成(一)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS 函数式编程（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
