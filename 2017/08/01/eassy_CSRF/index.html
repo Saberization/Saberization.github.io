@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
-  <title>郭天琦的个人博客</title>
+  <title>跨站请求伪造CSRF | 郭天琦的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="郭天琦的个人博客">
-<meta property="og:url" content="https://keeppassionalways.github.io/page/3/index.html">
+  <meta name="description" content="CSRF是Cross Site Request Forgery的缩写，乍一看和XSS差不多的样子，但是其原理正好相反，XSS是利用合法用户获取其信息，而CSRF是伪造成合法用户发起请求。">
+<meta name="keywords" content="eassy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨站请求伪造CSRF">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/08/01/eassy_CSRF/index.html">
 <meta property="og:site_name" content="郭天琦的个人博客">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="CSRF是Cross Site Request Forgery的缩写，乍一看和XSS差不多的样子，但是其原理正好相反，XSS是利用合法用户获取其信息，而CSRF是伪造成合法用户发起请求。">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhw6scsht5j30jp0duq66.jpg">
+<meta property="og:updated_time" content="2017-08-01T03:46:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="郭天琦的个人博客">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="跨站请求伪造CSRF">
+<meta name="twitter:description" content="CSRF是Cross Site Request Forgery的缩写，乍一看和XSS差不多的样子，但是其原理正好相反，XSS是利用合法用户获取其信息，而CSRF是伪造成合法用户发起请求。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhw6scsht5j30jp0duq66.jpg">
   
     <link rel="alternative" href="/atom.xml" title="郭天琦的个人博客" type="application/atom+xml">
   
@@ -172,34 +176,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-eassy_vscode推荐插件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-eassy_CSRF" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/12/eassy_vscode推荐插件/">vscode推荐插件</a>
+    <h1 class="article-title" itemprop="name">
+      跨站请求伪造CSRF
     </h1>
   
 
         
-        <a href="/2017/07/12/eassy_vscode推荐插件/" class="archive-article-date">
-  	<time datetime="2017-07-12T02:40:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
+        <a href="/2017/08/01/eassy_CSRF/" class="archive-article-date">
+  	<time datetime="2017-08-01T03:46:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>推荐vscode推荐插件</p>
-        
-          <a class="article-more-a" href="/2017/07/12/eassy_vscode推荐插件/#more">more >></a>
-        
+        <p>CSRF是Cross Site Request Forgery的缩写，乍一看和XSS差不多的样子，但是其原理正好相反，XSS是利用合法用户获取其信息，而CSRF是伪造成合法用户发起请求。</p>
+<a id="more"></a>
+<p>在XSS危害——session劫持中我们提到了session原理，用户登录后会把登录信息存放在服务器，客户端有一个用户标识存在cookie中，只要用户不关闭浏览器或者退出登录，在其有效期内服务器就会把这个浏览器发送的请求当作当前客户，如果这时候用户被欺骗，使用浏览器打开了某些恶意网址，里面就会包含一些不是用户希望发送的请求，服务器也会把这些请求当作是当前客户发送的请求，这时候用户的个人信息、资金安全、如果用户权限高整个站点都可能会受到危害。</p>
+<h3 id="CSRF原理"><a href="#CSRF原理" class="headerlink" title="CSRF原理"></a>CSRF原理</h3><p>CSRF原理很简单，当用户登录以站点时用浏览器打开一恶意网址，就有可能遭受攻击。有同学会奇怪了这个很难实现吧，必须同时满足两个条件才行。其实很简单，比如我们使用QQ，看看QQ zone，突然蹦出个包含中奖或者问卷调查链接的聊天窗口（或者是。。。），这个腾讯做了防范，但是我们收到封邮件包含此内容，很多用户会选择去点击</p>
+<p>在网上找了张图片很能说明这个过程</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fhw6scsht5j30jp0duq66.jpg" alt=""></p>
+<h3 id="简单小例子"><a href="#简单小例子" class="headerlink" title="简单小例子"></a>简单小例子</h3><p>在某个论坛管理页面，管理员可以在list.php页面执行删除帖子操作，根据URL判断删除帖子的id，像这样的一个URL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/list.php?action=delete&amp;id=12</div></pre></td></tr></table></figure>
+<p>当恶意用户想管理员发送包含CSFR的邮件，骗取管理员访问<code>http://test.com/csrf.php</code>,在这个恶意网页中只要包含这样的html语句就可以利用让管理员在不知情的情况下删除帖子了</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">arc</span>=<span class="string">"http://localhost/list.php?action=delete&amp;id=12"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>这个利用了img的src可以跨域请求的特点，这种情况比较少，因为一般网站不会利用get请求修改资源信息</p>
+<h3 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h3><p>是不是网站利用post修改信息就安全了呢，还拿刚才例子，改成post修改的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $action=$_POST[<span class="string">'action'</span>];</div><div class="line">    $id=$_POST[<span class="string">'id'</span>];</div><div class="line">    delete($action,$id);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>但是恶意网站这么写一样可以攻击</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">　　<span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">　　　　<span class="tag">&lt;<span class="name">iframe</span> <span class="attr">display</span>=<span class="string">"none"</span>&gt;</span></div><div class="line">　　　　　　<span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"http://localhost/list.php"</span>&gt;</span></div><div class="line">　　　　　　　　<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"action"</span> <span class="attr">value</span>=<span class="string">"delete"</span>&gt;</span></div><div class="line">　　　　　　　　<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">value</span>=<span class="string">"12"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"csfr"</span> <span class="attr">type</span>=<span class="string">"submit"</span>/&gt;</span></div><div class="line">　　　　　　<span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">　　　　<span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">      　　　　 <span class="built_in">document</span>.getElementById(<span class="string">'csfr'</span>).submit();</div><div class="line">　　　　<span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">　　<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="如何防范"><a href="#如何防范" class="headerlink" title="如何防范"></a>如何防范</h3><ul>
+<li><p>1、使用post，不使用get修改信息</p>
+</li>
+<li><p>2、验证码，所有表单的提交需要验证码，但是貌似用起来很麻烦，所以一些关键的操作可以</p>
+</li>
+<li><p>3、在表单中预先植入一些加密信息，验证请求是此表单发送</p>
+</li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -219,16 +272,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/12/eassy_vscode推荐插件/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://keeppassionalways.github.io/2017/08/01/eassy_CSRF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/08/01/eassy_webpack初体验/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/28/js_fetch与promise的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Fetch 与 Promise 的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -248,469 +369,12 @@
 
 
 
-
-  
-    <article id="post-js_vue双向绑定原理剖析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/12/js_vue双向绑定原理剖析/">vue双向绑定原理剖析</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/12/js_vue双向绑定原理剖析/" class="archive-article-date">
-  	<time datetime="2017-07-12T01:49:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Vue.js 最核心的功能有两个，一是响应式的数据绑定系统，二是组件系统。本文仅探究双向绑定是怎样实现的。先讲涉及的知识点，再用简化得不能再简化的代码实现一个简单的 hello world 示例。</p>
-        
-          <a class="article-more-a" href="/2017/07/12/js_vue双向绑定原理剖析/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/12/js_vue双向绑定原理剖析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_javascript实现数据双向绑定的三种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/js_javascript实现数据双向绑定的三种方式/">javascript实现数据双向绑定的三种方式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/11/js_javascript实现数据双向绑定的三种方式/" class="archive-article-date">
-  	<time datetime="2017-07-11T09:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前端数据的双向绑定方法"><a href="#前端数据的双向绑定方法" class="headerlink" title="前端数据的双向绑定方法"></a>前端数据的双向绑定方法</h2><p>前端的视图层和数据层有时需要实现双向绑定(two-way-binding)，例如mvvm框架，数据驱动视图，视图状态机等，研究了几个目前主流的数据双向绑定框架，总结了下。目前实现数据双向绑定主要有以下三种。</p>
-        
-          <a class="article-more-a" href="/2017/07/11/js_javascript实现数据双向绑定的三种方式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/js_javascript实现数据双向绑定的三种方式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_ajax跨域解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/js_ajax跨域解决方案/">ajax跨域解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/11/js_ajax跨域解决方案/" class="archive-article-date">
-  	<time datetime="2017-07-11T03:05:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从刚接触前端开发起，<code>跨域</code>这个词就一直以很高的频率在身边重复出现，一直到现在，已经调试过N个跨域相关的问题了，16年时也整理过一篇相关文章，但是感觉还是差了点什么，于是现在重新梳理了一下。</p>
-<p>个人见识有限，如有差错，请多多见谅，欢迎提出issue，另外看到这个标题，请勿喷~</p>
-        
-          <a class="article-more-a" href="/2017/07/11/js_ajax跨域解决方案/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/js_ajax跨域解决方案/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-html_HTML5表单功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/html_HTML5表单功能/">HTML5表单功能</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/11/html_HTML5表单功能/" class="archive-article-date">
-  	<time datetime="2017-07-11T02:56:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTML5 Web Forms 2.0是对目前Web表单的全面提升，它在保持了简便易用的特性的同时，增加了许多内置的控件或者控件属性来满足用户的需求，并且同时减少了开发人员的编程。HTML5 主要在以下几个方面对目前的Web表单做了改进：</p>
-        
-          <a class="article-more-a" href="/2017/07/11/html_HTML5表单功能/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/html_HTML5表单功能/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_同域的页面间传递数据的方法汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/js_同域的页面间传递数据的方法汇总/">同域的页面间传递数据的方法汇总</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/10/js_同域的页面间传递数据的方法汇总/" class="archive-article-date">
-  	<time datetime="2017-07-10T15:48:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>同域指页面URL的协议，端口号和host(document.domain)一样。</p>
-        
-          <a class="article-more-a" href="/2017/07/10/js_同域的页面间传递数据的方法汇总/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/10/js_同域的页面间传递数据的方法汇总/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css_移动端开发需要加的meta" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/css_移动端开发需要加的meta/">移动端开发需要加的meta</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/10/css_移动端开发需要加的meta/" class="archive-article-date">
-  	<time datetime="2017-07-10T15:31:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。</p>
-        
-          <a class="article-more-a" href="/2017/07/10/css_移动端开发需要加的meta/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/10/css_移动端开发需要加的meta/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -730,8 +394,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
