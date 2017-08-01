@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://keeppassionalways.github.io/2017/08/01/eassy_webpack初体验/index.html">
 <meta property="og:site_name" content="郭天琦的个人博客">
 <meta property="og:description" content="学习webpack从安装做起">
-<meta property="og:updated_time" content="2017-08-01T03:55:52.000Z">
+<meta property="og:updated_time" content="2017-08-01T05:55:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack初体验">
 <meta name="twitter:description" content="学习webpack从安装做起">
@@ -187,7 +187,7 @@
 
         
         <a href="/2017/08/01/eassy_webpack初体验/" class="archive-article-date">
-  	<time datetime="2017-08-01T03:55:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
+  	<time datetime="2017-08-01T05:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
 </a>
         
       </header>
@@ -198,7 +198,67 @@
 <a id="more"></a>
 <h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>首先在<code>全局</code>环境中安装<code>webpack</code>和<code>webpack-dev-server</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install -g webpack</div><div class="line"></div><div class="line">npm install -g webpack-dev-server</div></pre></td></tr></table></figure>
-
+<p>然后将仓库克隆到本地并安装相关依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/ruanyf/webpack-demos.git</div><div class="line"></div><div class="line">cd webpack-demos</div><div class="line"></div><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>现在，可以运行仓库中所有demo目录下的资源文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd dome01</div><div class="line"></div><div class="line">webpack-dev-server</div></pre></td></tr></table></figure>
+<p>用你的浏览器访问 <a href="http://127.0.0.1:8080" target="_blank" rel="external">http://127.0.0.1:8080</a></p>
+<h2 id="前言：webpack是什么"><a href="#前言：webpack是什么" class="headerlink" title="前言：webpack是什么"></a>前言：webpack是什么</h2><p>webpack是一个前端构建系统类似于Grunt and Gulp.</p>
+<p>它的功能有点类似于Browserify的模块包，但是它可以做的<a href="http://webpack.github.io/docs/what-is-webpack.html" target="_blank" rel="external">更多</a>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">browserify main.js &gt; bundle.js</div><div class="line"></div><div class="line">等价于</div><div class="line"></div><div class="line">webpack main.js bundle.js</div></pre></td></tr></table></figure>
+<p>它的配置文件是<code>webpack.config.js</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// webpack.config.js</div><div class="line"></div><div class="line">moudle.export = &#123;</div><div class="line">    entry: &apos;./main.js/,</div><div class="line">    output: &#123;</div><div class="line">        filename: &apos;bundle.js&apos;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在有了<code>webpack.config.js</code>这个文件之后，你可以调用Webpack且不需要任何参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack</div></pre></td></tr></table></figure>
+<h4 id="一些你应该知道的命令行选项"><a href="#一些你应该知道的命令行选项" class="headerlink" title="一些你应该知道的命令行选项"></a>一些你应该知道的命令行选项</h4><ul>
+<li><p><code>webpack</code> – for building once for development(用于构建一个开发目录)</p>
+</li>
+<li><p><code>webpack -p</code> – for building once for development(用于构建一个生产目录(压缩过的))</p>
+</li>
+<li><p><code>webpack --watch</code> – for continuous incremental build(用于连续地构建)</p>
+</li>
+<li><p><code>webpack -d</code> – to include source maps(展示映射关系)</p>
+</li>
+<li><p><code>webpack --colors</code> – for making things pretty(用于美化展示的信息)</p>
+</li>
+</ul>
+<p>To produce a production ready application(为了产生生产准备的应用)，你可以在package.json编写以下<code>scripts</code>字段</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// package.json</div><div class="line"></div><div class="line">&#123;</div><div class="line">  // ...</div><div class="line">    "scripts": &#123;</div><div class="line">      "dev": "webpack-dev-server --devtool eval --progress --colors",</div><div class="line">      "deploy": "NODE_ENV=production webpack -p"</div><div class="line">    &#125;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li><p><a href="#entry-file">Entry file</a></p>
+</li>
+<li><p>Multiple entry files</p>
+</li>
+<li><p>Babel-loader</p>
+</li>
+<li><p>CSS-loader</p>
+</li>
+<li><p>Image loader</p>
+</li>
+<li><p>CSS Module</p>
+</li>
+<li><p>UglifyJs Plugin</p>
+</li>
+<li><p>HTML Webpack Plugin and Open Browser Webpack Plugin</p>
+</li>
+<li><p>Environment flags</p>
+</li>
+<li><p>Code splitting</p>
+</li>
+<li><p>Code splitting with bundle-loader</p>
+</li>
+<li><p>Common chunk</p>
+</li>
+<li><p>Vendor chunk</p>
+</li>
+<li><p>Exposing Global Variables</p>
+</li>
+<li><p>Hot Module Replacement</p>
+</li>
+<li><p>React router</p>
+</li>
+</ul>
+<h3 id="Demo01-Entry-file"><a href="#Demo01-Entry-file" class="headerlink" title="Demo01:Entry file"></a><span id="entry-file">Demo01:Entry file</span></h3>
       
 
       
