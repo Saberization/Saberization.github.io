@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
-  <title>郭天琦的个人博客</title>
+  <title>使用 font-display 提升使用font-face时的性能与用户体验 | 郭天琦的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
+  <meta name="description" content="进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="郭天琦的个人博客">
+<meta property="og:title" content="使用 font-display 提升使用font-face时的性能与用户体验">
 <meta property="og:url" content="https://keeppassionalways.github.io/2017/08/08/css_fontdisplay/index.html">
 <meta property="og:site_name" content="郭天琦的个人博客">
-<meta property="og:description" content="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
-<meta property="og:updated_time" content="2017-08-08T03:41:45.000Z">
+<meta property="og:description" content="进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
+<meta property="og:updated_time" content="2017-08-08T06:02:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="郭天琦的个人博客">
-<meta name="twitter:description" content="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
+<meta name="twitter:title" content="使用 font-display 提升使用font-face时的性能与用户体验">
+<meta name="twitter:description" content="进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
   
     <link rel="alternative" href="/atom.xml" title="郭天琦的个人博客" type="application/atom+xml">
   
@@ -180,9 +181,24 @@
             <article id="post-css_fontdisplay" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 font-display 提升使用font-face时的性能与用户体验
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/css_fontdisplay/" class="archive-article-date">
+  	<time datetime="2017-08-08T01:07:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="使用-font-display-提升使用自定义字体（font-face）时的性能与用户体验"><a href="#使用-font-display-提升使用自定义字体（font-face）时的性能与用户体验" class="headerlink" title="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验"></a>使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验</h2><p>进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。</p>
+        <p>进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。</p>
 <a id="more"></a>
 <h3 id="字体渲染差异"><a href="#字体渲染差异" class="headerlink" title="字体渲染差异"></a>字体渲染差异</h3><p>有了 Web Font，开发者可以在项目中加入丰富的排版功能。但需要权衡的是，下载字体会耗费一些时间。而下载时间难免会受到网络状况的影响，继而干扰用户体验。说实话，如果连页面展示都费劲，谁还会在乎你用多炫的字体呢。</p>
 <p>字体下载可能比较慢，为了减轻风险，大多数浏览器都采用了超时处理。一旦超时，就使用后备字体。理想很美好，现实很无奈，浏览器在实现上各有自己的一套。</p>
@@ -255,6 +271,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
