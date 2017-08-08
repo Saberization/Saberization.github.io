@@ -6,26 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
-  <title>前端的意义是什么？ | 郭天琦的个人博客</title>
+  <title>郭天琦的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="感受了下前端到底是干什么的">
-<meta name="keywords" content="eassy">
+  <meta name="description" content="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端的意义是什么？">
-<meta property="og:url" content="https://keeppassionalways.github.io/2017/07/01/eassy_前端的意义/index.html">
+<meta property="og:title" content="郭天琦的个人博客">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/08/08/css_fontdisplay/index.html">
 <meta property="og:site_name" content="郭天琦的个人博客">
-<meta property="og:description" content="感受了下前端到底是干什么的">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3dxgvnuj30go09qaiz.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3et1aexj30go0bwwey.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3j31hnbj30go0b4ta5.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006HJ39wgy1ffn3khb04cj30dh08874h.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3lce72qj30go09eaaf.jpg">
-<meta property="og:updated_time" content="2017-07-25T07:21:57.000Z">
+<meta property="og:description" content="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
+<meta property="og:updated_time" content="2017-08-08T03:41:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端的意义是什么？">
-<meta name="twitter:description" content="感受了下前端到底是干什么的">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg">
+<meta name="twitter:title" content="郭天琦的个人博客">
+<meta name="twitter:description" content="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。">
   
     <link rel="alternative" href="/atom.xml" title="郭天琦的个人博客" type="application/atom+xml">
   
@@ -181,51 +173,45 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-eassy_前端的意义" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-css_fontdisplay" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      前端的意义是什么？
-    </h1>
-  
-
-        
-        <a href="/2017/07/01/eassy_前端的意义/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:03:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>感受了下前端到底是干什么的</p>
-</blockquote>
+        <h2 id="使用-font-display-提升使用自定义字体（font-face）时的性能与用户体验"><a href="#使用-font-display-提升使用自定义字体（font-face）时的性能与用户体验" class="headerlink" title="使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验"></a>使用 font-display 提升使用自定义字体（font-face）时的性能与用户体验</h2><p>进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。</p>
 <a id="more"></a>
-<h3 id="前端面临的问题其实是一个难题"><a href="#前端面临的问题其实是一个难题" class="headerlink" title="前端面临的问题其实是一个难题"></a>前端面临的问题其实是一个难题</h3><p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg" alt=""></p>
-<h5 id="为什么说它是难题呢？"><a href="#为什么说它是难题呢？" class="headerlink" title="为什么说它是难题呢？"></a>为什么说它是难题呢？</h5><p>因为软件工程的核心目标是用通用的模型解决一切问题，比如人工智能和机器学习。构筑在软件设计模型和程序设计理论的基石之上的一条道路，最终的终点指向一个目的地——抽象。不断深入研究各种问题，总结各种模式，直到将来某一天，机器能够代替人类思考，甚至机器能够代替人类存在，这才是终极目标。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3dxgvnuj30go09qaiz.jpg" alt=""></p>
-<p>然而从这方面来说，前端这个领域简直太难太难了。因为 AI 可以代替人类思考，甚至 AI 可以代替人类存在，但是 AI 可能永远也不会是人类，因为 AI 不会有人类的感觉，AI 不像人类那样拥有一颗脆弱、感性、多变、追求美的心，AI 可能不具有贪、嗔、痴、爱、慢、疑。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3et1aexj30go0bwwey.jpg" alt=""></p>
-<p>AI 可能也不会像人类一样对一个行业的前途忧心忡忡，在这种问题下面瞎比比。</p>
-<p>人类对美的体验是极致的，从形象到抽象，从一维到多维，从远古到未来……</p>
-<p>看过大刘的科幻小说《诗云》后，我认为诗云中的事情不会发生，因为有一天也许 AI 能够学会作诗，毕竟之前我们都认为 AI 不会下围棋，但是现在他们已经比世界最好的人类棋手还要厉害了。</p>
-<p>但是，AI 也许永远也不能欣赏美，因为 AI 不能代替人类自身去感知这个世界。</p>
-<p>从某种意义上说，<em>前端追求的一些东西是与人类软件工程的核心背道而驰的，是与极致抽象精神背道而驰的，因为人类追求的是个性，不是共性，因为人心多变。</em> 所以我们期望用统一的方法论来解决人类与世界、人类与自身交互问题，有可能很难做得完美。</p>
-<p>前端不像任何其他的软件工程领域，因为前端直面人心，前端掌握的方法论，不管内容怎样，前端掌握的工具，不管形式是什么，最终要解决的问题直击人心——帮助人类感受美，从而获得愉悦的心情，快速完成工作。要想用一个程序来彻底解决这个问题，很可能如同计算 <em>终极答案</em> ，在人类探寻宇宙的过程中，任重道远。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3j31hnbj30go0b4ta5.jpg" alt=""></p>
-<p>也许在很多年以后，很多问题都可以用一段代码来解决。但是人心不可以，前端面对的问题依然是五花八门，前端寻求真理的路依然看不到尽头。</p>
-<p>说了那么多，我想表达一点，许多做前端的人只把前端当成一个工作来看（当然其他领域也一样），从来没有思考过前端的本质是什么，我们究竟要解决什么问题。</p>
-<p>不能因为一些人干苦力，一些人瞎折腾，就对行业悲观，觉得行业可有可无。任何行业都一样，不管前端后端，高端低端，永远有一些人干苦力，一些人瞎折腾。</p>
-<p>自己明白就好，别跟着人瞎起哄瞎折腾。别把自己限制在自己的工作领域，我们要学习的东西很多，除非自己你想要瞎折腾一辈子，没人逼你天天瞎折腾。</p>
-<p>不管怎么样，切页面是我们的工作职责之一，然而整天做简单的事情，重复地切各种页面，难道是不去学习，不去追求的理由么？</p>
-<p><img src="http://ww3.sinaimg.cn/large/006HJ39wgy1ffn3khb04cj30dh08874h.jpg" alt=""></p>
-<p>Any way，前端只是软件工程和程序世界里很小很小的一部分，而整个软件工程和程序世界也只是人类文明海洋里的一朵不起眼的浪花。我们每个人都在这个世界上承担一小部分工作，但是因着我们的努力，人类总有一天终将飞出地球，畅游在宇宙无尽的时空中。</p>
-<p>总之，一句话，不要恐慌。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3lce72qj30go09eaaf.jpg" alt=""></p>
+<h3 id="字体渲染差异"><a href="#字体渲染差异" class="headerlink" title="字体渲染差异"></a>字体渲染差异</h3><p>有了 Web Font，开发者可以在项目中加入丰富的排版功能。但需要权衡的是，下载字体会耗费一些时间。而下载时间难免会受到网络状况的影响，继而干扰用户体验。说实话，如果连页面展示都费劲，谁还会在乎你用多炫的字体呢。</p>
+<p>字体下载可能比较慢，为了减轻风险，大多数浏览器都采用了超时处理。一旦超时，就使用后备字体。理想很美好，现实很无奈，浏览器在实现上各有自己的一套。</p>
+<ul>
+<li><p>Chrome 和 Firefox 超时时间为 3 秒，超时后使用后备字体。若字体最终勉强加载成功，它将替换后备字体，重新渲染文本。</p>
+</li>
+<li><p>IE 浏览器超时时间为 0 秒，也就是说，会立即渲染文本。若所请求的字体尚不可用，则使用后备字体。一旦请求字体可用，将重新渲染文本。</p>
+</li>
+<li><p>Safari 没有超时行为（或者说，至少在基准网络超时之前什么也没干）。</p>
+</li>
+</ul>
+<p>更糟糕的是，这些规则对应用造成的影响，在很大程度上不受开发者控制。关注性能的开发者也许更乐意使用后备字体，使网页内容更快地展现，当更美观的 Web Font 下载完成后再加以使用。使用 Font Loading API 之类的工具，可以覆盖浏览器的某些默认行为，提升性能。但这将引入额外的 JavaScript 代码 —— 要么把代码内联到页面中；要么请求外部文件，而这可能带来额外的 HTTP 延时。</p>
+<p>CSS 工作组为此提出了新方案：为<code>@font-face</code>增加新的<code>font-display</code>声明，用于控制字体下载完成之前的渲染行为。</p>
+<h3 id="字体下载时间轴"><a href="#字体下载时间轴" class="headerlink" title="字体下载时间轴"></a>字体下载时间轴</h3><p>与一些浏览器目前使用的字体超时行为类似，font-display将字体下载过程划分为三个阶段。</p>
+<ul>
+<li><p>首先是字体阻塞阶段（font block period）。在此期间，如果字体未完成加载，则尝试使用它的任何元素，必须以不可见的后备字体形式呈现；否则正常使用该字体。</p>
+</li>
+<li><p>紧接着字体阻塞阶段的是字体交换阶段（font swap period）。在此期间，如果字体未完成加载，则尝试使用它的任何元素，必须使用后备字体进行渲染；否则正常使用该字体。</p>
+</li>
+<li><p>紧接着是字体故障阶段（font failure period）。此时若字体未完成加载，则将其标记为下载失败，并使用常规后备字体；否则正常使用该字体。</p>
+</li>
+</ul>
+<p>理解以上三个阶段，根据字体是否下载成功、何时下载完成等情况，就可以可以使用font-display来决定如何渲染字体了。</p>
+<h3 id="使用哪种-font-display-值？"><a href="#使用哪种-font-display-值？" class="headerlink" title="使用哪种 font-display 值？"></a>使用哪种 font-display 值？</h3><p>要使用<code>font-display</code>，请在<code>@font-face</code>规则中添加代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line"> <span class="attribute">font-family</span>: <span class="string">'Arvo'</span>;</div><div class="line"> <span class="attribute">font-display</span>: auto;</div><div class="line"> <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Arvo'</span>), <span class="built_in">url</span>(https://fonts.gstatic.com/s/arvo/v9/rC7kKhY-eUDY-ucISTIf5PesZW2xOQ-xsNqO47m55DA.woff2) <span class="built_in">format</span>(<span class="string">'woff2'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>目前，font-display支持<code>auto | block | swap | fallback | optional</code>五种值。</p>
+<h4 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h4><p><code>auto</code> 使用的字体展示策略与浏览器一致。当前，大多数浏览器使用的默认策略类似 <code>block</code>。</p>
+<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><p><code>block</code> 给予字体一个较短的阻塞时间（大多数情况下推荐使用 3s）和无限大的交换时间。换言之，如果字体未加载完成，浏览器将首先绘制“隐形”文本；一旦字体加载完成，立即切换字体。为此，浏览器将创建一个匿名字体，其类型与所选字体相似，但所有字形都不含“墨水”。使用特定字体渲染文本之后页面方才可用，只有这种情况下才应该使用 <code>block</code>。</p>
+<h4 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h4><p>使用 <code>swap</code>，则阻塞阶段时间为 0，交换阶段时间无限大。也就是说，如果字体没有完成加载，浏览器会立即绘制文字，一旦字体加载成功，立即切换字体。与 <code>block</code> 类似，如果使用特定字体渲染文本对页面很重要，且使用其他字体渲染仍将显示正确的信息，才应使用 <code>swap</code>。Logo 文字就很适合使用 <code>swap</code>，因为以合理的后备字体显示公司名称仍将正确传递信息，而且最终会以官方字体的样式展现。</p>
+<h4 id="fallback"><a href="#fallback" class="headerlink" title="fallback"></a>fallback</h4><p>使用 <code>fallback</code> 时，阻塞阶段时间将非常小（多数情况下推荐小于 100ms），交换阶段也比较短（多数情况下建议使用 3 秒钟）。换言之，如果字体没有加载，则首先会使用后备字体渲染。一旦加载成功，就会切换字体。但如果等待时间过久，则页面将一直使用后备字体。如果希望用户尽快开始阅读，而且不因新字体的载入导致文本样式发生变动而干扰用户体验，<code>fallback</code> 是一个很好的选择。举个例子，正文文本就符合这个条件。</p>
+<h4 id="optional"><a href="#optional" class="headerlink" title="optional"></a>optional</h4><p>使用 <code>optional</code> 时，阻塞阶段时间会非常小（多数情况下建议低于 100ms），交换阶段时间为 0。与 <code>fallback</code> 类似，如果字体能够为页面效果增色不少，但并非特别重要时，使用 <code>optional</code> 正好。使用 <code>optional</code> 时，将由浏览器来决定是否开始下载字体。可以不下载，也可以给予字体较低的优先级，一切取决于浏览器是否认为对用户最有利。当用户处于弱网络下，这是非常有用的，下载字体可能并非对资源最好的利用。</p>
+<h3 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h3><p>启用 Chrome 49 桌面版、Opera 或 Opera for Android的 “Experimental Web Platform Features flag” 后可以使用 font-display。</p>
+<p><strong>Chrome 60 正式引入 font-display。</strong></p>
 
       
 
@@ -265,17 +251,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -326,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://keeppassionalways.github.io/2017/07/01/eassy_前端的意义/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://keeppassionalways.github.io/2017/08/08/css_fontdisplay/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -340,15 +315,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/07/01/js_js_module_loader/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JavaScript Module Loader
-        
-      </div>
-    </a>
   
+    <a href="/2017/08/01/eassy_webpack初体验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">webpack初体验</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
