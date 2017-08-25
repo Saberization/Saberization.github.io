@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
-  <title>移动端开发需要加的meta | Saber</title>
+  <title>常用meta与媒体查询 | Saber</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。">
+  <meta name="description" content="常用meta标签与常用的css3媒体查询样式">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端开发需要加的meta">
+<meta property="og:title" content="常用meta与媒体查询">
 <meta property="og:url" content="https://keeppassionalways.github.io/2017/07/10/css_移动端开发需要加的meta/index.html">
 <meta property="og:site_name" content="Saber">
-<meta property="og:description" content="移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。">
-<meta property="og:updated_time" content="2017-07-25T07:21:29.000Z">
+<meta property="og:description" content="常用meta标签与常用的css3媒体查询样式">
+<meta property="og:updated_time" content="2017-08-25T02:41:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端开发需要加的meta">
-<meta name="twitter:description" content="移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。">
+<meta name="twitter:title" content="常用meta与媒体查询">
+<meta name="twitter:description" content="常用meta标签与常用的css3媒体查询样式">
   
     <link rel="alternative" href="/atom.xml" title="Saber" type="application/atom+xml">
   
@@ -181,7 +181,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      移动端开发需要加的meta
+      常用meta与媒体查询
     </h1>
   
 
@@ -194,9 +194,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>移动端开发需要加的meta和常用的css3媒体查询样式，移动开发中头部要加的一些常用meta。</p>
+        <p>常用meta标签与常用的css3媒体查询样式</p>
 <a id="more"></a>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width"&gt;</div><div class="line"></div><div class="line">/* 禁止点击数字拨打电话 */</div><div class="line">&lt;meta content="telephone=no" name="format-detection"&gt;</div><div class="line"></div><div class="line">/* 这个meta标签,表示页面同时适合在移动设备和PC上进行浏览。 */</div><div class="line">&lt;meta name="applicable-device" content="mobile"&gt;</div><div class="line"></div><div class="line">/* 这meta的作用就是删除默认的苹果工具栏和菜单栏。 */</div><div class="line">&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</div><div class="line"></div><div class="line">/* 作用是控制状态栏显示样式 */</div><div class="line">&lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt;</div><div class="line"></div><div class="line">/* 格式检测 */</div><div class="line">&lt;meta name="format-detection" content="telephone=no,email=no"&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 编码 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 指定HTTP Header --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"script-src 'self'"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- seo 搜索引擎优化 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"关键字"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"页面介绍"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 360浏览器内核指定 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"renderer"</span> <span class="attr">content</span>=<span class="string">"webkit"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 指定IE渲染模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- H5页面窗口自动调整到设备宽度，并禁止用户缩放页面 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 关闭ios电话号码自动识别 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 忽略Android平台中对邮箱地址的识别 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"email=no"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 这个meta标签,表示页面同时适合在移动设备和PC上进行浏览。 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"applicable-device"</span> <span class="attr">content</span>=<span class="string">"mobile"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 将网站添加到主屏幕快速启动方式，仅针对ios的safari顶端状态条的样式 --&gt;</span></div><div class="line"><span class="comment">&lt;!-- 可选default、black、black-translucent --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="string">"black"</span> /&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="css-适应不同手机"><a href="#css-适应不同手机" class="headerlink" title="css 适应不同手机"></a>css 适应不同手机</h2><p><strong>iphone 4和4s</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen</div><div class="line"></div><div class="line">and (min-device-width:<span class="number">320px</span>)</div><div class="line"></div><div class="line">and (max-device-width:<span class="number">480px</span>)</div><div class="line"></div><div class="line">and (-webkit-min-device-pixel-ratio:<span class="number">2</span>) &#123;&#125;</div></pre></td></tr></table></figure>
 <p><strong>iphone 5 and 5s</strong></p>
