@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://keeppassionalways.github.io">
-  <title>Archives: 2017 | Arturia</title>
+  <title>优化CSS重排重绘与浏览器性能 | Arturia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arturia">
-<meta property="og:url" content="https://keeppassionalways.github.io/archives/2017/page/4/index.html">
+  <meta name="description" content="关于CSS重排和重绘的概念，最近看到不少这方面的文章，觉得挺有用，在制作中考虑浏览器的性能，减少重排能够节省浏览器对其子元素及父类元素的重新渲染；避免过分的重绘也能节省浏览器性能；优化动画，使用3D启用GPU硬件加速；慎重选择高消耗的样式，如box-shadow、border-radius、transform、css filters等。">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化CSS重排重绘与浏览器性能">
+<meta property="og:url" content="https://keeppassionalways.github.io/2017/08/31/eassy_cssreflow/index.html">
 <meta property="og:site_name" content="Arturia">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="关于CSS重排和重绘的概念，最近看到不少这方面的文章，觉得挺有用，在制作中考虑浏览器的性能，减少重排能够节省浏览器对其子元素及父类元素的重新渲染；避免过分的重绘也能节省浏览器性能；优化动画，使用3D启用GPU硬件加速；慎重选择高消耗的样式，如box-shadow、border-radius、transform、css filters等。">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fj45xy9ulyj30i908macr.jpg">
+<meta property="og:updated_time" content="2017-09-01T08:54:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Arturia">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="优化CSS重排重绘与浏览器性能">
+<meta name="twitter:description" content="关于CSS重排和重绘的概念，最近看到不少这方面的文章，觉得挺有用，在制作中考虑浏览器的性能，减少重排能够节省浏览器对其子元素及父类元素的重新渲染；避免过分的重绘也能节省浏览器性能；优化动画，使用3D启用GPU硬件加速；慎重选择高消耗的样式，如box-shadow、border-radius、transform、css filters等。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fj45xy9ulyj30i908macr.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Arturia" type="application/atom+xml">
   
@@ -172,188 +176,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-eassy_cssreflow" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      优化CSS重排重绘与浏览器性能
+    </h1>
+  
+
+        
+        <a href="/2017/08/31/eassy_cssreflow/" class="archive-article-date">
+  	<time datetime="2017-08-31T00:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于CSS重排和重绘的概念，最近看到不少这方面的文章，觉得挺有用，在制作中考虑浏览器的性能，减少重排能够节省浏览器对其子元素及父类元素的重新渲染；避免过分的重绘也能节省浏览器性能；优化动画，使用3D启用GPU硬件加速；慎重选择高消耗的样式，如box-shadow、border-radius、transform、css filters等。</p>
+<a id="more"></a>
+<h2 id="浏览器的渲染机制"><a href="#浏览器的渲染机制" class="headerlink" title="浏览器的渲染机制"></a>浏览器的渲染机制</h2><p>浏览器渲染展示网页的过程，大致分为以下几个步骤：</p>
+<ul>
+<li>解析HTML(HTML Parser)</li>
+<li>构建DOM树(DOM Tree)</li>
+<li>渲染树构建(Render Tree)</li>
+<li>绘制渲染树(Painting)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fj45xy9ulyj30i908macr.jpg" alt=""></p>
+<h2 id="慎重选择高消耗的样式"><a href="#慎重选择高消耗的样式" class="headerlink" title="慎重选择高消耗的样式"></a>慎重选择高消耗的样式</h2><p>什么 CSS 属性是高消耗的？就是那些绘制前需要浏览器进行大量计算的属性。</p>
+<ul>
+<li>box-shadows</li>
+<li>border-radius</li>
+<li>transparency</li>
+<li>transforms</li>
+<li>CSS filters（性能杀手）</li>
+</ul>
+<h2 id="什么是reflow"><a href="#什么是reflow" class="headerlink" title="什么是reflow"></a>什么是reflow</h2><p>浏览器为了重新渲染部分或整个页面，重新计算页面元素位置和几何结构的进程叫做<code>reflow</code>.</p>
+<p>通俗点说就是当开发人员定义好了样式后(也包括浏览器的默认样式),浏览器根据这些来计算并根据结果将元素放到它应该出现的位置上，这个过程叫做<code>reflow</code>.</p>
+<p>由于<code>reflow</code>是一种浏览器中的用户拦截操作，所以我们了解如何减少reflow次数，及DOM的层级，css效率对refolw次数的影响是十分有必要的。</p>
+<p><code>reflow(回流)</code>是导致DOM脚本执行效率低的关键因素之一，页面上任何一个节点触发了<code>reflow</code>，会导致它的子节点及祖先节点重新渲染。</p>
+<p>简单解释一下 <code>Reflow</code>：当元素改变的时候，将会影响文档内容或结构，或元素位置，此过程称为 Reflow。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hello"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>Name:<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>BDing<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h5</span>&gt;</span>male<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>coding<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>loving<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>当p节点上发生<code>reflow</code>时，hello和body也会重新渲染，甚至h5和ol都会收到影响。</p>
+<h3 id="什么时候会导致reflow发生呢？"><a href="#什么时候会导致reflow发生呢？" class="headerlink" title="什么时候会导致reflow发生呢？"></a>什么时候会导致reflow发生呢？</h3><ul>
+<li>改变窗口大小</li>
+<li>改变文字大小</li>
+<li>添加/删除样式表</li>
+<li>内容的改变，(用户在输入框中写入内容也会)</li>
+<li>激活伪类，如:hover</li>
+<li>操作class属性</li>
+<li>脚本操作DOM</li>
+<li>计算offsetWidth和offsetHeight</li>
+<li>设置style属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常见的重排元素</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>height</td>
+<td>padding</td>
+<td>margin</td>
+</tr>
+<tr>
+<td>display</td>
+<td>border-width</td>
+<td>border</td>
+<td>top</td>
+</tr>
+</tbody>
+</table>
+<p>position | font-size | float | text-align |<br>overflow-y | font-weight | overflow | left | font-family | line-height | vertical-align | right | clear | white-space | bottom | min-height |</p>
+<h3 id="减少reflow对性能的影响的建议"><a href="#减少reflow对性能的影响的建议" class="headerlink" title="减少reflow对性能的影响的建议"></a>减少reflow对性能的影响的建议</h3><ul>
+<li>不要一条一条地修改 DOM 的样式，预先定义好 class，然后修改 DOM 的 <code>className</code></li>
+<li>把 DOM 离线后修改，比如：先把 DOM 给 <code>display:none</code> (有一次 Reflow)，然后你修改100次，然后再把它显示出来</li>
+<li>不要把 DOM 结点的属性值放在一个循环里当成循环里的变量</li>
+<li>尽可能不要修改影响范围比较大的 DOM</li>
+<li>为动画的元素使用绝对定位 <code>absolute / fixed</code></li>
+<li>不要使用 <code>table</code> 布局，可能很小的一个小改动会造成整个 <code>table</code> 的重新布局</li>
+<li>尽可能限制reflow的影响范围，尽可能在低层级的DOM节点上，上述例子中，如果你要改变p的样式，class就不要加在div上，通过父元素去影响子元素不好。</li>
+<li>避免设置大量的style属性，因为通过设置style属性改变结点样式的话，每一次设置都会触发一次reflow，所以最好是使用class属性</li>
+<li>实现元素的动画，它的position属性，最好是设为absoulte或fixed，这样不会影响其他元素的布局</li>
+<li>动画实现的速度的选择。比如实现一个动画，以1个像素为单位移动这样最平滑，但是reflow就会过于频繁，大量消耗CPU资源，如果以3个像素为单位移动则会好很多。</li>
+<li>不要使用table布局，因为table中某个元素旦触发了reflow，那么整个table的元素都会触发reflow。那么在不得已使用table的场合，可以设置<code>table-layout:auto;</code>或者是<code>table-layout:fixed</code>这样可以让table一行一行的渲染，这种做法也是为了限制reflow的影响范围</li>
+<li>如果CSS里面有计算表达式，每次都会重新计算一遍，出发一次reflow</li>
+</ul>
+<h2 id="什么是repaint"><a href="#什么是repaint" class="headerlink" title="什么是repaint"></a>什么是repaint</h2><p>repaint是在一个元素的外观被改变，但没有改变布局的情况下发生的，如改变了<code>visibility、outline、background</code>等。当repaint发生时，浏览器会验证DOM树上所有其他节点的<code>visibility</code>属性。</p>
+<p>通俗来说，就是当各种盒子的位置、大小以及其他属性，例如颜色、字体都确定下来后，浏览器便把这些元素都按照各自的特性绘制一遍，于是页面的内容出现了，这个过程叫做repaint</p>
+<h2 id="避免过分重绘-Repaints"><a href="#避免过分重绘-Repaints" class="headerlink" title="避免过分重绘(Repaints)"></a>避免过分重绘(Repaints)</h2><p>当元素改变的时候，将不会影响元素在页面当中的位置（比如 <code>background-color</code>, <code>border-color</code>, <code>visibility</code>），浏览器仅仅会应用新的样式重绘此元素，此过程称为 Repaint。</p>
+<table>
+<thead>
+<tr>
+<th>常见的重绘元素</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>border-style</td>
+<td>visibility</td>
+<td>background</td>
+</tr>
+<tr>
+<td>text-decoration</td>
+<td>background-image</td>
+<td>background-position</td>
+<td>background-repeat</td>
+</tr>
+</tbody>
+</table>
+<p>outline-color | outline | outline-style | border-radius |<br>outline-width | box-shadow | background-size |</p>
+<h3 id="优化动画"><a href="#优化动画" class="headerlink" title="优化动画"></a>优化动画</h3><p>css3 动画是优化的重中之重。除了做到上面两点，减少 Reflow 和 Repaints 之外，还需要注意以下方面。</p>
+<p><strong>启用 GPU 硬件加速</strong></p>
+<p><code>GPU（Graphics Processing Unit）</code> 是图像处理器。<code>GPU</code> 硬件加速是指应用 <code>GPU</code> 的图形性能对浏览器中的一些图形操作交给 <code>GPU</code> 来完成，因为 <code>GPU</code> 是专门为处理图形而设计，所以它在速度和能耗上更有效率。</p>
+<p><code>GPU</code> 加速可以不仅应用于3D，而且也可以应用于2D。这里， <code>GPU</code> 加速通常包括以下几个部分：<code>Canvas2D</code>，<code>布局合成（Layout Compositing）</code>, <code>CSS3转换（transitions）</code>，<code>CSS3 3D变换（transforms）</code>，<code>WebGL</code>和<code>视频(video)</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * 根据上面的结论</div><div class="line"> * 将 2d transform 换成 3d</div><div class="line"> * 就可以强制开启 GPU 加速</div><div class="line"> * 提高动画性能</div><div class="line"> */</div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(10px, 10px);</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(10px, 10px, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要注意的是，开启硬件加速相应的也会有额外的开销，参见这篇文章<a href="http://efe.baidu.com/blog/hardware-accelerated-css-the-nice-vs-the-naughty/?utm_source=caibaojian.com" target="_blank" rel="external">CSS 硬件加速的好与坏</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/06/js_regularExpressionGreedyAndLazy/" class="archive-article-date">
-  	<time datetime="2017-07-06T15:56:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/06/js_regularExpressionGreedyAndLazy/">【正则表达式系列】贪婪与非贪婪模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/06/js_promise/" class="archive-article-date">
-  	<time datetime="2017-07-06T03:30:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/06/js_promise/">Promise 对象</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/04/js_如何实现一个 VirtualDOM算法/" class="archive-article-date">
-  	<time datetime="2017-07-04T11:02:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/04/js_如何实现一个 VirtualDOM算法/">深度剖析：如何实现一个 Virtual DOM 算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/03/js_正则表达式快速入门/" class="archive-article-date">
-  	<time datetime="2017-07-03T14:45:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/03/js_正则表达式快速入门/">【正则表达式系列】快速入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/01/css_自定义选择器/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:46:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/01/css_自定义选择器/">css 自定义选择器 ~=、^=、*=</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -365,98 +355,103 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://keeppassionalways.github.io/2017/08/31/eassy_cssreflow/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/01/html_路径/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/08/css_fontdisplay/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用 font-display 提升使用font-face时的性能与用户体验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/01/html_路径/">相对路径与绝对路径</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/01/html_accesskey_tabindex/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/01/html_accesskey_tabindex/">accesskey 与 tabindex</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2017/page/5/">5</a><a class="extend next" rel="next" href="/archives/2017/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -477,8 +472,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
