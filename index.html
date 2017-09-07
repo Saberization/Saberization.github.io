@@ -174,6 +174,135 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-html_viewport" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/html_viewport/">viewport meta 说明及浅见</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/07/html_viewport/" class="archive-article-date">
+  	<time datetime="2017-09-07T06:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="常见使用"><a href="#常见使用" class="headerlink" title="常见使用"></a>常见使用</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, user-scalable=no"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 宽度为设备宽度，初始缩放比例为 1 倍，禁止用户缩放 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">id</span>=<span class="string">"viewport"</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="属性说明"><a href="#属性说明" class="headerlink" title="属性说明"></a>属性说明</h2><ul>
+<li><p><code>width：</code> 可设定数值，或者指定为device-width（设备宽度）</p>
+</li>
+<li><p><code>height：</code> 可设定数值，或者指定为device-height（设备高度）</p>
+</li>
+<li><p><code>initial-scale：</code> 第一次进入页面的初始比例</p>
+</li>
+<li><p><code>minimum-scale：</code> 允许缩小最小比例</p>
+</li>
+<li><p><code>maximum-scale：</code> 允许放大最大比例</p>
+</li>
+<li><p><code>user-scalable：</code> 允许使用者缩放，1 or 0 (yes or no)</p>
+</li>
+</ul>
+<p>最初执行viewport meta加入如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>编译过程会转化成如下的语意</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">viewport</span> &#123;</div><div class="line">    <span class="selector-tag">width</span>: <span class="selector-tag">device-width</span>;</div><div class="line">    <span class="selector-tag">initial-scale</span>: 1<span class="selector-class">.0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h2><h3 id="width-device-width"><a href="#width-device-width" class="headerlink" title="width=device-width"></a>width=device-width</h3><p>先提一下几个注意的地方，首先在<code>viewport</code>里面的<code>width</code>通常会看到设定为<code>device-width</code> ，主要是为了让整个页面宽度与手机可视宽度相同，如此就可以简单相容于不同机型萤幕大小，如果这边<code>width</code>没有设定的话，就会依照<code>html css</code>给予的<code>width</code>当作预设值。</p>
+<p>因为解析度不同，<code>device-width</code>有时候不一定是<code>view width</code> ，所以在类似<code>iphone 4</code>高解析度机器上，<code>device-width=320</code> ，可是实际解析度为<code>480</code>，这时候就需要利用javascript针对UA下去做动态调整。<code>user-scalable</code> 从属性名称来看就是允许开启、关闭的设定，使用者能否放大、缩小页面，如果页面不允许手机使用者缩放，就直接设定为<code>0</code>，或者<code>no</code>，反之要启动缩放功能，给予<code>1</code>或者是<code>yes</code>。 接下来将说明几种常用的方式，以及测试验证提供给大家参考。 基本宽度（并不是指html body width）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=300px"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>基本高度</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"height=300px"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>禁止使用者放大缩小</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"user-scalable=0"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>基本款式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>初始检视n 放大，(这里使用x 10.0)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=10.0"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>限制最大放大比例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, maximum-scale=15.0"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>限制最小缩小比例（数值必须为正值）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, minimum-scale=0.1"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="进阶应用"><a href="#进阶应用" class="headerlink" title="进阶应用"></a>进阶应用</h2><p>上面已经说明了几种常用的基本应用，接着要说明一个概念，假设设定数值</p>
+<h3 id="放大议题"><a href="#放大议题" class="headerlink" title="放大议题"></a>放大议题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">initial-scale=10.0</div><div class="line">maximum-scale=15.0</div></pre></td></tr></table></figure>
+<p>可以很简单得知，一开始就是<code>x 10.0</code>，最大可放大到<code>x 15.0</code>，如果变化一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">initial-scale=15.0</div><div class="line">maximum-scale=10.0</div></pre></td></tr></table></figure>
+<p>可以发现，初始的放大比例会变成<code>x 15.0</code>，最大放大比例还是<code>x 15.0</code>，推论出来结果就是:</p>
+<p><em>初始、最大值，以最大值为主</em>。</p>
+<h3 id="缩小议题"><a href="#缩小议题" class="headerlink" title="缩小议题"></a>缩小议题</h3><p>接着讨论缩小，一开始设定数值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">initial-scale=5.0</div><div class="line">minimum-scale=1.0</div></pre></td></tr></table></figure>
+<p>结果跟我们预估相同，初始值<code>x 5.0</code>，最小缩小值<code>x 1.0</code>，如果将数值反过来之后会发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">initial-scale=1.0</div><div class="line">minimum-scale=5.0</div></pre></td></tr></table></figure>
+<p>结果居然是，初始值x 1.0，最小缩小值x 1.0 ，最后推论结果为</p>
+<p><em>初始、最小值，以最小为主。</em></p>
+<p>看到这边相信大家对于数值设定有个认知，接着做个最后小测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">initial-scale=1.0</div><div class="line">minimum-scale=5.0</div><div class="line">maximum-scale=0.1</div></pre></td></tr></table></figure>
+<p>猜猜看，结果为何？？？</p>
+<p><em>答案，init x 1.0， max x 1.0， min x 1.0，无法放大缩小。</em></p>
+<h2 id="viewport-meta-其他参考"><a href="#viewport-meta-其他参考" class="headerlink" title="viewport meta 其他参考"></a>viewport meta 其他参考</h2><p>另外提供给大家几个viewport的使用方式，如果在手机端我们希望网页呈现固定，不希望使用者随意缩放，直接设定如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果希望在不同device 使用不同缩放大小，就必须使用javascript，侦测UA(User agent)，动态设定viewport，片段程式如下，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">viewport = <span class="built_in">document</span>.querySelector(<span class="string">"meta[name=viewport]"</span>);</div><div class="line">viewport.setAttribute(<span class="string">'content'</span>, <span class="string">'width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;'</span>);</div></pre></td></tr></table></figure>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在css media query中， viewport meta是一个初始化很重要的开始，经过这次开发的过程中慢慢分析，调整才了解到里面一些架构状况，另外css @viewport属性还有很多种类，详细列表可以参考<a href="http://dev.w3.org/csswg/css-device-adapt/#property-index" target="_blank" rel="external">W3C viewport property index table</a>。</p>
+<p>因为目前移动装置萤幕尺寸不同，种类需求也都不同，最理想的状况当然是一种web全部满足，不过依照目前的规格分歧来看，还有一段很长的路要走。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/07/html_viewport/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js_passive" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -604,82 +733,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/07/28/js_fetch与promise的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_worksocket" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/28/js_worksocket/">认识HTML5的WebSocket</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/28/js_worksocket/" class="archive-article-date">
-  	<time datetime="2017-07-28T01:47:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="认识HTML5的WebSocket"><a href="#认识HTML5的WebSocket" class="headerlink" title="认识HTML5的WebSocket"></a>认识HTML5的WebSocket</h2><p>在HTML5规范中，我最喜欢的Web技术就是正迅速变得流行的WebSocket API。WebSocket提供了一个受欢迎的技术，以替代我们过去几年一直在用的Ajax技术。这个新的API提供了一个方法，从客户端使用简单的语法有效地推动消息到服务器。让我们看一看HTML5的WebSocket API：它可用于客户端、服务器端。而且有一个优秀的第三方API，名为Socket.IO。</p>
-        
-          <a class="article-more-a" href="/2017/07/28/js_worksocket/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/28/js_worksocket/">展开全文 >></a>
         </p>
       
 
