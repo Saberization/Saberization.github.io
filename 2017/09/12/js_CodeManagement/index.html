@@ -6,17 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Arturia</title>
+  <title>代码质量管控的四个阶段 | Arturia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arturia">
-<meta property="og:url" content="https://saberization.github.io/index.html">
+  <meta name="description" content="代码质量管控的四个阶段">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码质量管控的四个阶段">
+<meta property="og:url" content="https://saberization.github.io/2017/09/12/js_CodeManagement/index.html">
 <meta property="og:site_name" content="Arturia">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="代码质量管控的四个阶段">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjapxvknj30go08amxp.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjbtg95ej30go06zq56.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjcaykp0j307s050q2y.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjdmii7wj30d2050q36.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgje5t2jbj30go08amxp.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjg8q1lpj307207ldfx.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjh48yqdj30go01ht8s.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjhv62xoj30go039glx.jpg">
+<meta property="og:updated_time" content="2017-09-12T01:51:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Arturia">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="代码质量管控的四个阶段">
+<meta name="twitter:description" content="代码质量管控的四个阶段">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjapxvknj30go08amxp.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Arturia" type="application/atom+xml">
   
@@ -172,16 +183,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-js_CodeManagement" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-js_CodeManagement" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/12/js_CodeManagement/">代码质量管控的四个阶段</a>
+    <h1 class="article-title" itemprop="name">
+      代码质量管控的四个阶段
     </h1>
   
 
@@ -195,9 +204,108 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>代码质量管控的四个阶段</p>
-        
-          <a class="article-more-a" href="/2017/09/12/js_CodeManagement/#more">more >></a>
-        
+<a id="more"></a>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjapxvknj30go08amxp.jpg" alt=""></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本文讨论的代码质量指的是代码本身的质量，包括复杂度、重复率、代码风格等要素。代码是团队的共同财产，代码质量是团队技术水平和管理水平的直接体现。</p>
+<p>代码质量下降通常会自成因果，导致恶性循环：</p>
+<ul>
+<li><p>破窗效应：在烂代码上继续生产烂代码的心理负担小很多</p>
+</li>
+<li><p>传染性：烂代码传递着一种不在意质量，只看业务成果的负面信息，会伤害团队的技术热情和工作氛围，导致更多烂代码出现</p>
+</li>
+</ul>
+<p>本文会分析代码质量下降的内在机制，并分享在代码质量管控方面的一些实践经验。</p>
+<h2 id="熵增定律与代码质量"><a href="#熵增定律与代码质量" class="headerlink" title="熵增定律与代码质量"></a>熵增定律与代码质量</h2><p>熵增定律告诉我们，一个封闭系统总是趋向于熵增，也就是系统的无序程度只会不断增加。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjbtg95ej30go06zq56.jpg" alt=""></p>
+<p>对于软件项目来说，代码质量代表着系统的有序程度，烂代码增加就是系统无序性上升的体现。在无外力影响的情况下，烂代码只会原来越多。</p>
+<p>为了维持系统有序，需要外界向系统不断输入能量。对于代码质量，我们需要主动投入资源，来有意识地抑制烂代码越来越多的自然趋势。</p>
+<h3 id="经典循环"><a href="#经典循环" class="headerlink" title="经典循环"></a>经典循环</h3><p>烂代码产生的常见原因是业务压力大，导致没有时间或意愿讲究代码质量。因为向业务压力妥协而生产烂代码之后，开发效率会随之下降，导致业务压力更大，形成一种典型的恶性循环。</p>
+<div style="text-align: center"><br><br><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjcaykp0j307s050q2y.jpg" alt=""><br><br></div> 
+
+<p>为了应对业务压力，常见的做法就是向项目中增加人力，但是单纯地增加人力的话，会因为风格不一致、沟通成本上升等原因导致烂代码更多。</p>
+<div style="text-align: center"><br><br><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjdmii7wj30d2050q36.jpg" alt=""><br><br></div> 
+
+<p>要遏制这种恶性循环，需要多管齐下，主动对代码质量进行管控，并且持续进行技术升级，系统性地解决问题。</p>
+<div style="text-align: center"><br><br><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgje5t2jbj30go08amxp.jpg" alt=""><br><br></div> 
+
+<p>不过质量管控和技术升级需要长期投入才能产生效果。通常情况下人们还是倾向于通过增加人力快速地解决业务压力的问题，而忽略了对于代码质量的负面影响，导致代码质量越来越差。</p>
+<h3 id="四个阶段"><a href="#四个阶段" class="headerlink" title="四个阶段"></a>四个阶段</h3><p>我把代码质量管控通常需要经历的四个阶段，称之为“四个现代化”：</p>
+<ul>
+<li><p>规范化 - 建立代码规范与Code Review制度</p>
+</li>
+<li><p>自动化 - 使用工具自动检查代码质量</p>
+</li>
+<li><p>流程化 - 将代码质量检查与代码流动过程绑定</p>
+</li>
+<li><p>中心化 - 以团队整体为视角，集中管理代码规范，并实现质量状况透明化</p>
+</li>
+</ul>
+<h4 id="阶段一：规范化"><a href="#阶段一：规范化" class="headerlink" title="阶段一：规范化"></a>阶段一：规范化</h4><p>保障代码质量的基础是建立团队的代码规范，通常包括：</p>
+<ul>
+<li><p>风格规范 - 缩进、换行、大小写等风格问题</p>
+</li>
+<li><p>实践规范 - 规避一些常见的隐患，或者针对特定问题的最佳实践</p>
+</li>
+<li><p>业务规范 - 与业务有关的特殊要求，比如文案中的关键词</p>
+</li>
+</ul>
+<p>团队的代码规范通常以文档的形式存在，供新人们学习。但文档这种形式常见的情况就是新人看过之后就不再回顾了，也很难对实际写代码形成真正的约束。</p>
+<p>在规范的基础上，要通过Code Review将规范落地。Code Review中大家可以对代码质量问题进行交流，并且相互监督，形成团队重视代码的习惯。</p>
+<h4 id="阶段二：自动化"><a href="#阶段二：自动化" class="headerlink" title="阶段二：自动化"></a>阶段二：自动化</h4><p>自动化是指在代码规范的基础上，使用自动化工具进行质量检查，通常包括：</p>
+<ul>
+<li><p>代码规范检查 - 包括风格规范、实践规范、业务规范</p>
+</li>
+<li><p>重复率 - 重复出现的代码区块占比，通常要求在5%以下</p>
+</li>
+<li><p>复杂度 - 总行数，模块大小，循环复杂度等</p>
+</li>
+<li><p>检查覆盖度 - 经过检查的行数占代码库总行数的比例</p>
+</li>
+</ul>
+<p>自动化质量检查可以覆盖多数常见问题，能够提升开发效率，也可以降低人工Code Review的成本。</p>
+<div style="text-align: center"><br><br><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjg8q1lpj307207ldfx.jpg" alt=""><br><br></div> 
+
+<p>自动化检查工具的规则集与代码规范直接对应。通过编辑器插件，在写代码的时候直接给出检查结果。到这个阶段，团队的代码规范文档已经不再需要陈述各种细节，开发者可以直接通过查看自动化工具的规则集来了解代码规范。</p>
+<h4 id="阶段三：流程化"><a href="#阶段三：流程化" class="headerlink" title="阶段三：流程化"></a>阶段三：流程化</h4><p>流程化的意思是将自动化代码质量检查和Code Review与代码流动的过程绑定，从而保证所有上线的代码都经过机器与人工多个环节的检查。</p>
+<p>代码流动过程：</p>
+<div style="text-align: center"><br><br><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjh48yqdj30go01ht8s.jpg" alt=""><br><br></div> 
+
+<p>执行自动化代码质量检查的时机：</p>
+<ul>
+<li><p>编辑时 - 使用编辑器插件，实时运行质量检查</p>
+</li>
+<li><p>构建时 - 在本地或者开发机的构建脚本中运行质量检查</p>
+</li>
+<li><p>提交时 - 利用Git Hooks，提交代码或者生成Pull Request时运行质量检查</p>
+</li>
+<li><p>发布时 - 在发布脚本中再做一次质量检查，通常与自动化测试放在一起</p>
+</li>
+</ul>
+<p>质量检查与代码流动绑定后的效果：</p>
+<div style="text-align: center"><br><br><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjgjhv62xoj30go039glx.jpg" alt=""><br><br></div> 
+
+<p>除了人工的Code Review之外，各个环节的代码质量检查都是机器自动运行的，不会给开发者带来额外的成本。</p>
+<h4 id="阶段四：中心化"><a href="#阶段四：中心化" class="headerlink" title="阶段四：中心化"></a>阶段四：中心化</h4><p>当团队规模越来越大，项目越来越多时，代码质量管控就会面临以下问题：</p>
+<ul>
+<li><p>不同项目使用的代码规范不一样</p>
+</li>
+<li><p>部分项目由于放松要求，没有接入质量检查，或者存在大量未修复的缺陷</p>
+</li>
+<li><p>无法从团队整体层面上体现各个项目的质量状况对比</p>
+</li>
+</ul>
+<p>为了应对以上问题，需要建设中心化的代码质量管控体系，要点包括：</p>
+<ul>
+<li><p>代码规范统一管理。使用Git或者NPM包管理自动化代码质量检查的规则集，自动安装，不在本地写规则。一个团队、一类项目、一套规则。</p>
+</li>
+<li><p>使用统一的持续集成服务。质量检查不通过的项目不能上线。</p>
+</li>
+<li><p>建立代码质量评分制度。让项目与项目之间能够横向对比，项目自身能够纵向对比，并且进行汇总反馈。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在面临业务压力时，人们通常会倾向于通过增加人力来缓解业务压力。但从系统整体的角度来看，人力增加会造成代码质量变差，开发效率下降，从而再度增大业务压力。这种代码质量越来越差的循环，是熵增定律在软件工程领域的生动体现。</p>
+<p>为了抑制这种循环，我们需要有意识地投入资源来建设代码质量的管控体系。这个过程分为四个阶段：规范化，自动化，流程化，中心化。每个阶段都有不同关注的要点。</p>
+
       
 
       
@@ -219,16 +327,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/12/js_CodeManagement/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/09/12/js_CodeManagement/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/12/eassy_67_f2e_tool/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">67 个提升效率的前端工具、库和资源</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -248,468 +415,12 @@
 
 
 
-
-  
-    <article id="post-eassy_67_f2e_tool" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/12/eassy_67_f2e_tool/">67 个提升效率的前端工具、库和资源</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/12/eassy_67_f2e_tool/" class="archive-article-date">
-  	<time datetime="2017-09-12T01:12:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>工欲善其事，必先利其器</p>
-        
-          <a class="article-more-a" href="/2017/09/12/eassy_67_f2e_tool/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/12/eassy_67_f2e_tool/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-html_viewport" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/html_viewport/">viewport meta 说明及浅见</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/07/html_viewport/" class="archive-article-date">
-  	<time datetime="2017-09-07T06:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>理解移动端的viewport meta是怎么一回事</p>
-        
-          <a class="article-more-a" href="/2017/09/07/html_viewport/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/07/html_viewport/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_passive" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/04/js_passive/">移动 Web 滚动性能优化：Passive Event Listeners</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/04/js_passive/" class="archive-article-date">
-  	<time datetime="2017-09-04T15:38:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今年的 Google I/O 已经过去一段时间了，大部分人都关注了一些新产品的发布，比如 Allo 和 Duo、Android N、Daydream、Android Studio、Firebase……还有 PWA。</p>
-        
-          <a class="article-more-a" href="/2017/09/04/js_passive/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/04/js_passive/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eassy_cssreflow" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/31/eassy_cssreflow/">优化CSS重排重绘与浏览器性能</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/31/eassy_cssreflow/" class="archive-article-date">
-  	<time datetime="2017-08-31T00:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于CSS重排和重绘的概念，最近看到不少这方面的文章，觉得挺有用，在制作中考虑浏览器的性能，减少重排能够节省浏览器对其子元素及父类元素的重新渲染；避免过分的重绘也能节省浏览器性能；优化动画，使用3D启用GPU硬件加速；慎重选择高消耗的样式，如box-shadow、border-radius、transform、css filters等。</p>
-        
-          <a class="article-more-a" href="/2017/08/31/eassy_cssreflow/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/31/eassy_cssreflow/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css_fontdisplay" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/css_fontdisplay/">使用 font-display 提升使用font-face时的性能与用户体验</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/css_fontdisplay/" class="archive-article-date">
-  	<time datetime="2017-08-08T06:02:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。</p>
-        
-          <a class="article-more-a" href="/2017/08/08/css_fontdisplay/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/css_fontdisplay/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eassy_webpack初体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/01/eassy_webpack初体验/">webpack初体验</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/01/eassy_webpack初体验/" class="archive-article-date">
-  	<time datetime="2017-08-01T07:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="学习webpack"><a href="#学习webpack" class="headerlink" title="学习webpack"></a>学习webpack</h2><p>从安装做起</p>
-        
-          <a class="article-more-a" href="/2017/08/01/eassy_webpack初体验/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/01/eassy_webpack初体验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -729,8 +440,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
