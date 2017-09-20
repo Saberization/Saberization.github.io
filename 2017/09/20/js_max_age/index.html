@@ -6,26 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>前端的意义是什么？ | Arturia</title>
+  <title>缓存最佳实践及max-age注意事项 | Arturia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="感受了下前端到底是干什么的">
-<meta name="keywords" content="eassy">
+  <meta name="description" content="使用缓存会带来巨大的性能提升，还能节省带宽、减少服务端开销，但很多网站对缓存一知半解，让相互依赖的资源出现竞态条件，从而无法同步更新。">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端的意义是什么？">
-<meta property="og:url" content="https://saberization.github.io/2017/07/01/eassy_前端的意义/index.html">
+<meta property="og:title" content="缓存最佳实践及max-age注意事项">
+<meta property="og:url" content="https://saberization.github.io/2017/09/20/js_max_age/index.html">
 <meta property="og:site_name" content="Arturia">
-<meta property="og:description" content="感受了下前端到底是干什么的">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3dxgvnuj30go09qaiz.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3et1aexj30go0bwwey.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3j31hnbj30go0b4ta5.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006HJ39wgy1ffn3khb04cj30dh08874h.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3lce72qj30go09eaaf.jpg">
-<meta property="og:updated_time" content="2017-07-25T07:21:57.000Z">
+<meta property="og:description" content="使用缓存会带来巨大的性能提升，还能节省带宽、减少服务端开销，但很多网站对缓存一知半解，让相互依赖的资源出现竞态条件，从而无法同步更新。">
+<meta property="og:updated_time" content="2017-09-20T06:56:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端的意义是什么？">
-<meta name="twitter:description" content="感受了下前端到底是干什么的">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg">
+<meta name="twitter:title" content="缓存最佳实践及max-age注意事项">
+<meta name="twitter:description" content="使用缓存会带来巨大的性能提升，还能节省带宽、减少服务端开销，但很多网站对缓存一知半解，让相互依赖的资源出现竞态条件，从而无法同步更新。">
   
     <link rel="alternative" href="/atom.xml" title="Arturia" type="application/atom+xml">
   
@@ -181,51 +174,128 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-eassy_前端的意义" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js_max_age" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      前端的意义是什么？
+      缓存最佳实践及max-age注意事项
     </h1>
   
 
         
-        <a href="/2017/07/01/eassy_前端的意义/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:03:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
+        <a href="/2017/09/20/js_max_age/" class="archive-article-date">
+  	<time datetime="2017-09-20T06:40:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>感受了下前端到底是干什么的</p>
-</blockquote>
+        <p>使用缓存会带来巨大的性能提升，还能节省带宽、减少服务端开销，但很多网站对缓存一知半解，让相互依赖的资源出现竞态条件，从而无法同步更新。</p>
 <a id="more"></a>
-<h3 id="前端面临的问题其实是一个难题"><a href="#前端面临的问题其实是一个难题" class="headerlink" title="前端面临的问题其实是一个难题"></a>前端面临的问题其实是一个难题</h3><p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn2090p9fj30go0gotcg.jpg" alt=""></p>
-<h5 id="为什么说它是难题呢？"><a href="#为什么说它是难题呢？" class="headerlink" title="为什么说它是难题呢？"></a>为什么说它是难题呢？</h5><p>因为软件工程的核心目标是用通用的模型解决一切问题，比如人工智能和机器学习。构筑在软件设计模型和程序设计理论的基石之上的一条道路，最终的终点指向一个目的地——抽象。不断深入研究各种问题，总结各种模式，直到将来某一天，机器能够代替人类思考，甚至机器能够代替人类存在，这才是终极目标。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3dxgvnuj30go09qaiz.jpg" alt=""></p>
-<p>然而从这方面来说，前端这个领域简直太难太难了。因为 AI 可以代替人类思考，甚至 AI 可以代替人类存在，但是 AI 可能永远也不会是人类，因为 AI 不会有人类的感觉，AI 不像人类那样拥有一颗脆弱、感性、多变、追求美的心，AI 可能不具有贪、嗔、痴、爱、慢、疑。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1ffn3et1aexj30go0bwwey.jpg" alt=""></p>
-<p>AI 可能也不会像人类一样对一个行业的前途忧心忡忡，在这种问题下面瞎比比。</p>
-<p>人类对美的体验是极致的，从形象到抽象，从一维到多维，从远古到未来……</p>
-<p>看过大刘的科幻小说《诗云》后，我认为诗云中的事情不会发生，因为有一天也许 AI 能够学会作诗，毕竟之前我们都认为 AI 不会下围棋，但是现在他们已经比世界最好的人类棋手还要厉害了。</p>
-<p>但是，AI 也许永远也不能欣赏美，因为 AI 不能代替人类自身去感知这个世界。</p>
-<p>从某种意义上说，<em>前端追求的一些东西是与人类软件工程的核心背道而驰的，是与极致抽象精神背道而驰的，因为人类追求的是个性，不是共性，因为人心多变。</em> 所以我们期望用统一的方法论来解决人类与世界、人类与自身交互问题，有可能很难做得完美。</p>
-<p>前端不像任何其他的软件工程领域，因为前端直面人心，前端掌握的方法论，不管内容怎样，前端掌握的工具，不管形式是什么，最终要解决的问题直击人心——帮助人类感受美，从而获得愉悦的心情，快速完成工作。要想用一个程序来彻底解决这个问题，很可能如同计算 <em>终极答案</em> ，在人类探寻宇宙的过程中，任重道远。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3j31hnbj30go0b4ta5.jpg" alt=""></p>
-<p>也许在很多年以后，很多问题都可以用一段代码来解决。但是人心不可以，前端面对的问题依然是五花八门，前端寻求真理的路依然看不到尽头。</p>
-<p>说了那么多，我想表达一点，许多做前端的人只把前端当成一个工作来看（当然其他领域也一样），从来没有思考过前端的本质是什么，我们究竟要解决什么问题。</p>
-<p>不能因为一些人干苦力，一些人瞎折腾，就对行业悲观，觉得行业可有可无。任何行业都一样，不管前端后端，高端低端，永远有一些人干苦力，一些人瞎折腾。</p>
-<p>自己明白就好，别跟着人瞎起哄瞎折腾。别把自己限制在自己的工作领域，我们要学习的东西很多，除非自己你想要瞎折腾一辈子，没人逼你天天瞎折腾。</p>
-<p>不管怎么样，切页面是我们的工作职责之一，然而整天做简单的事情，重复地切各种页面，难道是不去学习，不去追求的理由么？</p>
-<p><img src="http://ww3.sinaimg.cn/large/006HJ39wgy1ffn3khb04cj30dh08874h.jpg" alt=""></p>
-<p>Any way，前端只是软件工程和程序世界里很小很小的一部分，而整个软件工程和程序世界也只是人类文明海洋里的一朵不起眼的浪花。我们每个人都在这个世界上承担一小部分工作，但是因着我们的努力，人类总有一天终将飞出地球，畅游在宇宙无尽的时空中。</p>
-<p>总之，一句话，不要恐慌。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffn3lce72qj30go09eaaf.jpg" alt=""></p>
+<p>使用缓存的最佳实践大体上可以归纳为这两种模式：</p>
+<h2 id="模式一：不变内容-长时间-max-age"><a href="#模式一：不变内容-长时间-max-age" class="headerlink" title="模式一：不变内容 + 长时间 max-age"></a>模式一：不变内容 + 长时间 max-age</h2><p><code>Cache-Control: max-age=31536000</code></p>
+<ul>
+<li><p>URL 对应的内容绝对不会改变，因此：</p>
+</li>
+<li><p>浏览器 / CDN 直接将这个资源缓存一年也没问题；</p>
+</li>
+<li><p>在 <code>max-age</code> 指定时间内，缓存副本可以直接使用，不需要与服务端协商；</p>
+</li>
+</ul>
+<blockquote>
+<p>页面：嘿，我需要 “/script-v1.js”、”/styles-v1.css” 和 “/cats-v1.jpg”。（10:24）</p>
+<p>缓存：我这儿都没有。<code>服务端</code>，你有么？（10:24）</p>
+<p>服务端：当然，给你。对了 <code>缓存</code>，把这些资源存起来，一年之内直接用吧。（10:25）</p>
+<p>缓存：多谢！（10:25）</p>
+<p>页面：赞哦！（10:25）</p>
+</blockquote>
+<p>在这种模式中，绝对不会修改某个 URL 的内容，只会改变 URL 本身：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/script-f93bca2c.js"</span>&gt;</span><span class="xml"></span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/styles-a837cb1e.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/cats-0e9a2ef4.jpg"</span> <span class="attr">alt</span>=<span class="string">"…"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面每个 URL 都包含了与文件内容同步修改的部分。这部分可以是版本号、修改时间，或者是文件内容的 MD5 —— 我的博客就是这么干的。</p>
+<p>大部分服务端框架都有对应工具来轻松完成这项工作（我在用 Django 的 ManifestStaticFilesStorage），还有一些很轻量的 Node.js 库可以实现同样功能，例如 gulp-rev。</p>
+<p>但是，文章或博客详情这类 HTML 页面不适用于这种模式。这些页面 URL 不能包含版本号，页面内容还必须能修改。尤其是发现有拼写错误或语法错误后，需要快速频繁地更新。</p>
+<h2 id="模式二：可变内容，每次都走服务端验证"><a href="#模式二：可变内容，每次都走服务端验证" class="headerlink" title="模式二：可变内容，每次都走服务端验证"></a>模式二：可变内容，每次都走服务端验证</h2><p><code>Cache-Control: no-cache</code></p>
+<ul>
+<li><p>URL 对应的内容可能会改变，因此：</p>
+</li>
+<li><p>没有服务端的指示，不能使用本地缓存的任何版本；</p>
+</li>
+</ul>
+<blockquote>
+<p>页面：嘿，我需要 “/about/“ 和 “/sw.js” 两份资源。（11:32）</p>
+<p>缓存：我搞不定。<code>服务端</code>，看看？（11:32）</p>
+<p>服务端：哈，我有，给你。<code>缓存</code>，你可以自己存一份，但用之前要先问我哈。（11:33）</p>
+<p>缓存：明白！（11:33）</p>
+<p>页面：多谢！（11:33）</p>
+</blockquote>
+<p>注：<code>no-cache</code> 并不是说「不缓存」，它意味着使用缓存前必须检查（或者说<code>验证</code>）这个资源在服务端是否有更新。<code>no-store</code> 用来告知浏览器完全不要缓存这个资源。类似的，<code>must-revalidate</code> 并不是说「每次都要验证」，它意味着某个资源在本地已缓存时长短于 <code>max-age</code> 指定时长时，可以直接使用，否则就要发起验证。好，这下明白了。</p>
+<p>这种模式下，也可以给资源响应加上 <code>ETag</code>（资源的版本 ID）、 <code>Last-Modified</code> 时间这两个头部。下次客户端请求这些资源时，会通过 <code>If-None-Match</code> 或 <code>If-Modified-Since</code> 这两个请求头带上之前的值，这样服务端就可以返回「直接用你之前缓存的版本吧，它们是最新的」，换成行话就是「HTTP 304」。</p>
+<p>如果服务端没办法发送 <code>ETag</code> / <code>Last-Modified</code> 头部，那每次都需要发送完整的响应内容。</p>
+<p>这种模式下，每次都会产生网络请求，所以它没有能节省网络请求的模式一好。</p>
+<p>模式一被基础设施影响，模式二被网络请求影响，都是常见的事儿。所以又有了中间方案：给可变内容加上短一点的 <code>max-age</code>。这个折中方案太太太糟糕了。</p>
+<h2 id="给可变内容加上-max-age，通常是错的"><a href="#给可变内容加上-max-age，通常是错的" class="headerlink" title="给可变内容加上 max-age，通常是错的"></a>给可变内容加上 max-age，通常是错的</h2><p>不幸的是这种做法并不罕见，Github pages 当前就是这样。</p>
+<p>假设这样三个资源：</p>
+<ul>
+<li><p>/article/</p>
+</li>
+<li><p>/styles.css</p>
+</li>
+<li><p>/script.js</p>
+</li>
+</ul>
+<p>都有这样的响应头：</p>
+<p><code>Cache-Control: must-revalidate, max-age=600</code></p>
+<ul>
+<li><p>URL 对应的内容发生了改变；</p>
+</li>
+<li><p>如果浏览器有一个十分钟之内的缓存副本，就不会与服务端协商，直接使用；</p>
+</li>
+<li><p>否则发起网络请求，可能的话还会带上 <code>If-Modified-Since</code> 和 <code>If-None-Match</code> 请求头；</p>
+</li>
+</ul>
+<blockquote>
+<p>页面：嘿，我需要 “/article/“、”/script.js” 和 “/styles.css”。（10:21）</p>
+<p>缓存：我这里没有，<code>服务端</code>？（10:21）</p>
+<p>服务端：没问题，给你。对了 <code>缓存</code>，这些资源你可以存 10 分钟。（10:22）</p>
+<p>缓存：明白！（10:22）</p>
+<p>页面：多谢！（10:22）</p>
+</blockquote>
+<p>这种场景在测试环境可以构造出来，但在真实环境中难复现，也难追查。在上述例子中，实际上服务端同时更新了 HTML、CSS 和 JS，但是页面最终从缓存中拿到旧的 HTML 和 JS，并从服务端拿到最新的 CSS。版本不匹配导致功能异常。</p>
+<p>通常，当我们对 HTML 改动很大时，很可能 CSS 需要为新结构作出调整，JS 也需要配合 CSS 和 HTML 改动而进行相应修改。这些资源相互依赖，但无法通过缓存头反映出来。最终页面可能会拿到一部分新资源，一部分旧资源。</p>
+<p><code>max-age</code> 是响应时间的相对值，某个页面上的所有资源请求，会被设置在大致相同的时间后失效，但仍有小概率出现竞争。如果你有一些不包含 JS、或包含不同 CSS 的页面，过期时间可以不同步。更为糟糕的是，浏览器一直都在淘汰缓存的资源，它不可能知道某些 HTML、CSS 和 JS 相互有依赖，所以会出现部分淘汰的情况。综上所述，最终页面拿到版本不匹配的资源并非不可能发生。</p>
+<p>对于用来来说，这会破坏页面布局和/或功能，从小问题到大事故都有可能发生。</p>
+<p>谢天谢地，我们有个解决方案。。。</p>
+<h3 id="刷新之后通常就好了"><a href="#刷新之后通常就好了" class="headerlink" title="刷新之后通常就好了"></a>刷新之后通常就好了</h3><p>刷新页面，会让浏览器向服务端发起验证，忽略 <code>max-age</code>。所以如果用户对 <code>max-age</code> 的这个问题很有经验的话，点击刷新按钮就能解决一切问题。当然，要求用户这样做会降低用户对你的信任，会让用户觉得你的网站很不稳定。</p>
+<h3 id="service-worker-会延长这个-BUG-的生命周期"><a href="#service-worker-会延长这个-BUG-的生命周期" class="headerlink" title="service worker 会延长这个 BUG 的生命周期"></a>service worker 会延长这个 BUG 的生命周期</h3><p>假设有下面这样的 service worker 代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> version = <span class="string">'2'</span>;</div><div class="line"></div><div class="line">self.addEventListener(<span class="string">'install'</span>, event =&gt; &#123;</div><div class="line">  event.waitUntil(</div><div class="line">    caches.open(<span class="string">`static-<span class="subst">$&#123;version&#125;</span>`</span>)</div><div class="line">      .then(<span class="function"><span class="params">cache</span> =&gt;</span> cache.addAll([</div><div class="line">        <span class="string">'/styles.css'</span>,</div><div class="line">        <span class="string">'/script.js'</span></div><div class="line">      ]))</div><div class="line">  );</div><div class="line">&#125;);</div><div class="line"></div><div class="line">self.addEventListener(<span class="string">'activate'</span>, event =&gt; &#123;</div><div class="line">  <span class="comment">// …delete old caches…</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">self.addEventListener(<span class="string">'fetch'</span>, event =&gt; &#123;</div><div class="line">  event.respondWith(</div><div class="line">    caches.match(event.request)</div><div class="line">      .then(<span class="function"><span class="params">response</span> =&gt;</span> response || fetch(event.request))</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这个 service worker：</p>
+<ul>
+<li><p>在前端缓存脚本和样式；</p>
+</li>
+<li><p>命中缓存中直接返回，否则从服务端获取；</p>
+</li>
+</ul>
+<p>修改 <code>CSS/JS</code> 时，我们需要同步修改 <code>version</code>，用来让 service worker 缓存失效，触发更新。然而，因为 <code>addAll</code> 会从 HTTP 缓存中获取资源（跟其它请求一样），我们又有可能遇上 <code>max-age</code> 竞态条件，从而缓存相互不兼容的 CSS 和 JS 版本。</p>
+<p>而一旦它们被缓存，意味着直到下次更新 service worker 之前，页面都会访问到不兼容的 CSS 和 JS —— 这还是假设下次更新不出现竞争的情况。</p>
+<p>你也可以在 service worker 里绕过 HTTP 缓存：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">self.addEventListener(<span class="string">'install'</span>, event =&gt; &#123;</div><div class="line">  event.waitUntil(</div><div class="line">    caches.open(<span class="string">`static-<span class="subst">$&#123;version&#125;</span>`</span>)</div><div class="line">      .then(<span class="function"><span class="params">cache</span> =&gt;</span> cache.addAll([</div><div class="line">        <span class="keyword">new</span> Request(<span class="string">'/styles.css'</span>, &#123; <span class="attr">cache</span>: <span class="string">'no-cache'</span> &#125;),</div><div class="line">        <span class="keyword">new</span> Request(<span class="string">'/script.js'</span>, &#123; <span class="attr">cache</span>: <span class="string">'no-cache'</span> &#125;)</div><div class="line">      ]))</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>不幸的是当前 Chrome/Opera 都不支持 <code>cache</code> 选项，只有最新的 Firefox Nightly 才支持，当然你也可以自己解决：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">self.addEventListener(<span class="string">'install'</span>, event =&gt; &#123;</div><div class="line">  event.waitUntil(</div><div class="line">    caches.open(<span class="string">`static-<span class="subst">$&#123;version&#125;</span>`</span>)</div><div class="line">      .then(<span class="function"><span class="params">cache</span> =&gt;</span> <span class="built_in">Promise</span>.all(</div><div class="line">        [</div><div class="line">          <span class="string">'/styles.css'</span>,</div><div class="line">          <span class="string">'/script.js'</span></div><div class="line">        ].map(<span class="function"><span class="params">url</span> =&gt;</span> &#123;</div><div class="line">          <span class="comment">// cache-bust using a random query string</span></div><div class="line">          <span class="keyword">return</span> fetch(<span class="string">`<span class="subst">$&#123;url&#125;</span>?<span class="subst">$&#123;<span class="built_in">Math</span>.random()&#125;</span>`</span>).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">            <span class="comment">// fail on 404, 500 etc</span></div><div class="line">            <span class="keyword">if</span> (!response.ok) <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'Not ok'</span>);</div><div class="line">            <span class="keyword">return</span> cache.put(url, response);</div><div class="line">          &#125;)</div><div class="line">        &#125;)</div><div class="line">      ))</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面代码通过加随机数的方式绕过了缓存，也可以更进一步，利用构建工具自动添加文件内容 MD5（类似于 sw-precache 所做的工作）。这有点像在 JavaScript 中实现了模式一，但是只能让 service worker 受益，不包括浏览器和 CDN。</p>
+<h2 id="让-service-worker-和-HTTP-缓存相互协作，而不是打架"><a href="#让-service-worker-和-HTTP-缓存相互协作，而不是打架" class="headerlink" title="让 service worker 和 HTTP 缓存相互协作，而不是打架"></a>让 service worker 和 HTTP 缓存相互协作，而不是打架</h2><p>如你所见，我们可以用一些技巧来改善 service worker 中的缓存，但更好的做法是从源头解决问题。正确使用 HTTP 缓存不但可以简化 service worker 逻辑，还可以让那些不支持 service worker 的浏览器获益（Safari、IE/Edge），也能用好 CDN。</p>
+<p>正确配置缓存响应头意味着可以大幅简化 service worker 的更新逻辑：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> version = <span class="string">'23'</span>;</div><div class="line"></div><div class="line">self.addEventListener(<span class="string">'install'</span>, event =&gt; &#123;</div><div class="line">  event.waitUntil(</div><div class="line">    caches.open(<span class="string">`static-<span class="subst">$&#123;version&#125;</span>`</span>)</div><div class="line">      .then(<span class="function"><span class="params">cache</span> =&gt;</span> cache.addAll([</div><div class="line">        <span class="string">'/'</span>,</div><div class="line">        <span class="string">'/script-f93bca2c.js'</span>,</div><div class="line">        <span class="string">'/styles-a837cb1e.css'</span>,</div><div class="line">        <span class="string">'/cats-0e9a2ef4.jpg'</span></div><div class="line">      ]))</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在这个例子中，我使用模式二（可变内容，每次都走服务端验证）缓存 HTML 页面；其它资源使用了模式一（不变内容 + 长时间 max-age）缓存。每次 service worker 更新都会触发 HTML 页面请求，而其它资源只有在 URL 发生变化时才会再次下载。这非常棒，无论是从上个版本还是上十个版本更新都能节省带宽、提高性能。</p>
+<p>相比有细微改动整个二进制文件就要重新下载，或者要实现复杂的二进制 diff 的原生应用，这是一个巨大的优点。只需要少量下载，就可以更新大型 Web 应用。</p>
+<p>service worker 最好用于局部增强而不是提供整套方案，它应该与 HTTP 缓存配合使用，而不是相互打架。</p>
+<h2 id="谨慎地给可变内容加上-max-age，能带来受益"><a href="#谨慎地给可变内容加上-max-age，能带来受益" class="headerlink" title="谨慎地给可变内容加上 max-age，能带来受益"></a>谨慎地给可变内容加上 max-age，能带来受益</h2><p>给经常改变的内容设置 <code>max-age</code> 通常是错误的选择，但也不全是。现在你看到的这个页面（译者注：指原文页面）就设置了三分钟的 <code>max-age</code>。在这里竞态条件不是问题，因为这个页面不依赖任何使用同样缓存模式的资源（我的 CSS、JS 及图片都属于模式一：不变内容），也不被其它使用同样缓存模式的页面所依赖。</p>
+<p>这种模式意味着，如果我足够幸运写了一篇大受欢迎的文章，我的 CDN（Cloudflare）会帮我的服务器抗住流量，只要我能接受修改文章要等三分钟才能被用户看到，我确实可以接受。</p>
+<p>这种模式用起来也没那么容易。如果我给一篇文章增加了一段内容，再在另外一篇文章中指向它，我就在页面之间创建了会引入竞争的依赖关系。用户可能点击链接后看到的是不包含新增内容的缓存副本。要避免这种问题发生，我必须在更新文章后，去 Cloudflare 的控制台刷新这篇文章的缓存，等三分钟再在其它文章加上指向它的链接。是的，你必须非常小心地使用这种模式。</p>
+<p>只要用法恰当，缓存能极大的提升性能、节省带宽。让不变内容可以轻松改变 URL，让可变内容走服务端验证。如果你很勇敢，当你能确认你的内容既不依赖别人也不被别人依赖时，才针对可变内容使用 <code>max-age</code>，因为它可能无法同步更新。</p>
 
       
 
@@ -239,7 +309,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
@@ -295,7 +365,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/07/01/eassy_前端的意义/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/09/20/js_max_age/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,18 +379,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/07/01/eassy_ATOM必装插件/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ATOM必装插件
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/01/js_js_module_loader/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript Module Loader</div>
+    <a href="/2017/09/20/css_iphonex_meta/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iPhone X 的“刘海儿”和 CSS</div>
       <i class="icon-circle-right"></i>
     </a>
   
