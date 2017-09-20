@@ -174,6 +174,184 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css_iphonex_meta" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/20/css_iphonex_meta/">iPhone X 的“刘海儿”和 CSS</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/20/css_iphonex_meta/" class="archive-article-date">
+  	<time datetime="2017-09-20T06:31:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iPhone X 配备一个覆盖整个手机的全面屏，顶部的“刘海”为相机和其他组件留出了空间。然而结果就是会出现一些尴尬的情景：网站被限制在一个“安全区域”，在两侧边缘会出现白条儿。移除这个白条儿也不难，给 <code>body</code> 设置一个 <code>background-color</code> 就可以搞定。或者，可以添加 <code>viewport-fit=cover</code> <code>meta</code> 标签，将整个网站扩展到整个屏幕。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, viewport-fit=cover"</span>&gt;</span></div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjq0mbff4bj30yg0kcamf.jpg" alt=""><br><br></div>
+
+<p>然后就由你来决定被安全区域制约的重叠区了。有一些新的 CSS 可以助你一臂之力。Stephen Radford 文档：</p>
+<p>为了处理这些需求，iOS 11 的 Safari 引入了一些 <code>constant</code> 来处理 <code>viewport-fit=cover</code> 属性：</p>
+<ul>
+<li><p>safe-area-inset-top</p>
+</li>
+<li><p>safe-area-inset-right</p>
+</li>
+<li><p>safe-area-inset-left</p>
+</li>
+<li><p>safe-area-inset-bottom</p>
+</li>
+</ul>
+<p>这些值可以应用到 <code>margin</code>、<code>padding</code> 上, 也可以应用到绝对定位的 <code>top</code> 或 <code>left</code> 上。<br>在网页的 container 上添加如下代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">padding</span>: <span class="selector-tag">constant</span>(<span class="selector-tag">safe-area-inset-top</span>) <span class="selector-tag">constant</span>(<span class="selector-tag">safe-area-inset-right</span>) <span class="selector-tag">constant</span>(<span class="selector-tag">safe-area-inset-bottom</span>) <span class="selector-tag">constant</span>(<span class="selector-tag">safe-area-inset-left</span>);</div></pre></td></tr></table></figure>
+<p>刘海、安全区域和 fixed 定位还会造成其他尴尬的情景。Darryl Pogue 报告：</p>
+<blockquote>
+<p>iOS 11 和早期版本的差异性在于 webview 内容遵循安全区域。也就是说，如果你在顶部设置一个 top 为 0 的 fixed 定位的 header，实际位置会出现屏幕顶部以下 20px 处，和状态栏底部是对齐的。当向下滚动的时候，会向上移动到状态栏的后面；当向上滚动时，会再次滑到状态栏的下方（网页内容会在那条尴尬的 20px 的缝隙中显示）。</p>
+<p>可以在视频中查看这种情况是多么的糟糕：</p>
+</blockquote>
+<embed wmode="direct" flashvars="vid=i0552bfpggt&amp;tpid=0&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;pic=//shp.qpic.cn/qqvideo_ori/0/i0552bfpggt_496_280/0&amp;skin=http://imgcache.qq.com/minivideo_v1/vd/res/skins/TencentPlayerMiniSkin.swf&amp;shownext=1&amp;list=2&amp;autoplay=0" src="http://imgcache.qq.com/tencentvideo_v1/player/TPout.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1505888934714" id="tenvideo_flash_player_1505888934714" bgcolor="#000000" width="670px" height="502px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/">
+
+<p>可喜可贺的是，添加一个 <code>viewport-fit=cover</code> 标签就可以一键搞定。</p>
+<p>如果你打算覆盖 viewport，那么你可能需要耍点小聪明来隐藏网页内容了！</p>
+<embed wmode="direct" flashvars="vid=z1324mm86j3&amp;tpid=0&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;pic=//shp.qpic.cn/qqvideo_ori/0/z1324mm86j3_496_280/0&amp;skin=http://imgcache.qq.com/minivideo_v1/vd/res/skins/TencentPlayerMiniSkin.swf&amp;shownext=1&amp;list=2&amp;autoplay=0" src="http://imgcache.qq.com/tencentvideo_v1/player/TPout.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1505888934705" id="tenvideo_flash_player_1505888934705" bgcolor="#000000" width="670px" height="502px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/">
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/20/css_iphonex_meta/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-css_image-responsive-lazyload" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/13/css_image-responsive-lazyload/">web图片响应式自适应结合懒加载的最佳方案</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/13/css_image-responsive-lazyload/" class="archive-article-date">
+  	<time datetime="2017-09-13T07:24:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在响应式布局中，通常图片自适应是没法带上宽度和高度的，或者是需要使用JavaScript来计算出它的合适宽高，而且在使用懒加载时，我们会默认给一个占位图片，一个占位图片在各种不同宽高的图片里面，是会严重变形，有没有更好的处理方法呢？</p>
+        
+          <a class="article-more-a" href="/2017/09/13/css_image-responsive-lazyload/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/13/css_image-responsive-lazyload/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js_CodeManagement" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -554,161 +732,9 @@
 
 
   
-    <article id="post-css_fontdisplay" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/css_fontdisplay/">使用 font-display 提升使用font-face时的性能与用户体验</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/css_fontdisplay/" class="archive-article-date">
-  	<time datetime="2017-08-08T06:02:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>进行性能优化时，决定 Web Font 的加载行为是一项技术活。@font-face规则中新增了一个font-display声明，开发者可以根据 Web Font 的加载时间来决定如何渲染或降级处理。</p>
-        
-          <a class="article-more-a" href="/2017/08/08/css_fontdisplay/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/css_fontdisplay/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eassy_webpack初体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/01/eassy_webpack初体验/">webpack初体验</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/01/eassy_webpack初体验/" class="archive-article-date">
-  	<time datetime="2017-08-01T07:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="学习webpack"><a href="#学习webpack" class="headerlink" title="学习webpack"></a>学习webpack</h2><p>从安装做起</p>
-        
-          <a class="article-more-a" href="/2017/08/01/eassy_webpack初体验/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/01/eassy_webpack初体验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
