@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Arturia</title>
+  <title>px、em、rem 详解 | Arturia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arturia">
-<meta property="og:url" content="https://saberization.github.io/page/5/index.html">
+  <meta name="description" content="国内的设计师大都喜欢用px，而国外的网站大都喜欢用em和rem，那么三者有什么区别，又各自有什么优劣呢？">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="px、em、rem 详解">
+<meta property="og:url" content="https://saberization.github.io/2017/09/20/css_px_em_rem/index.html">
 <meta property="og:site_name" content="Arturia">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="国内的设计师大都喜欢用px，而国外的网站大都喜欢用em和rem，那么三者有什么区别，又各自有什么优劣呢？">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxmwvcpkj30go0jcn10.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxnumleuj30xk0ve7cl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxplobn6j30xo0yyk3i.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxzdf5etj30zk08c751.jpg">
+<meta property="og:updated_time" content="2017-09-21T03:17:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Arturia">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="px、em、rem 详解">
+<meta name="twitter:description" content="国内的设计师大都喜欢用px，而国外的网站大都喜欢用em和rem，那么三者有什么区别，又各自有什么优劣呢？">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxmwvcpkj30go0jcn10.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Arturia" type="application/atom+xml">
   
@@ -172,184 +179,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-html_HTML5表单功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-css_px_em_rem" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/html_HTML5表单功能/">HTML5表单功能</a>
+    <h1 class="article-title" itemprop="name">
+      px、em、rem 详解
     </h1>
   
 
         
-        <a href="/2017/07/11/html_HTML5表单功能/" class="archive-article-date">
-  	<time datetime="2017-07-11T02:56:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+        <a href="/2017/09/20/css_px_em_rem/" class="archive-article-date">
+  	<time datetime="2017-09-20T08:22:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>HTML5 Web Forms 2.0是对目前Web表单的全面提升，它在保持了简便易用的特性的同时，增加了许多内置的控件或者控件属性来满足用户的需求，并且同时减少了开发人员的编程。HTML5 主要在以下几个方面对目前的Web表单做了改进：</p>
-        
-          <a class="article-more-a" href="/2017/07/11/html_HTML5表单功能/#more">more >></a>
-        
-      
+        <p>国内的设计师大都喜欢用px，而国外的网站大都喜欢用em和rem，那么三者有什么区别，又各自有什么优劣呢？</p>
+<a id="more"></a>
+<h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><h3 id="px-pixel，像素-："><a href="#px-pixel，像素-：" class="headerlink" title="px (pixel，像素)："></a>px (pixel，像素)：</h3><p>是一个虚拟长度单位，是计算机系统的数字化图像长度单位，如果px要换算成物理长度，需要指定精度DPI(Dots Per Inch，每英寸像素数)，在扫描打印时一般都有DPI可选。Windows系统默认是96dpi，Apple系统默认是72dpi。</p>
+<h3 id="em-相对长度单位，相对于当前对象内文本的字体尺寸-："><a href="#em-相对长度单位，相对于当前对象内文本的字体尺寸-：" class="headerlink" title="em(相对长度单位，相对于当前对象内文本的字体尺寸)："></a>em(相对长度单位，相对于当前对象内文本的字体尺寸)：</h3><p>是一个相对长度单位，最初是指字母M的宽度相对长度单位，最初是指字母M的宽度，故名em。现指的是字符宽度的倍数，用法类似百分比，如：0.8em, 1.2em,2em等。通常1em=16px。</p>
+<h3 id="pt-point，磅-：是一个物理长度单位，指的是72分之一英寸。pt-1-72-英寸-px-1-dpi-英寸-："><a href="#pt-point，磅-：是一个物理长度单位，指的是72分之一英寸。pt-1-72-英寸-px-1-dpi-英寸-：" class="headerlink" title="pt (point，磅)：是一个物理长度单位，指的是72分之一英寸。pt=1/72(英寸), px=1/dpi(英寸)："></a>pt (point，磅)：是一个物理长度单位，指的是72分之一英寸。pt=1/72(英寸), px=1/dpi(英寸)：</h3><blockquote>
+<p>本文不对pt最讲解</p>
+</blockquote>
+<h3 id="rem（root-em，根em）："><a href="#rem（root-em，根em）：" class="headerlink" title="rem（root em，根em）："></a>rem（root em，根em）：</h3><p>是CSS3新增的一个相对单位，这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。目前，除了IE8及更早版本外，所有浏览器均已支持rem。对于不支持它的浏览器，应对方法也很简单，就是多写一个绝对单位的声明。这些浏览器会忽略用rem设定的字体大小</p>
+<h2 id="em与px的问题"><a href="#em与px的问题" class="headerlink" title="em与px的问题"></a>em与px的问题</h2><h3 id="px是何物？"><a href="#px是何物？" class="headerlink" title="px是何物？"></a>px是何物？</h3><p><code>px像素（Pixel）</code>。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。(引自CSS2.0手册) </p>
+<h3 id="px特点："><a href="#px特点：" class="headerlink" title="px特点："></a>px特点：</h3><ul>
+<li><p>IE无法调整那些使用px作为单位的字体大小；</p>
+</li>
+<li><p>国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位；</p>
+</li>
+<li><p>Firefox能够调整px和em，rem，但是….IE根深蒂固。</p>
+</li>
+</ul>
+<hr>
+<h3 id="em是何物？"><a href="#em是何物？" class="headerlink" title="em是何物？"></a>em是何物？</h3><p><code>em</code> 是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。(引自CSS2.0手册)</p>
+<p><code>em</code> 指字体高，任意浏览器的默认字体高都是<code>16px</code>。所以未经调整的浏览器都符合: <code>1em=16px</code>。那么 <code>12px=0.75em</code> ,  <code>10px=0.625em</code> 。为了简化 <code>font-size</code> 的换算，需要在css中的<code>body</code>选择器中声明 <code>font-size=62.5%</code> ，这就使em值变为 <code>16px*62.5%=10px</code> , 这样<code>12px=1.2em</code>, <code>10px=1em</code>, 也就是说只需要将你的原来的 <code>px</code> 数值除以 <code>10</code>，然后换上 <code>em</code> 作为单位就行了。</p>
+<h3 id="em特点："><a href="#em特点：" class="headerlink" title="em特点："></a>em特点：</h3><p><code>1em</code>指的是一个字体的大小，它会继承父级元素的字体大小，因此并不是一个固定的值。任何浏览器的默认字体大小都是16px。因此，<code>12px = 0.75em</code>。实际应用中为了方便换算，通常会如下设置样式：</p>
+<p><strong>css代码：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">62.5%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样设置过后，<code>1em = 10px</code>。我们常用的 <code>1.2em</code> 理论上就是 <code>12px</code> 。</p>
+<p><strong>注意：</strong> 这个换算在IE浏览器下不成立，<code>1.2em</code> 会比 <code>12px</code> 稍大一些，解决办法是把 <code>body</code> 标签样式中的 <code>62.5%</code> 改成 <code>63%</code> ，即：</p>
+<p><strong>css代码：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">63%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在文章中，一般会在段首空两格。如果用 <code>px</code> 作为单位，对<code>12px</code>字体来说需要空出<code>24px</code>，对<code>14px</code>字体来说需要空出<code>28px</code>……这样换算非常不通用。如果用上<code>em</code>单位，这个问题就很好解决了，1个字的大小就是<code>1em</code>，那两个字的大小就是2em。因此，只需这样定义就行了：</p>
+</blockquote>
+<p><strong>css代码：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">    <span class="attribute">text-indent</span>: <span class="number">2em</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="em和px两种字体单位的区别"><a href="#em和px两种字体单位的区别" class="headerlink" title="em和px两种字体单位的区别"></a>em和px两种字体单位的区别</h3><p>字体单位应该用<code>em</code>而不用<code>px</code>，原因简单来说就是支持IE6下的字体缩放，在页面中按ctrl+滚轮，字体以<code>px</code>为单位的网站没有反应。<code>px是绝对单位</code>，不支持IE的缩放，<code>em是相对单位</code>。</p>
+<hr>
+<h3 id="em有如下特点："><a href="#em有如下特点：" class="headerlink" title="em有如下特点："></a>em有如下特点：</h3><ul>
+<li><p>em的值并不是固定的；</p>
+</li>
+<li><p>em会继承父级元素的字体大小。</p>
+</li>
+</ul>
+<h3 id="em重写步骤："><a href="#em重写步骤：" class="headerlink" title="em重写步骤："></a>em重写步骤：</h3><ul>
+<li><p>body选择器中声明font-size=62.5%；</p>
+</li>
+<li><p>将你的原来的px数值除以10，然后换上em作为单位；</p>
+</li>
+</ul>
+<blockquote>
+<p>经过以上两步，你会发现你的网站字体大得出乎想象。因为em的值不固定，又会继承父级 元素的大小，你可能会在content这个div里把字体大小设为1.2em, 也就是12px。然后你又把选择器p的字体大小也设为1.2em，但如果p属于content的子级的话，p的字体大小就不是12px，而是1.2em= 1.2 <em> 12px=14.4px。这是因为content的字体大小被设为1.2em，这个em值继承其父级元素body的大小，也就是16px </em> 62.5% * 1.2=12px, 而p作为其子级，em则继承content的字体高，也就是12px。所以p的1.2em就不再是12px，而是14.4px。</p>
+</blockquote>
+<ul>
+<li>重新计算那些被放大的字体的em数值。避免字体大小的重复声明，也就是避免以上提到的1.2 * 1.2= 1.44的现象。比如说你在#content中声明了字体大小为1.2em，那么在声明p的字体大小时就只能是1em，而不是1.2em, 因为此em非彼em，它因继承#content的字体高而变为了1em=12px。</li>
+</ul>
+<h3 id="IE中的12px汉字："><a href="#IE中的12px汉字：" class="headerlink" title="IE中的12px汉字："></a>IE中的12px汉字：</h3><p>完成 em转换时还发现了一个诡异的现象，就是由以上方法得到的12px(1.2em)大小的汉字在IE中并不等于直接用12px定义的字体大小，而 是稍大一点。你只需在body选择器中把62.5%换成63%就能正常显示了。原因可能是IE处理汉字时，对于浮点的取值精确度有 限。本现象只发生在12px的汉字，英文不存在此现象。解决方法就是把style.css中的62.5%换 为63%。</p>
+<p><strong>一个px、em、pt单位转换工具：</strong></p>
+<p><a href="http://pxtoem.com/" target="_blank" rel="external">http://pxtoem.com/</a></p>
+<h2 id="2、rem特点"><a href="#2、rem特点" class="headerlink" title="2、rem特点"></a>2、rem特点</h2><p>rem是CSS3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。目前，除了IE8及更早版本外，所有浏览器均已支持rem。对于不支持它的浏览器，应对方法也很简单，就是多写一个绝对单位的声明。这些浏览器会忽略用rem设定的字体大小。 </p>
+<p><strong>举例：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">    <span class="attribute">font-size</span>: .<span class="number">875rem</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<p>选择使用什么字体单位主要由你的项目来决定，如果你的用户群都使用最新版的浏览器，那推荐使用rem，如果要考虑兼容性，那就使用px,或者两者同时使用。</p>
+<h3 id="总结-rem-与-em-差异："><a href="#总结-rem-与-em-差异：" class="headerlink" title="总结 rem 与 em 差异："></a>总结 rem 与 em 差异：</h3><p>上述所有归结如下:</p>
+<ul>
+<li><p><code>rem</code> 单位翻译为像素值是由 <code>html</code> 元素的字体大小决定的。 此字体大小会被浏览器中字体大小的设置影响，除非显式重写一个具体单位</p>
+</li>
+<li><p><code>em</code> 单位转为像素值，取决于他们使用的字体大小。 此字体大小受从父元素继承过来的字体大小，除非显式重写与一个具体单位。</p>
+</li>
+</ul>
+<h2 id="为什么使用-rem-单位"><a href="#为什么使用-rem-单位" class="headerlink" title="为什么使用 rem 单位:"></a>为什么使用 rem 单位:</h2><p><code>rem</code> 单位提供最伟大的力量并不仅仅是他们提供一致尺寸而不是继承。 相反，它给我们的一个途经去获取用户的偏好来影响网站中每一处使用 <code>rem</code> 的元素大小，不再是使用固定的 <code>px</code> 单位。</p>
+<p>为此，使用 <code>rem</code> 单位的主要目的应该是确保无论用户如何设置自己的浏览器，我们的布局都能调整到合适大小。</p>
+<p>一个站点最初设计可以专注于最常见的默认浏览器中字体大小 <code>16px</code>。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxmwvcpkj30go0jcn10.jpg" alt=""></p>
+<p>使用浏览器默认字号 <code>16px</code></p>
+<p>但是，通过使用 <code>rem</code> 单位，如果用户调整其字体大小，我们也能保证布局的完整性，使用较小的文本避免文本空间被压扁了。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxnumleuj30xk0ve7cl.jpg" alt=""></p>
+<p>浏览器解析的字号为 <code>34px</code>。</p>
+<p>如果用户缩小其字体大小，整个布局掉下来，空白区域中的文本也不会想得很无力。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxplobn6j30xo0yyk3i.jpg" alt=""></p>
+<p>浏览器字体大小 <code>9px</code>。</p>
+<p>用户会因为各种各样的原因更改字体大小设置。 容纳这些设置可以获得更好的用户体验。</p>
+<p><strong>重要的是:</strong></p>
+<p>一些设计师使用结合 <code>rem</code> 单位的方式给<code>html</code>元素设置了一个固定的<code>px</code>单位。 这是很普遍的做法，所以改变html元素的字体大小时，可以使整个页面做相应调整。</p>
+<p>我强烈反对种做法，因为它重写继承了用户设置的浏览器字体大小。 更夸张的说，这剥削了用户自行调整以获得最佳视觉效果的能力。</p>
+<p>如果您确实需要更改 <code>html</code> 元素的字体大小，那么就使用<code>em</code>，<code>rem</code>单位，这样根元素的值还会是用户浏览器字体大小的乘积。</p>
+<p>这将允许您通过更改您的 <code>html</code> 元素的字体大小，调整你的设计，但仍会保留用户的浏览器设置的效果。</p>
+<h2 id="为什么使用-em-单位"><a href="#为什么使用-em-单位" class="headerlink" title="为什么使用 em 单位"></a>为什么使用 em 单位</h2><p><code>em</code> 单位取决于一个 <code>font-size</code> 值而非 <code>html</code> 元素的字体大小。</p>
+<p>为此，<code>em</code> 单位的主要目的应该是允许保持在一个特定的设计元素范围内的可扩展性。</p>
+<p>例如，您可能使用<code>em</code> 值设置导航菜单项的<code>padding</code>、 <code>margin</code>，<code>line-height</code>等值。</p>
+<p>带有<code>0.9rem</code> 字体大小的菜单</p>
+<p>通过这种方式，如果您更改菜单的字体大小菜单项周围的间距将在剩余的空间按比例缩放。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqxzdf5etj30zk08c751.jpg" alt=""></p>
+<p>带有 <code>1.2rem</code> 字体大小的菜单</p>
+<p>前面一节中你看到em 单位如何变得不可收拾。 为此，我建议只在你标识清楚的情况下使用 em 单位。</p>
+<h2 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h2><p>一些 Web 设计师之间存在辩论，我相信不同的人有不同的首选的方法，但我的建议是，如下所示。</p>
+<h3 id="使用-em-单位"><a href="#使用-em-单位" class="headerlink" title="使用 em 单位:"></a>使用 em 单位:</h3><p>根据某个元素的字体大小做缩放而不是根元素的字体大小。</p>
+<p>一般来说，你需要使用 <code>em</code> 单位的唯一原因是缩放没有默认字体大小的元素。</p>
+<p>根据我们上面的例子，设计组件比如按钮，菜单和标题可能会有自己明确的字体大小。 当你修改字体大小的时候，你希望整个组件都适当缩放。</p>
+<p>通用属性这一准则将适用于在非默认字体大小的元素上的<code>padding</code>、 <code>margin</code>、 <code>width</code>、 <code>height</code>和<code>line-height</code>等值。</p>
+<p>我建议，当您使用 <code>em</code> 单位，他们使用的元素的字体大小应设置对<code>rem</code>单位，以保留的可扩展性，但避免<em>继承混淆</em>。</p>
+<p><strong>通常不使用 em 单位控制字体大小</strong></p>
+<p>我们经常会看到使用<code>em</code>作为字体大小单位，特别是标题，当我认为如果使用<code>rem</code>将更具可扩展性。</p>
+<p>标题经常使用 <code>em</code> 单位的原因是他们相比<code>px</code>单位，在相对常规文本大小方面更出色。 然而 <code>rem</code> 单位同样也可以实现这一目标。 如果 <code>html</code> 元素上任何字体大小调整，标题大小仍会缩放。</p>
+<iframe id="result-iframe" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" src="https://s.codepen.io/tutsplus/fullembedgrid/jPvmEL?type=embed&amp;animations=run&amp;forceRefresh=1505958739689" allowtransparency="true" frameborder="0" scrolling="yes" style="height: 418px;" allowfullscreen="true" name="CodePen Preview for jPvmEL" title="CodePen Preview for jPvmEL"></iframe>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<p>少部分情况下，我们不想我们的字体大小根据根元素做调整，只有几个例外的情况。</p>
+<p>我们可以想到的例子是一个使用 <code>em</code> 字体大小的下拉菜单，我们有第二个级别的菜单项文本大小取决于第一级字体大小。 另一个例子可能是用在按钮里面的字体图标，字体图标的大小跟按钮的文本大小有关。</p>
+<p>然而，大多数 Web 设计中的元素往往不会有这种类型的要求，所以一般使用 <code>rem</code> 单位的字体大小，<code>em</code> 单位只在特殊的情况下使用。</p>
+<h3 id="使用-rem-单位"><a href="#使用-rem-单位" class="headerlink" title="使用 rem 单位:"></a>使用 rem 单位:</h3><p>不需要 <code>em</code> 单位，并且根据浏览器的字体大小设置缩放的任何尺寸。</p>
+<p>这几乎在一个标准的设计中占据了一切，包括<code>height</code>，<code>width</code>，<code>padding</code>，<code>margin</code>，<code>border</code>，<code>font-size</code>，<code>shadows</code>，几乎包括你布局的每部分。</p>
+<p>简单地说，一切可扩展都应该使用 <code>rem</code> 单位。</p>
+<p><strong>小技巧</strong></p>
+<p>创建布局时，往往要以像素为单位更方便，但部署时应使用 <code>rem</code> 单位。</p>
+<p>你可以使用预处理比如<code>Stylus</code> / <code>Sass</code> / <code>Less</code>，来自动转换单位或<code>PostCSS</code>之类的插件。</p>
+<p>或者，您可以使用 <code>px2rem</code> 手动做您的转换。</p>
+<p><strong>始终使用 rem 单位做媒体查询</strong></p>
+<p>特别注意，当使用 <code>rem</code> 单位创建统一可扩展的设计，媒体查询也应该是<code>rem</code>单位。 这将确保，无论用户浏览器的字体大小，您的媒体查询会对它作出反应和调整您的布局。</p>
+<p>例如，如果用户缩放文本非常高，您的布局可能需要从两列到单个列调整，因为它可能会在较小的移动设备上显示。</p>
+<p>如果您的断点在固定的像素宽度，只有不同的视口的大小可以触发它们。 但是基于 <code>rem</code> 的断点他们将响应不同的字体大小。</p>
+<h3 id="不要使用-em-或-rem"><a href="#不要使用-em-或-rem" class="headerlink" title="不要使用 em 或 rem :"></a>不要使用 em 或 rem :</h3><p><strong>多列布局</strong></p>
+<p>布局中的列宽通常应该是 <code>%</code>，因此他们可以流畅适应无法预知大小的视区。</p>
+<p>然而单一列一般仍然应使用 <code>rem</code> 值来设置最大宽度。</p>
+<p><strong>例如:</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">max-width</span>: <span class="number">75rem</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这保持列的灵活，可扩展。又能防止变得太宽了。</p>
+<p><strong>当元素应该是严格不可缩放的时候</strong></p>
+<p>在一个典型的 Web 设计的过程中，不会有很多部分的你不能使用伸缩性设计的布局。 不过偶尔你会遇到真的需要使用显式的固定的值，以防止缩放的元素。</p>
+<p>采用固定的尺寸值的前提应该是，如果被缩放的话，它的结构会被打碎。 这真的不常出现，所以你想拿出那些 <code>px</code> 单位之前，问问自己是否使用它们是绝对必要的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p><code>rem</code> 和 <code>em</code> 单位是由浏览器基于你的设计中的字体大小计算得到的像素值。</p>
+</li>
+<li><p><code>em</code> 单位基于使用他们的元素的字体大小。</p>
+</li>
+<li><p><code>rem</code> 单位基于 <code>html</code> 元素的字体大小。</p>
+</li>
+<li><p><code>em</code> 单位可能受任何继承的父元素字体大小影响</p>
+</li>
+<li><p><code>rem</code> 单位可以从浏览器字体设置中继承字体大小。</p>
+</li>
+<li><p>使用 <code>em</code> 单位应根据组件的字体大小而不是根元素的字体大小。</p>
+</li>
+<li><p>在不需要使用 <code>em</code> 单位，并且需要根据浏览器的字体大小设置缩放的情况下使用 <code>rem</code> 。</p>
+</li>
+<li><p>使用 <code>rem</code> 单位，除非你确定你需要 <code>em</code> 单位，包括对字体大小。</p>
+</li>
+<li><p>媒体查询中使用 <code>rem</code> 单位</p>
+</li>
+<li><p>不要在多列布局中使用 <code>em</code> 或 <code>rem</code> ,改用 <code>%</code> 。</p>
+</li>
+</ul>
 
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/html_HTML5表单功能/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_同域的页面间传递数据的方法汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/js_同域的页面间传递数据的方法汇总/">同域的页面间传递数据的方法汇总</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/10/js_同域的页面间传递数据的方法汇总/" class="archive-article-date">
-  	<time datetime="2017-07-10T15:48:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>同域指页面URL的协议，端口号和host(document.domain)一样。</p>
-        
-          <a class="article-more-a" href="/2017/07/10/js_同域的页面间传递数据的方法汇总/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/10/js_同域的页面间传递数据的方法汇总/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css_metaAndMedia" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/css_metaAndMedia/">常用meta与媒体查询</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/10/css_metaAndMedia/" class="archive-article-date">
-  	<time datetime="2017-07-10T15:31:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>常用meta标签与常用的css3媒体查询样式</p>
-        
-          <a class="article-more-a" href="/2017/07/10/css_metaAndMedia/#more">more >></a>
-        
       
 
       
@@ -371,16 +370,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/10/css_metaAndMedia/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/09/20/css_px_em_rem/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/09/21/eassy_chrome61/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Chrome 61 里的新玩意！
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/20/css_flexible/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flexible使用说明</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -400,346 +467,12 @@
 
 
 
-
-  
-    <article id="post-js_regularExpressionGreedyAndLazy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/06/js_regularExpressionGreedyAndLazy/">【正则表达式系列】贪婪与非贪婪模式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/06/js_regularExpressionGreedyAndLazy/" class="archive-article-date">
-  	<time datetime="2017-07-06T15:56:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>贪婪模式和非贪婪模式是正则匹配中的重要特性 在理解贪婪和非贪婪的区别时，可以根据实例，一步一步的循序渐进</p>
-        
-          <a class="article-more-a" href="/2017/07/06/js_regularExpressionGreedyAndLazy/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/06/js_regularExpressionGreedyAndLazy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/06/js_promise/">Promise 对象</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/06/js_promise/" class="archive-article-date">
-  	<time datetime="2017-07-06T03:30:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、Promise-的含义"><a href="#1、Promise-的含义" class="headerlink" title="1、Promise 的含义"></a>1、Promise 的含义</h2><p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了<code>Promise</code>对象。</p>
-<p>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
-<p><code>Promise</code>对象有以下两个特点。</p>
-        
-          <a class="article-more-a" href="/2017/07/06/js_promise/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/06/js_promise/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_如何实现一个 VirtualDOM算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/04/js_如何实现一个 VirtualDOM算法/">深度剖析：如何实现一个 Virtual DOM 算法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/04/js_如何实现一个 VirtualDOM算法/" class="archive-article-date">
-  	<time datetime="2017-07-04T11:02:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h2><ul>
-<li><p>1 前言</p>
-</li>
-<li><p>2 对前端应用状态管理思考</p>
-</li>
-<li><p>3 Virtual DOM 算法</p>
-</li>
-<li><p>4 算法实现</p>
-<ul>
-<li><p>4.1 步骤一：用JS对象模拟DOM树</p>
-</li>
-<li><p>4.2 步骤二：比较两棵虚拟DOM树的差异</p>
-</li>
-<li><p>4.3 步骤三：把差异应用到真正的DOM树上</p>
-</li>
-</ul>
-</li>
-<li><p>5 结语</p>
-</li>
-<li><p>6 References</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/07/04/js_如何实现一个 VirtualDOM算法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/04/js_如何实现一个 VirtualDOM算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_正则表达式快速入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/03/js_正则表达式快速入门/">【正则表达式系列】快速入门</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/03/js_正则表达式快速入门/" class="archive-article-date">
-  	<time datetime="2017-07-03T14:45:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
-<p>首先，请抛下心中的畏惧与反感！</p>
-</blockquote>
-<h2 id="关于正则不得不说的话"><a href="#关于正则不得不说的话" class="headerlink" title="关于正则不得不说的话"></a>关于正则不得不说的话</h2><p>正则表达式难么？</p>
-<p>想要精通它，确实不容易，需要大量的反复练习 但是如果仅仅是入门，能写一些简单的表达式(譬如邮箱验证之类的)，达到这点是不难的，而且大部分的人的刚需还是这些简单的表达式</p>
-<p>但是实际中，初学正则时一看到<code>MDN</code>以及各大教程上的复杂介绍，立马就蒙圈了，久久不能自已 因此初学时，入门指南需要尽量浅显易懂(本文末尾的参考来源中也有部分不错的教程，可以直接参考学习)</p>
-<p>本文中，采用<code>JavaScript</code>为基础语言，优先进行正则表达式的简单校验，而不是提取以及更复杂的工作 正常看完本文，一些简单的正则表达式应该是不在话下了(譬如邮箱验证等)</p>
-<p>另外，如果是新手入门，请至少花上半小时，可以优先看<code>简单场景的正则练习</code> 还有就是，本文中列举的元字符是属于必须掌握的级别，否则没有可能入门甚至精通正则</p>
-        
-          <a class="article-more-a" href="/2017/07/03/js_正则表达式快速入门/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/03/js_正则表达式快速入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -759,8 +492,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
