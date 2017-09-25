@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Chrome 61 里的新玩意！ | Arturia</title>
+  <title>Chrome 62 Beta版已支持网络质量评估API，OpenType可变字体，从DOM元素捕获媒体 | Arturia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="让我们一起来看看 Chrome 61 给开发者带来了哪些新东西！">
+  <meta name="description" content="除非特别指出，本文介绍的特性适用于Android，Chrome OS，Linux，Mac和Windows平台上最新的Chrome Beta版本。">
 <meta name="keywords" content="eassy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chrome 61 里的新玩意！">
-<meta property="og:url" content="https://saberization.github.io/2017/09/21/eassy_chrome61/index.html">
+<meta property="og:title" content="Chrome 62 Beta版已支持网络质量评估API，OpenType可变字体，从DOM元素捕获媒体">
+<meta property="og:url" content="https://saberization.github.io/2017/09/25/eassy_chrome62/index.html">
 <meta property="og:site_name" content="Arturia">
-<meta property="og:description" content="让我们一起来看看 Chrome 61 给开发者带来了哪些新东西！">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqwgmrg71j309e0gowgt.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqwiq24zvj30go09kgly.jpg">
-<meta property="og:updated_time" content="2017-09-21T00:58:45.000Z">
+<meta property="og:description" content="除非特别指出，本文介绍的特性适用于Android，Chrome OS，Linux，Mac和Windows平台上最新的Chrome Beta版本。">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_gif/d8tibSEfhMMqX00U3t2ffMRTmYvxaTXqdCRA8otTjvtsU5Ab6vIgShACFcJvQIrf4LjxZiclPfzEeTj62ibIG7BGg/0?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_gif/d8tibSEfhMMqX00U3t2ffMRTmYvxaTXqdO9dnibB2hlm3KKybSibYORy7fJEosQrTx4XcvHK3LR5eichzLaickDv2OA/0?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2017-09-25T03:17:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chrome 61 里的新玩意！">
-<meta name="twitter:description" content="让我们一起来看看 Chrome 61 给开发者带来了哪些新东西！">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqwgmrg71j309e0gowgt.jpg">
+<meta name="twitter:title" content="Chrome 62 Beta版已支持网络质量评估API，OpenType可变字体，从DOM元素捕获媒体">
+<meta name="twitter:description" content="除非特别指出，本文介绍的特性适用于Android，Chrome OS，Linux，Mac和Windows平台上最新的Chrome Beta版本。">
+<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_gif/d8tibSEfhMMqX00U3t2ffMRTmYvxaTXqdCRA8otTjvtsU5Ab6vIgShACFcJvQIrf4LjxZiclPfzEeTj62ibIG7BGg/0?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
   
     <link rel="alternative" href="/atom.xml" title="Arturia" type="application/atom+xml">
   
@@ -177,50 +177,91 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-eassy_chrome61" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-eassy_chrome62" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Chrome 61 里的新玩意！
+      Chrome 62 Beta版已支持网络质量评估API，OpenType可变字体，从DOM元素捕获媒体
     </h1>
   
 
         
-        <a href="/2017/09/21/eassy_chrome61/" class="archive-article-date">
-  	<time datetime="2017-09-21T00:51:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
+        <a href="/2017/09/25/eassy_chrome62/" class="archive-article-date">
+  	<time datetime="2017-09-25T02:39:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>让我们一起来看看 Chrome 61 给开发者带来了哪些新东西！</p>
+        <p>除非特别指出，本文介绍的特性适用于Android，Chrome OS，Linux，Mac和Windows平台上最新的Chrome Beta版本。</p>
 <a id="more"></a>
-<h2 id="JavaScript-Module"><a href="#JavaScript-Module" class="headerlink" title="JavaScript Module"></a>JavaScript Module</h2><p>Chrome 61 加入了对 JavaScript Module <code>&lt;script type=&quot;module&quot;&gt;</code> 的原生支持。Chrome 现在可以并行地获取颗粒化的依赖模块，利用浏览器缓存的优势，在多个页面之间共享模块，并且可以保证脚本按照正确地顺序执行。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">import</span> &#123;addText&#125; <span class="keyword">from</span> <span class="string">'./utils.js'</span>;</div><div class="line">  addText(<span class="string">'Modules are pretty cool.'</span>);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>这个标准统一了 JavaScript 模块书写和分发给浏览器的方式。在可见的未来，同样的模块系统将会出现在 Node 上。Isomorphic JavaScript 的编写和分发就变得更简单！</p>
-<blockquote>
-<p>Node 8.5.0 发布，已经可以使用了，更多可以看<a href="http://2ality.com/2017/09/native-esm-node.html" target="_blank" rel="external">Using ES modules natively in Node.js</a>.</p>
-</blockquote>
-<h2 id="Web-Share-API"><a href="#Web-Share-API" class="headerlink" title="Web Share API"></a>Web Share API</h2><p>为了让用户把他们喜欢的内容分享到网络上，不得把所有的社交按钮在自己的网站上添加一遍。这让页面变得很臃肿，很可能这些分享按钮和网站的视觉不匹配，并且还要添加来自第三方的代码。</p>
-<p>现在，Android 版的 Chrome 新增了 Web Share API，该 API 可以直接调用原生的分享功能，用户可以很方便的将自己喜欢的文本和链接分享到其他原生 App 上了！</p>
-<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqwgmrg71j309e0gowgt.jpg" alt=""></p>
-<p>在之后的版本中，这个 API 还能分享到已安装的 web app 中。直接调用 navigator.share 方法，传递相关的参数，就可以发起分享。其他事情系统会帮你搞定。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">navigator.share(&#123;</div><div class="line">  <span class="attr">title</span>: <span class="built_in">document</span>.title, <span class="attr">text</span>: <span class="string">'Hello'</span>,</div><div class="line">  <span class="attr">url</span>: <span class="built_in">window</span>.location.href</div><div class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Successful share'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>查看Paul 的新文章 <a href="https://developers.google.com/web/updates/2016/09/navigator-share" target="_blank" rel="external">WebShare API</a> 了解更全面的信息，还有一些使用的最佳实践可以学到。</p>
-<h2 id="WebUSB"><a href="#WebUSB" class="headerlink" title="WebUSB"></a>WebUSB</h2><p>很多电脑的周边硬件在 Web 平台上都有对应的 API，比如键盘、鼠标、打印机和手柄等等。但是，想要在浏览器中使用某些特殊的用于教育、科研、工业等等 USB 设备很困难，通常需要特殊的驱动才行。</p>
-<p>现在 Chrome 提供了 WebUSB API，在用户授权后，Web 应用可以直接可 USB 设备通信。了解更多关于安全和隐私的考量，<a href="https://wicg.github.io/webusb/" target="_blank" rel="external">WebUSB</a> 规范 拿走不谢。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fjqwiq24zvj30go09kgly.jpg" alt=""></p>
-<p>然后如果已经准备深入了解一番，可以看看 Francois 关于 <a href="https://developers.google.com/web/updates/2016/03/access-usb-devices-on-the-web" target="_blank" rel="external">WebUSB</a> 的文章。</p>
-<h2 id="更多东西！"><a href="#更多东西！" class="headerlink" title="更多东西！"></a>更多东西！</h2><ul>
-<li><p>使用 CSS <a href="https://drafts.csswg.org/cssom-view/#smooth-scrolling" target="_blank" rel="external">scroll-behavior</a>，可以设置更流畅的滚动效果；</p>
+<h2 id="网络质量评估API"><a href="#网络质量评估API" class="headerlink" title="网络质量评估API"></a>网络质量评估API</h2><p>Network Infomation API已存在Chrome此前的版本中，但是之前仅针对用户特定的网络连接类型提供理论的网络速度。在本次发布的版本中，这个API的功能得以扩展，可以为开发者提供类似于客户端的网络性能指标。借助这个API，开发者可以检测到当前预期的往返时间和吞吐量，也能够获知网络性能变化。为了简化应用逻辑，即使实际的连接是WiFi或以太网，API也会将测量的网络性能量化为与其最接近的蜂窝连接类型（例如2G）。</p>
+<p>借助这些网络质量信号，开发者可以根据网络条件来定制内容。举例来说，当网络连接非常缓慢时，开发者可以提供一个简化版的网页来提升网络加载速度。在不久的将来，这些信号也会出现在HTTP请求头中，通过Client Hints启用。</p>
+<h2 id="OpenType可变字体"><a href="#OpenType可变字体" class="headerlink" title="OpenType可变字体"></a>OpenType可变字体</h2><p>OpenType字体变体赋予了Web新的字体排版能力。以前的话，一份字体文件只包含单一字体族的实例，且只包含一种粗细程度（常规，加粗等等中的一个）或者是一种拉伸样式（普通，压缩，伸展等等中的一个）。</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_gif/d8tibSEfhMMqX00U3t2ffMRTmYvxaTXqdCRA8otTjvtsU5Ab6vIgShACFcJvQIrf4LjxZiclPfzEeTj62ibIG7BGg/0?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""></p>
+<p>图： Amstelvar 和Decovar可变字体的动画展示</p>
+<p>有了可变字体之后，字体排版也能够被纳入Web响应式设计的范畴。OpenType变体能够在节省空间和带宽的同时，提供连续的风格变化范围，这是因为它们都是从一个字体文件中加载的。字体的拉伸效果、风格类型和粗细程度可以借助于各自的CSS 属性（目前支持数值类型的值）进行调整。借助<code>font-variation-settings</code>属性，可以对诸如粗细程度和字宽等参数进行微调。</p>
+<h2 id="从DOM元素中进行媒体抓取"><a href="#从DOM元素中进行媒体抓取" class="headerlink" title="从DOM元素中进行媒体抓取"></a>从DOM元素中进行媒体抓取</h2><p>W3C Media Capture from DOM Elements API允许网站直接从 <code>HTMLMediaElements</code>（比如<code>&lt;video&gt;</code>，<code>&lt;audio&gt;</code>）中，实时抓取MediaStream形式的内容。通过调用<code>HTMLMediaElements</code>上的<code>captureStream()</code>方法，就能够记录到流式的内容，并借助WebRTC将其发送到远端，进而可以借助WebAudio处理媒体内容，或者以其他方式操作这些内容。</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_gif/d8tibSEfhMMqX00U3t2ffMRTmYvxaTXqdO9dnibB2hlm3KKybSibYORy7fJEosQrTx4XcvHK3LR5eichzLaickDv2OA/0?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""></p>
+<p>图：实时抓取一个3D渲染模型，并通过WebRTC将流发送到其他端。</p>
+<h2 id="该版本的其他新特性"><a href="#该版本的其他新特性" class="headerlink" title="该版本的其他新特性"></a>该版本的其他新特性</h2><ul>
+<li><p>iOS上的Chrome新增Payment Request API。</p>
 </li>
-<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgba" target="_blank" rel="external">CSS hex color</a> 支持在末尾添加透明参数，例如：#33AA3388 /<em> 50% opaque green </em>/;</p>
+<li><p>PaymentRequest借助<code>PaymentDetailsModifier.data</code>，在一种支付方式中支持不同的价格和条目。</p>
 </li>
-<li><p>可以使用 <a href="https://github.com/WICG/ViewportAPI" target="_blank" rel="external">ViewportAPI</a> 获取屏幕内容的相对位置，把像双指缩放这样复杂的功能以一种更直接的方式暴露出来。</p>
+<li><p>非文档元素和<code>&lt;body&gt;</code>元素现在可以利用<code>document.rootScroller</code>添加视口滚动的效果，比如隐藏地址栏或者产生滚动到头的高亮提示（overscroll glow）。</p>
+</li>
+<li><p>现已给 <code>&lt;data&gt;</code>和<code>&lt;time&gt;</code>元素增加了DOM接口，为开发者提供一个原生的存储客户端内容的方式。</p>
+</li>
+<li><p>CSS 颜色解析器现在支持8位和4位的16进制颜色表示法，格式为：<code>#RRGGBBAA</code>和<code>#RGBA</code>。</p>
+</li>
+<li><p>继lookahead之后，这一版本中也支持了lookbehind断言，开发者可以利用正则表达式来判断某一个模式是否在另一个之后，比如可以匹配到美元的数额而不捕获美元符号。</p>
+</li>
+<li><p>新增WebVR Origin Trial，这一特性可以让开发者在web上做虚拟现实相关的探索。</p>
+</li>
+<li><p>遵循之前的声明，当用户在HTTP网页中输入数据或者在隐身模式下访问HTTP网页的时候，会报出“不安全”的警告提醒。</p>
+</li>
+<li><p>开发者可以使用<code>s</code> 标识在ECMAScript正则表达式中开启<code>dotAll</code> 模式，这一模式下，”.”可以匹配包含换行符在内的任意字符。</p>
+</li>
+<li><p>在Android的Chrome中，上传图片功能优化了用户体验，增加了多选操作，只需使用<code>&lt;input type=&quot;file&quot;&gt;</code>并通过<code>accept</code>属性声明只接受图片即可使用。</p>
+</li>
+<li><p>使用了MediaSource API的应用可以利用新的Media Source Extensions API，<code>setLiveSeekableRange</code>和<code>clearLiveSeekableRange</code>更高效地定制它们的<code>HTMLMediaElement.seekable</code>可查找的范围逻辑。</p>
+</li>
+<li><p>新的CSS声明<code>visibility:collapse</code>可以将表格行隐藏，但不会影响表格列宽，这与<code>visibility:hidden</code>声明的效果不同，后者只是不去绘制表格行。</p>
+</li>
+<li><p>现在，给定一个区域和一个数字，网站可以利用<code>Intl.PluralRules</code>来访问与多个数字形式相关的语言相关数据和相关的文本。</p>
+</li>
+<li><p>媒体文件扩展(MSE)已经支持 FLAC，一种按照ISO-BMFF编码的无损音频编码方式。</p>
+</li>
+<li><p>受保护的媒体文件现在可以通过EME在Chrome for Android上面离线播放。</p>
+</li>
+<li><p>Chrome for Android现在支持了Widevine L1, 允许网站以安全的方式播放加密媒体文件。</p>
+</li>
+<li><p>对模板语法的转义序列上的宽松限制解锁了新的模板标签用例，比如LaTeX处理。</p>
+</li>
+<li><p>在Android O当中，有通知权限的网站会作为一个通知频道出现在Chrome的Android设置当中，这样做的目的是避免用户误操作改动了通知权限。</p>
+</li>
+</ul>
+<h2 id="弃用的功能和互操作性改进"><a href="#弃用的功能和互操作性改进" class="headerlink" title="弃用的功能和互操作性改进"></a>弃用的功能和互操作性改进</h2><ul>
+<li><p>继更新了macOS的原生按钮样式之后，<code>&lt;input&gt;</code>按钮和<code>&lt;button&gt;</code>元素的外观做了些相似的调整，这些调整会影响到 <code>background-color</code>, <code>border</code>, <code>border-radius</code>, 和<code>padding</code>属性的默认值。</p>
+</li>
+<li><p>在HTTP连接和跨域 <code>iframes</code> 中，请求显示通知的功能已经被弃用，这一点依据了restricting powerful features，这种操作只针对HTTPS连接有效。</p>
+</li>
+<li><p>为了确保服务端返回的内容使用的是用户的语言，在生成请求头<code>accept-language</code>时，基础语言现在会被直接添加到“语言+地区”之后。</p>
+</li>
+<li><p>为了提高交互性和浏览器的一致性，现在会派发过渡鼠标事件，并且在修改了预期布局之后会更快地更新悬停状态。</p>
+</li>
+<li><p>在现有的接受三个独立参数之外的构造函数之外，<code>OfflineAudioContext</code>新增了一个字典参数。</p>
+</li>
+<li><p>与其他浏览器一致，<code>RTCPeerConnection</code>上的<code>getStreamById</code>方法现已被移除。</p>
+</li>
+<li><p>继其他主流浏览器弃用并移除<code>SharedWorker.workerStart</code>后，Chrome这次也移除了这一方法。</p>
+</li>
+<li><p>为了更好地符合规范，<code>&lt;ol&gt;.start</code> 的默认值已设置为1。</p>
 </li>
 </ul>
 
@@ -292,7 +333,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/09/21/eassy_chrome61/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/09/25/eassy_chrome62/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -306,18 +347,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/25/eassy_chrome62/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Chrome 62 Beta版已支持网络质量评估API，OpenType可变字体，从DOM元素捕获媒体
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/20/css_px_em_rem/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">px、em、rem 详解</div>
+    <a href="/2017/09/21/eassy_chrome61/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Chrome 61 里的新玩意！</div>
       <i class="icon-circle-right"></i>
     </a>
   
