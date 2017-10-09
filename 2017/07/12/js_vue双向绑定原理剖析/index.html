@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>vue双向绑定原理剖析 | Arturia</title>
+  <title>vue双向绑定原理剖析 | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Vue.js 最核心的功能有两个，一是响应式的数据绑定系统，二是组件系统。本文仅探究双向绑定是怎样实现的。先讲涉及的知识点，再用简化得不能再简化的代码实现一个简单的 hello world 示例。">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue双向绑定原理剖析">
 <meta property="og:url" content="https://saberization.github.io/2017/07/12/js_vue双向绑定原理剖析/index.html">
-<meta property="og:site_name" content="Arturia">
+<meta property="og:site_name" content="Altria">
 <meta property="og:description" content="Vue.js 最核心的功能有两个，一是响应式的数据绑定系统，二是组件系统。本文仅探究双向绑定是怎样实现的。先讲涉及的知识点，再用简化得不能再简化的代码实现一个简单的 hello world 示例。">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhhi6bijnwj30qo049jrn.jpg">
 <meta property="og:updated_time" content="2017-07-25T07:22:35.000Z">
@@ -22,7 +22,7 @@
 <meta name="twitter:description" content="Vue.js 最核心的功能有两个，一是响应式的数据绑定系统，二是组件系统。本文仅探究双向绑定是怎样实现的。先讲涉及的知识点，再用简化得不能再简化的代码实现一个简单的 hello world 示例。">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fhhi6bijnwj30qo049jrn.jpg">
   
-    <link rel="alternative" href="/atom.xml" title="Arturia" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
   
     <link rel="icon" href="/images/favicon.ico">
@@ -59,7 +59,7 @@
 			<img src="/images/toux.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Arturia</a></h1>
+		  <h1 class="header-author"><a href="/">Altria</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">不积跬步无以至千里，不积小流无以成江海</p>
@@ -100,8 +100,6 @@
 		        
 					<a class="mail" target="_blank" href="mailto:406142765@qq.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/guo-tian-qi-89-77/activities" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -121,7 +119,7 @@
 				<img src="/images/toux.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Arturia</h1>
+			  <h1 class="header-author js-header-author">Altria</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>不积跬步无以至千里，不积小流无以成江海<i class="icon icon-quo-right"></i></p>
@@ -148,8 +146,6 @@
 						<a class="weibo" target="_blank" href="http://weibo.com/guotq/home" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:406142765@qq.com" title="mail"><i class="icon-mail"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/guo-tian-qi-89-77/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -363,7 +359,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-center">
-    		&copy; 2017 Arturia
+    		&copy; 2017 Altria
     	</div>
     </div>
   </div>
@@ -498,7 +494,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">真名：郭天琦&lt;br&gt;职业：目前偏爱前端&lt;br&gt;爱好：口琴&lt;br&gt;信仰：Arturia</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">真名：郭天琦&lt;br&gt;职业：目前偏爱前端&lt;br&gt;爱好：口琴、是个不折不扣的王厨！&lt;br&gt;喜欢：阿尔托莉雅</div>
   	  	
     	</section>
     
