@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Archives | Altria</title>
+  <title>移动前端的一些坑和解决方法（外观表现） | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Altria">
-<meta property="og:url" content="https://saberization.github.io/archives/page/4/index.html">
+  <meta name="description" content="在github上看到一个专门收集这些问题的，对于移动方面由于自己做得不多，而且由于测试环境所限，无法重现具体bug，下面来一起看看这些坑以及是怎么解决，学习多一些移动前端的知识，以后做的时候就要所注意。">
+<meta name="keywords" content="eassy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动前端的一些坑和解决方法（外观表现）">
+<meta property="og:url" content="https://saberization.github.io/2017/11/01/eassy_mobilef2eimporant/index.html">
 <meta property="og:site_name" content="Altria">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="在github上看到一个专门收集这些问题的，对于移动方面由于自己做得不多，而且由于测试环境所限，无法重现具体bug，下面来一起看看这些坑以及是怎么解决，学习多一些移动前端的知识，以后做的时候就要所注意。">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2dmv707rj30hs0vkmyw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2j3acr9wj312u0g8q6y.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2j49awu6j30aa08ejs2.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2j4t8ospj312m0dy0wk.jpg">
+<meta property="og:updated_time" content="2017-11-01T05:41:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Altria">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="移动前端的一些坑和解决方法（外观表现）">
+<meta name="twitter:description" content="在github上看到一个专门收集这些问题的，对于移动方面由于自己做得不多，而且由于测试环境所限，无法重现具体bug，下面来一起看看这些坑以及是怎么解决，学习多一些移动前端的知识，以后做的时候就要所注意。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2dmv707rj30hs0vkmyw.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
@@ -177,112 +184,120 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-eassy_mobilef2eimporant" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动前端的一些坑和解决方法（外观表现）
+    </h1>
+  
+
+        
+        <a href="/2017/11/01/eassy_mobilef2eimporant/" class="archive-article-date">
+  	<time datetime="2017-11-01T02:23:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-01</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在github上看到一个专门收集这些问题的，对于移动方面由于自己做得不多，而且由于测试环境所限，无法重现具体bug，下面来一起看看这些坑以及是怎么解决，学习多一些移动前端的知识，以后做的时候就要所注意。</p>
+<a id="more"></a>
+<p>第一篇是外观表现：</p>
+<table>
+<thead>
+<tr>
+<th>问题描述</th>
+<th>环境与频率</th>
+<th>解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>border-radius百分比失效</td>
+<td>Android2.3.x</td>
+<td>设置一个较大值如border-radius:9999px</td>
+</tr>
+<tr>
+<td>placeholder属性设置的文字向上偏移的厉害</td>
+<td>Android4.x部分机型</td>
+<td>line-height:normal</td>
+</tr>
+<tr>
+<td>iOS5及以后版本都支持. iOS4及以下版本不支持，会当做static处理.</td>
+<td>1、Android 2.1 及以下版本不支持. 2、Android 2.2 滚动过程中不保持fixed的位置，滚动完成后回到fixed的位置. 3、Android 2.3 支持fixed, 但是要求页面禁止缩放. 4、Android 3+ 支持fixed.</td>
+<td></td>
+</tr>
+<tr>
+<td>如果一个应用了css3 transform的元素里面包含fixed定位的元素，在webkit核心的浏览器下，该fixed定位的元素会失效，其实际定位效果类似绝对定位，会跟着滚动条的滚动而滚动！</td>
+<td>ios</td>
+<td>避免在应用了css3 transform的元素内部嵌套fixed定位的元素。</td>
+</tr>
+</tbody>
+</table>
+<p>webkit上的input,button,及select的默认样式可以通过以下代码禁用，然后自定义。 | | -webkit-appearance:none; |<br>video标签的父元素(祖辈元素)设置transform样式后，标签会脱离文档流 | 部分android机型 | 避免使用transform，如果需要设置位移，可使用绝对定位加top/left代替 |<br>| body设置100%高度后，在移动浏览器里面可能会被底部的导航栏挡住: | 各移动浏览器经常出现 | document.documentElement.style.height = window.innerHeight + ‘px’ |</p>
+<p>字体设置建议：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">"Helvetica Neue"</span>, Helvetica, STHeiTi, sans-serif;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>字体设置</strong></p>
+<p>iOS 4.0+ 使用英文字体 Helvetica Neue，之前的iOS版本降级使用 Helvetica。</p>
+<p>中文字体设置为华文黑体STHeiTi。</p>
+<p>需补充说明，华文黑体并不存在iOS的字体库中(<a href="http://support.apple.com/kb/HT5484?viewlocale=en_US" target="_blank" rel="external">http://support.apple.com/kb/HT5484?viewlocale=en_US</a>)</p>
+<p>但系统会自动将华文黑体STHeiTi兼容命中系统默认中文字体黑体-简或黑体-繁：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Heiti SC Light 黑体-简 细体</div><div class="line">Heiti SC Medium 黑体-简 中黑</div><div class="line">Heiti TC Light 黑体-繁 细体</div><div class="line">Heiti TC Medium 黑体-繁 中黑</div></pre></td></tr></table></figure>
+<p>原生Android下中文字体与英文字体都选择默认的无衬线字体。</p>
+<p>4.0之前版本英文字体原生Android使用的是Droid Sans，中文字体原生Android会命中Droid Sans Fallback。</p>
+<p>4.0+ 中英文字体都会使用原生Android新的Roboto字体。</p>
+<p>其他第三方Android系统也一致选择默认的无衬线字体。</p>
+<p><strong>参考阅读</strong></p>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Droid_fonts?utm_source=caibaojian.com" target="_blank" rel="external">Droid, the default font for older versions of Android</a></p>
+</li>
+<li><p><a href="https://en.wikipedia.org/wiki/Roboto?utm_source=caibaojian.com" target="_blank" rel="external">Roboto, the default font for newer versions of Android</a></p>
+</li>
+</ul>
+<p><strong>使用border-image实现类似iOS7的1px底边</strong></p>
+<p>iOS7已经发布有一段时间，扁平化设计风格有很多值得称赞的地方，其中有很多设计细节都是值得研究的。</p>
+<p>首先，来看下面iOS设置的截图中的border：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2dmv707rj30hs0vkmyw.jpg" alt=""></p>
+<p>从上面的截图可以看到iOS7的设计是非常精细的，border是一根非常细的线。这篇文章将说明如何使用border-image实现iOS7的border效果。</p>
+<p>在看下面的内容之前，需要先了解devicePixelRatio和border-image，不熟悉的同学请自行脑补：</p>
+<ul>
+<li><p><a href="http://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/?utm_source=caibaojian.com" target="_blank" rel="external">设备像素比devicePixelRatio简单介绍</a></p>
+</li>
+<li><p><a href="http://www.zhangxinxu.com/wordpress/2010/01/css3-border-image/?utm_source=caibaojian.com" target="_blank" rel="external">CSS3 border-image详解、应用及jQuery插件</a></p>
+</li>
+</ul>
+<p><strong>border属性实现效果</strong></p>
+<p>我们在实现border时通常都是使用border属性，如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.border-1px</span> &#123;</div><div class="line">    <span class="attribute">border-width</span>: <span class="number">1px</span> <span class="number">0</span>;</div><div class="line">    <span class="attribute">border-style</span>: solid;</div><div class="line">    <span class="attribute">border-color</span>: <span class="number">#333</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>显示效果对比：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2j3acr9wj312u0g8q6y.jpg" alt=""></p>
+<p>著作权归作者所有。<br>商业转载请联系作者获得授权,非商业转载请注明出处。<br>链接:<a href="http://caibaojian.com/mobile-web-bug.html" target="_blank" rel="external">http://caibaojian.com/mobile-web-bug.html</a><br>来源:<a href="http://caibaojian.com" target="_blank" rel="external">http://caibaojian.com</a></p>
+<p>上面这张图片可以看到，在手机上border无法达到我们想要的效果。这是因为devicePixelRatio特性导致，iphone的devicePixelRatio==2，而border-width: 1px描述的是设备独立像素，所以，border被放大到物理像素2px显示，在iPhone上就显得较粗。</p>
+<p><strong>使用border-image属性实现物理1px</strong></p>
+<p>通常手机端的页面设计稿都是放大一倍的，如：为适应iphone retina，设计稿会设计成640*960的分辨率，图片按照2倍大小切出来，在手机端看着就不会虚化，非常清晰。</p>
+<p>同样，在使用border-image时，将border设计为物理1px，如下：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2j49awu6j30aa08ejs2.jpg" alt=""></p>
+<p>样式设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.border-image-1px</span> &#123;</div><div class="line">    <span class="attribute">border-width</span>: <span class="number">1px</span> <span class="number">0px</span>;</div><div class="line">    <span class="attribute">-webkit-border-image</span>: <span class="built_in">url</span>(<span class="string">"border.png"</span>) <span class="number">2</span> <span class="number">0</span> stretch;</div><div class="line">    <span class="attribute">border-image</span>: <span class="built_in">url</span>(<span class="string">"border.png"</span>) <span class="number">2</span> <span class="number">0</span> stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>显示效果对比：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fl2j4t8ospj312m0dy0wk.jpg" alt=""></p>
+<p>这里在手机上的效果和iOS7已经非常接近了。</p>
+<p><strong>实际示例(devicePixelRatio: 2)</strong></p>
+<p>border-1px</p>
+<p>border-image-1px</p>
+<p>Note: border.png也可以直接使用的base64替代哦</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.border-image-1px</span> &#123;</div><div class="line">    <span class="attribute">border-width</span>: <span class="number">1px</span> <span class="number">0px</span>;</div><div class="line">    <span class="attribute">-webkit-border-image</span>: <span class="built_in">url</span>(<span class="string">"data:image/png;base64,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"</span>) <span class="number">2</span> <span class="number">0</span> stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/26/css_img_vertical_middle/" class="archive-article-date">
-  	<time datetime="2017-07-26T04:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/css_img_vertical_middle/">图片水平垂直居中对齐的四种做法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/25/js_正则基本用法/" class="archive-article-date">
-  	<time datetime="2017-07-25T07:22:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/25/js_正则基本用法/">【正则表达式系列】基本用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/13/eassy_2017LearnBook/" class="archive-article-date">
-  	<time datetime="2017-07-13T06:49:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/13/eassy_2017LearnBook/">2017 年学习 JavaScript 最好的书籍</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -294,174 +309,103 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/11/01/eassy_mobilef2eimporant/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/13/js_httpCookieAndServerCookie/" class="archive-article-date">
-  	<time datetime="2017-07-13T02:44:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/25/eassy_chrome62/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Chrome 62 Beta版已支持网络质量评估API，OpenType可变字体，从DOM元素捕获媒体</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/13/js_httpCookieAndServerCookie/">HTTP-服务器端CooKie与浏览器端Cookie</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/13/js_httpSessionCookie/" class="archive-article-date">
-  	<time datetime="2017-07-13T02:38:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/13/js_httpSessionCookie/">认识HTTP----Cookie和Session篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/12/eassy_vscode推荐插件/" class="archive-article-date">
-  	<time datetime="2017-07-12T02:40:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/12/eassy_vscode推荐插件/">vscode推荐插件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/12/js_vue双向绑定原理剖析/" class="archive-article-date">
-  	<time datetime="2017-07-12T01:49:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/12/js_vue双向绑定原理剖析/">vue双向绑定原理剖析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -482,8 +426,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
