@@ -100,8 +100,6 @@
 		        
 					<a class="mail" target="_blank" href="mailto:406142765@qq.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="kugou" target="_blank" href="http://5sing.kugou.com/fc/16336214.html" title="kugou"><i class="icon-kugou"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -149,8 +147,6 @@
 			        
 						<a class="mail" target="_blank" href="mailto:406142765@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="kugou" target="_blank" href="http://5sing.kugou.com/fc/16336214.html" title="kugou"><i class="icon-kugou"></i></a>
-			        
 				</div>
 			</nav>
 
@@ -182,6 +178,82 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-js_vue双向绑定原理剖析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/12/js_vue双向绑定原理剖析/">vue双向绑定原理剖析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/12/js_vue双向绑定原理剖析/" class="archive-article-date">
+  	<time datetime="2017-07-12T01:49:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Vue.js 最核心的功能有两个，一是响应式的数据绑定系统，二是组件系统。本文仅探究双向绑定是怎样实现的。先讲涉及的知识点，再用简化得不能再简化的代码实现一个简单的 hello world 示例。</p>
+        
+          <a class="article-more-a" href="/2017/07/12/js_vue双向绑定原理剖析/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/12/js_vue双向绑定原理剖析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-js_javascript实现数据双向绑定的三种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -611,84 +683,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/07/06/js_regularExpressionGreedyAndLazy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js_promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/06/js_promise/">Promise 对象</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/06/js_promise/" class="archive-article-date">
-  	<time datetime="2017-07-06T03:30:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、Promise-的含义"><a href="#1、Promise-的含义" class="headerlink" title="1、Promise 的含义"></a>1、Promise 的含义</h2><p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了<code>Promise</code>对象。</p>
-<p>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
-<p><code>Promise</code>对象有以下两个特点。</p>
-        
-          <a class="article-more-a" href="/2017/07/06/js_promise/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/06/js_promise/">展开全文 >></a>
         </p>
       
 

@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>图片水平垂直居中对齐的四种做法 | Altria</title>
+  <title>CSS3硬件加速的坑 | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在前端开发制作中，图片垂直居中对齐是很常见的，有些是固定高度，有些没有固定高度，本文分享我用的四种方法，希望对你有所启发。">
+  <meta name="description" content="CSS3 硬件加速坑常听人说：  移动端要想动画性能流畅，应该使用3d硬件加速  最近深入了解了一些浏览器内核的细节，感觉这里面其实有些不在意的坑，很致命。">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图片水平垂直居中对齐的四种做法">
-<meta property="og:url" content="https://saberization.github.io/2017/07/26/css_img_vertical_middle/index.html">
+<meta property="og:title" content="CSS3硬件加速的坑">
+<meta property="og:url" content="https://saberization.github.io/2018/02/02/css_硬件加速坑/index.html">
 <meta property="og:site_name" content="Altria">
-<meta property="og:description" content="在前端开发制作中，图片垂直居中对齐是很常见的，有些是固定高度，有些没有固定高度，本文分享我用的四种方法，希望对你有所启发。">
-<meta property="og:updated_time" content="2017-08-28T07:02:07.000Z">
+<meta property="og:description" content="CSS3 硬件加速坑常听人说：  移动端要想动画性能流畅，应该使用3d硬件加速  最近深入了解了一些浏览器内核的细节，感觉这里面其实有些不在意的坑，很致命。">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1xng4bn1j30hu0eumyg.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1xqdrydoj30jg0x27pt.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1xrdjx7kj30uo0rm1fv.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1wdr9kapj30ee0eidga.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1y8an659j30hs0w2q5u.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo24ufhrdtg30bo06ukjo.jpg">
+<meta property="og:updated_time" content="2018-02-02T07:35:12.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图片水平垂直居中对齐的四种做法">
-<meta name="twitter:description" content="在前端开发制作中，图片垂直居中对齐是很常见的，有些是固定高度，有些没有固定高度，本文分享我用的四种方法，希望对你有所启发。">
+<meta name="twitter:title" content="CSS3硬件加速的坑">
+<meta name="twitter:description" content="CSS3 硬件加速坑常听人说：  移动端要想动画性能流畅，应该使用3d硬件加速  最近深入了解了一些浏览器内核的细节，感觉这里面其实有些不在意的坑，很致命。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1xng4bn1j30hu0eumyg.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
@@ -179,48 +186,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css_img_vertical_middle" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-css_硬件加速坑" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      图片水平垂直居中对齐的四种做法
+      CSS3硬件加速的坑
     </h1>
   
 
         
-        <a href="/2017/07/26/css_img_vertical_middle/" class="archive-article-date">
-  	<time datetime="2017-07-26T04:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
+        <a href="/2018/02/02/css_硬件加速坑/" class="archive-article-date">
+  	<time datetime="2018-02-02T07:35:12.988Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在前端开发制作中，图片垂直居中对齐是很常见的，有些是固定高度，有些没有固定高度，本文分享我用的四种方法，希望对你有所启发。</p>
+        <h2 id="CSS3-硬件加速坑"><a href="#CSS3-硬件加速坑" class="headerlink" title="CSS3 硬件加速坑"></a>CSS3 硬件加速坑</h2><p>常听人说：</p>
+<blockquote>
+<p>移动端要想动画性能流畅，应该使用3d硬件加速</p>
+</blockquote>
+<p>最近深入了解了一些浏览器内核的细节，感觉这里面其实有些不在意的坑，很致命。</p>
 <a id="more"></a>
-<p>以下说的做法暂不考虑IE浏览器的兼容性，适用于移动端，对兼容性感兴趣的可以看之前的文章：<a href="http://caibaojian.com/vertical-centering-with-css.html" target="_blank" rel="external">图片垂直居中对齐的3种方法</a></p>
-<p>以下的做法中假定外层的高度和宽度已经固定。通用HTML和CSS代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://dummyimage.com/200x200/f66/"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.img</span> &#123;</div><div class="line">    <span class="attribute">width</span>:<span class="number">300px</span>;</div><div class="line">    <span class="attribute">height</span>:<span class="number">300px</span>;</div><div class="line">    <span class="attribute">margin</span>:<span class="number">20px</span> auto;</div><div class="line">    <span class="attribute">background</span>:<span class="number">#00f</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="1-相对定位-margin-auto"><a href="#1-相对定位-margin-auto" class="headerlink" title="1.相对定位+margin:auto"></a>1.相对定位+margin:auto</h3><p>利用图片相对于外层浮动，加上margin:auto.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img img1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://dummyimage.com/200x200/f66/"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.img1 &#123;</div><div class="line">    <span class="attr">position</span>:relative;</div><div class="line">&#125;</div><div class="line">.img1 img &#123;</div><div class="line">    <span class="attr">position</span>:absolute;</div><div class="line">    top:<span class="number">0</span>;</div><div class="line">    bottom:<span class="number">0</span>;</div><div class="line">    left:<span class="number">0</span>;</div><div class="line">    right:<span class="number">0</span>;</div><div class="line">    margin:auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://caibaojian.com/demo/2017/07/img1.html#demo1" target="_blank" rel="external">演示1</a></p>
-<h3 id="2-flexbox"><a href="#2-flexbox" class="headerlink" title="2.flexbox"></a>2.flexbox</h3><p>利用flexbox里面的垂直居中属性：<code>align-items:center(垂直居中)</code>和<code>justify-content:center(水平居中)</code>;</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img img2"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://dummyimage.com/200x200/f66/"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.img2</span> &#123;</div><div class="line">    <span class="attribute">display</span>:-webkit-box;</div><div class="line">    <span class="attribute">display</span>:-ms-flexbox;</div><div class="line">    <span class="attribute">display</span>:flex-box;</div><div class="line">    <span class="attribute">display</span>:flex;</div><div class="line">    <span class="attribute">-webkit-box-align</span>:center;</div><div class="line">    <span class="attribute">-ms-flex-align</span>:center;</div><div class="line">    <span class="attribute">align-items</span>:center;</div><div class="line">    <span class="attribute">-webkit-box-pack</span>:center;</div><div class="line">    <span class="attribute">-ms-flex-pack</span>:center;</div><div class="line">    <span class="attribute">justify-content</span>:center;</div><div class="line">    <span class="attribute">text-align</span>:center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://caibaojian.com/demo/2017/07/img1.html#demo2" target="_blank" rel="external">演示2</a></p>
-<h3 id="3-table-cell"><a href="#3-table-cell" class="headerlink" title="3.table-cell"></a>3.table-cell</h3><p>利用display:table-cell+图片vertical-align:middle</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img img3"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icenter"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://dummyimage.com/200x200/f66/"</span>/&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.img3</span> <span class="selector-class">.icenter</span> &#123;</div><div class="line">    <span class="attribute">display</span>:table-cell;</div><div class="line">    <span class="attribute">vertical-align</span>:middle;</div><div class="line">    <span class="attribute">text-align</span>:center;</div><div class="line">    <span class="attribute">height</span>:<span class="number">300px</span>;</div><div class="line">    <span class="attribute">width</span>:<span class="number">300px</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.img3</span> <span class="selector-tag">img</span> &#123;</div><div class="line">    <span class="attribute">vertical-align</span>:middle;</div><div class="line">    <span class="attribute">display</span>:inline-block</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://caibaojian.com/demo/2017/07/img1.html#demo3" target="_blank" rel="external">演示3</a></p>
-<h3 id="4-增加一个空白标签"><a href="#4-增加一个空白标签" class="headerlink" title="4.增加一个空白标签"></a>4.增加一个空白标签</h3><p>兼容性较好，支持IE浏览器</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img img4"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://dummyimage.com/200x200/f66/"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iblock"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.img4</span> &#123;</div><div class="line">    <span class="attribute">text-align</span>:center</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.img4</span> <span class="selector-tag">img</span> &#123;</div><div class="line">    <span class="attribute">vertical-align</span>:middle</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.img4</span> <span class="selector-class">.iblock</span> &#123;</div><div class="line">    <span class="attribute">display</span>:inline-block;</div><div class="line">    <span class="attribute">height</span>:<span class="number">100%</span>;</div><div class="line">    <span class="attribute">width</span>:<span class="number">0</span>;</div><div class="line">    <span class="attribute">vertical-align</span>:middle</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://caibaojian.com/demo/2017/07/img1.html#demo4" target="_blank" rel="external">演示4</a></p>
+<p>事情要从最近看的<code>《WebKit技术内幕》</code> 这本书的第二章介绍了网页的结构，其中提到了<code>Webkit</code>硬件加速的方式，会把需要渲染的元素放到特定的『Composited Layer』中。</p>
+<p>我们可以开启chrome提供给我们的工具去查看： <code>开发者工具</code> -&gt; <code>Customize and control DevTools</code> -&gt; <code>More Tools</code> -&gt; <code>Rendering</code> -&gt; <code>Layer borders</code></p>
+<p>开启以后，就能看到有动画3d变换的元素会被一个黄色的边框圈起来，表示放到了一个新的 『复合层（composited layer）』中渲染，大概长这个样子：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1xng4bn1j30hu0eumyg.jpg" alt=""></p>
+<p>蓝色的细线是浏览器渲染时候的『瓦片』，浏览器绘制页面的时候只会绘制可视区域一定范围内的瓦片，以节省性能开销，而黄色的边框框起来的，就代表了这个元素被放到特殊的复合层中渲染，跟主文档不在一个层中。</p>
+<p>正好国内有个知名项目，拿来看了下，不看不知道，一看被吓尿：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1xqdrydoj30jg0x27pt.jpg" alt=""></p>
+<p>第一反应：这个项目什么时候搞成所有元素都用3d加速了？！</p>
+<p>仔细排查了这些被框出来的元素，完全没有任何需要复合层渲染的迹象。。。我开始一个个删除元素，简化代码，很快就发现，原来罪魁祸首在这里：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1xrdjx7kj30uo0rm1fv.jpg" alt=""></p>
+<p>头部的那个轮播动画元素的存在居然会导致下面所有相对和绝对定位的元素都被放到复合层中。。。</p>
+<p>随后，查阅了一下 <a href="https://www.html5rocks.com/zh/tutorials/speed/layers/" target="_blank" rel="external">资料</a>：</p>
+<blockquote>
+<p>复合图层创建标准</p>
+<p>什么情况下能使元素获得自己的复合图层？虽然 Chrome 的启发式方法(heuristic)随着时间在不断发展进步，但是从目前来说，满足以下任意情况便会创建复合图层：</p>
+<ul>
+<li>3D 或透视变换(perspective transform) CSS 属性</li>
+<li>使用加速视频解码的 元素</li>
+<li>拥有 3D (WebGL) 上下文或加速的 2D 上下文的 元素</li>
+<li>混合插件(如 Flash)</li>
+<li>对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素</li>
+<li>拥有加速 CSS 过滤器的元素</li>
+<li>元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)</li>
+<li>如果有一个元素，它的兄弟元素在复合层中渲染，而这个兄弟元素的z-index比较小，那么这个元素（不管是不是应用了硬件加速样式）也会被放到复合层中。</li>
+</ul>
+</blockquote>
+<h4 id="重点来了！"><a href="#重点来了！" class="headerlink" title="重点来了！"></a>重点来了！</h4><p>最可怕的就是，复合图层之后的元素，只有用了相对定位或者绝对定位，那都会单独创建一个复合图层去渲染，这就是为什么上面项目的 DOM 明明没有多少，但是滚动起来很卡的原因了。</p>
+<p>于是乎我写了一个demo，大家可以通过扫一扫，或者直接在线查看：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1wdr9kapj30ee0eidga.jpg" alt=""></p>
+<p><a href="http://htmlpreview.github.io/?https://github.com/Saberization/impression/blob/master/css3gpuhack/css3gpuhack.html" target="_blank" rel="external">点我在线查看demo</a></p>
+<p>我在这个 <code>div</code> 上应用了3d变化 <code>translate3d</code> ,使得让其被放到 复合图层中渲染，然后在这个元素后面创建了2000个list，每个list中都有一个日期，其中 日期 是绝对定位的，父容器 li 是相对定位的，然后各位可以按照之前说的，打开 <code>Layer borders</code> 查看页面内的复合图层分布：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo1y8an659j30hs0w2q5u.jpg" alt=""></p>
+<p>就是这个鸟样子，很难想象，这样的页面滚动起来会卡成什么样。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>给开启GPU加速的元素，<code>z-index</code> 的值设置高点</p>
+<p>就像下面这样子：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo24ufhrdtg30bo06ukjo.jpg" alt=""></p>
+<p>仅仅给动画元素设置一个高一些的z-index，就能解决这种无厘头增加复合层的问题，略无语。。。搞定之后，再用滚动条移动函数抓一下页面性能：</p>
+<p>完全恢复正常了有木有！</p>
+<p>大家可以用支持『硬件加速』的『安卓』手机浏览器测试上述页面，给动画元素加z-index前后的性能差距非常明显。</p>
+<p>不过也不是所有浏览器都有这个问题，我在mac上的Safari、firefox都没有明显差异，安卓手机上的QQ浏览器好像也正常，猎豹、UC、欧朋、webview等浏览器差距明显，更多测试就靠大家来发现吧。</p>
+<h2 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h2><p>使用硬件加速提升性能的时候，最好给元素添加一个 <code>z-index</code> 属性，人为干扰复合层顺序，可以有效减少chrome去创建不必要的复合层，提升渲染性能，移动端优化效果尤为明显。</p>
+<p>大家可以现在就排查一下这类问题，尤其是用了轮播、动画loading的页面，出现这问题很常见。另外推荐在追查性能问题的时候打开『show composited layer borders』选项，如果页面有很多黄色的框肯定是不对的。</p>
+<h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h2><ul>
+<li><a href="http://web.jobbole.com/83575/" target="_blank" rel="external">CSS3硬件加速也有坑</a></li>
+</ul>
 
       
 
@@ -290,7 +326,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2017/07/26/css_img_vertical_middle/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2018/02/02/css_硬件加速坑/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +340,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/07/27/js_mobile_swipe/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          移动端touch事件影响click事件以及在touchmove添加preventDefault导致页面无法滚动的解决方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/25/js_正则基本用法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【正则表达式系列】基本用法</div>
+    <a href="/2017/11/01/eassy_mobilef2eimporant/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动前端的一些坑和解决方法（外观表现）</div>
       <i class="icon-circle-right"></i>
     </a>
   
