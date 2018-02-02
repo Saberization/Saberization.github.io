@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Archives: 2018/2 | Altria</title>
+  <title>普通图层与复合图层 | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Altria">
-<meta property="og:url" content="https://saberization.github.io/archives/2018/02/index.html">
+  <meta name="description" content="为何会出现此文呢？ 最近正好在阅读 同事写的一篇文章 从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理， 当中有讲到普通图层与复合图层，为此来稍微梳理一下。">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="普通图层与复合图层">
+<meta property="og:url" content="https://saberization.github.io/2018/02/02/css_普通图层与复合图层/index.html">
 <meta property="og:site_name" content="Altria">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="为何会出现此文呢？ 最近正好在阅读 同事写的一篇文章 从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理， 当中有讲到普通图层与复合图层，为此来稍微梳理一下。">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo26hhdqo0j30si0be75l.jpg">
+<meta property="og:updated_time" content="2018-02-02T09:05:11.608Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Altria">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="普通图层与复合图层">
+<meta name="twitter:description" content="为何会出现此文呢？ 最近正好在阅读 同事写的一篇文章 从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理， 当中有讲到普通图层与复合图层，为此来稍微梳理一下。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo26hhdqo0j30si0be75l.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
@@ -177,74 +181,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-css_普通图层与复合图层" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/02/css_硬件加速坑/" class="archive-article-date">
-  	<time datetime="2018-02-02T07:36:52.212Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/02/css_硬件加速坑/">CSS3硬件加速的坑</a>
+    <h1 class="article-title" itemprop="name">
+      普通图层与复合图层
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/02/css_普通图层与复合图层/" class="archive-article-date">
+        
+        <a href="/2018/02/02/css_普通图层与复合图层/" class="archive-article-date">
   	<time datetime="2018-02-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/02/css_普通图层与复合图层/">普通图层与复合图层</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为何会出现此文呢？</p>
+<p>最近正好在阅读 同事写的一篇文章 <a href="https://segmentfault.com/a/1190000012925872#articleHeader16" target="_blank" rel="external">从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a>， 当中有讲到普通图层与复合图层，为此来稍微梳理一下。</p>
+<a id="more"></a>
+<p>在浏览器的渲染步骤当中，有 <code>composite</code> 概念</p>
+<p>可以简单的这样理解，浏览器的渲染图层，一般分为两大类：<code>普通图层</code> 与 <code>复合图层</code></p>
+<p>首先，普通文档流可以理解为一个复合图层(这里称为：<code>默认复合图层</code>， 里面不管添加多少元素，其实都在一个复合图层当中)</p>
+<p>其次，absolute、fixed布局(注意一下，relative并没有脱离文档流、他是相对自身定位的，原有位置还是会占着的)，虽然可以脱离文档流，但是他还是属于<code>默认复合图层</code></p>
+<p>然后，我们可以通过 <code>硬件加速</code> 的方式，创建一个<code>新的复合图层</code>，它会单独分配资源（当然也会脱离普通文档流，这样一来，不管这个复合图层怎么变化，也不会影响<code>默认复合图层</code>里的回流重绘）</p>
+<p>可以简单的理解如下：<strong>开启GPU加速，各个复合图层都是相互独立的，互不干扰</strong>。这也是为什么特定场景下硬件加速效果一级棒的原因。</p>
+<p>可以在 <code>开发者工具</code> -&gt; <code>Customize and control DevTools</code> -&gt; <code>More Tools</code> -&gt; <code>Rendering</code> -&gt; <code>Layer borders</code> 中看到，黄色的就是复合图层信息。</p>
+<p>下图，可以验证上述说法：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo26hhdqo0j30si0be75l.jpg" alt=""></p>
+<p><strong>如何将一个元素单独创建一个复合图层渲染的方法：</strong></p>
+<ul>
+<li>最常用的方式：<code>translate3d</code>、<code>translateZ</code></li>
+<li><code>opacity</code> 属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）</li>
+<li><code>will-chang</code>属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层）</li>
+</ul>
+<p>作用是提前告诉浏览器要变化，这样浏览器会开始做一些优化工作（这个最好用完后就释放）</p>
+<ul>
+<li><code>&lt;video&gt;&lt;iframe&gt;&lt;canvas&gt;&lt;webgl&gt;</code>等元素</li>
+<li>其它，譬如以前的flash插件</li>
+</ul>
+<h4 id="absolute和硬件加速的区别"><a href="#absolute和硬件加速的区别" class="headerlink" title="absolute和硬件加速的区别"></a>absolute和硬件加速的区别</h4><p>我们可以看到，<code>absolute</code> 虽然可以脱离文档流，但是无法脱离复合图层。</p>
+<p>所以，就算<code>absolute</code>中信息改变时不会改变普通文档流中<code>render树</code>，</p>
+<p>但是，浏览器最终绘制时，是整个复合层绘制的，所以<code>absolute</code>中信息的改变，仍然会影响整个复合层的绘制。<br>（浏览器会重绘它，如果复合层中内容多，<code>absolute</code>带来的绘制信息变化过大，资源消耗是非常严重的）</p>
+<p>而硬件加速就相当于是另起了一个复合图层(另起炉灶)，所以它的信息不会影响<code>默认复合图层</code>，当然了，内部肯定会影响自己的复合图层，仅仅是引发最后的合成（输出视图）</p>
+<h4 id="复合图层的作用？"><a href="#复合图层的作用？" class="headerlink" title="复合图层的作用？"></a>复合图层的作用？</h4><p>一般一个元素开启硬件加速后会变成复合图层，可以独立于普通文档流中，改动后可以避免整个页面重绘，提升性能</p>
+<p>但是尽量不要大量使用复合图层，否则由于资源消耗过度，页面反而会变的更卡</p>
+<h4 id="硬件加速时请使用index"><a href="#硬件加速时请使用index" class="headerlink" title="硬件加速时请使用index"></a>硬件加速时请使用index</h4><p>使用硬件加速时，尽可能的使用index，防止浏览器默认给后续的元素创建复合层渲染</p>
+<p>为什么要使用，详细内容请看<a href="http://www.f2e.win/2018/02/02/css_%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F%E5%9D%91/#more" target="_blank" rel="external">CSS3 硬件加速也有坑</a></p>
+<h3 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h3><ul>
+<li><a href="https://segmentfault.com/a/1190000012925872#articleHeader16" target="_blank" rel="external">从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a></li>
+<li><a href="http://www.f2e.win/2018/02/02/css_%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F%E5%9D%91/#more" target="_blank" rel="external">CSS3硬件加速的坑</a></li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -256,19 +255,113 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2018/02/02/css_普通图层与复合图层/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/02/02/css_硬件加速坑/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CSS3硬件加速的坑
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/11/01/eassy_mobilef2eimporant/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动前端的一些坑和解决方法（外观表现）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -288,8 +381,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
