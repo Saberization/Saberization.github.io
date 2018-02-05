@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Altria</title>
+  <title>从Event Loop谈JS的运行机制 | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Altria">
-<meta property="og:url" content="https://saberization.github.io/index.html">
+  <meta name="description" content="本篇文章主要来分析一下JS引擎的一些运行机制分析。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Event Loop谈JS的运行机制">
+<meta property="og:url" content="https://saberization.github.io/2018/02/05/js_EventLoopChatJs/index.html">
 <meta property="og:site_name" content="Altria">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="本篇文章主要来分析一下JS引擎的一些运行机制分析。">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5byh3ml8j30u00x0goh.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5c057zdtj30ve0qm76q.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5mw3hoe3j30l0120jtj.jpg">
+<meta property="og:updated_time" content="2018-02-05T08:17:18.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Altria">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="从Event Loop谈JS的运行机制">
+<meta name="twitter:description" content="本篇文章主要来分析一下JS引擎的一些运行机制分析。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5byh3ml8j30u00x0goh.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
@@ -177,16 +183,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-js_EventLoopChatJs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-js_EventLoopChatJs" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/05/js_EventLoopChatJs/">从Event Loop谈JS的运行机制</a>
+    <h1 class="article-title" itemprop="name">
+      从Event Loop谈JS的运行机制
     </h1>
   
 
@@ -200,9 +204,148 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本篇文章主要来分析一下JS引擎的一些运行机制分析。</p>
-        
-          <a class="article-more-a" href="/2018/02/05/js_EventLoopChatJs/#more">more >></a>
-        
+<a id="more"></a>
+<p>注意，这里不谈<code>可执行上下文</code>，<code>VO</code>，<code>scop chain</code>等概念，这里主要是结合 <code>Event Loop</code> 来谈JS代码是如何执行的。</p>
+<p>读这部分的前提是已经知道了JS引擎是单线程，而且这里会用到上文中的几个概念：（如果不是很理解，可以回头温习）</p>
+<ul>
+<li>JS引擎线程</li>
+<li>事件触发线程</li>
+<li>定时触发器线程</li>
+</ul>
+<p>然后再理解一个概念：</p>
+<ul>
+<li>JS分为同步任务和异步任务</li>
+<li>同步任务都在主线程上执行，形成一个 <code>执行栈</code></li>
+<li>主线程之外，<strong>事件触发线程</strong>管理着一个 <code>任务队列</code> ，只要异步任务有了运行结果，就在 <code>任务队列</code> 之中放置一个事件。</li>
+<li>一旦 <code>执行栈</code> 中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取 <code>任务队列</code> ，将可运行的异步任务添加到可执行栈中，开始执行。</li>
+</ul>
+<p><strong>注意：</strong> </p>
+<p>可参考下图（这张图很重要）：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5byh3ml8j30u00x0goh.jpg" alt=""></p>
+<p>看到这里，应该就可以理解了：为什么有时候setTimeout推入的事件不能准时执行？因为可能在它推入到事件列表时，主线程还不空闲，正在执行其它代码，所以自然有误差。</p>
+<h3 id="事件循环机制进一步补充"><a href="#事件循环机制进一步补充" class="headerlink" title="事件循环机制进一步补充"></a>事件循环机制进一步补充</h3><p>这里就直接引用一张图片来协助理解：（参考自Philip Roberts的演讲《<a href="https://vimeo.com/96425312" target="_blank" rel="external">Help, I’m stuck in an event-loop</a>》）</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5c057zdtj30ve0qm76q.jpg" alt=""></p>
+<p>上图大致描述就是：</p>
+<ol>
+<li>主线程运行时会产生执行栈。</li>
+<li>执行栈在处理的时候，在遇到某些web api时（一般都是异步api），把这些事件推入事件触发线程处理。</li>
+<li>当事件触发线程处理完毕后，把这些 <code>处理结果</code> 或者说是 <code>需要执行的任务</code> 推入 <code>任务队列</code>。</li>
+<li>当 <code>执行栈</code> 上任务处理完毕后（JS引擎空闲时），系统就会读取 <code>任务队列</code>，将 <code>可执行的异步任务</code> 添加到 <code>执行栈</code> 中，开始执行。</li>
+<li>如此循环</li>
+</ol>
+<p><strong>注意点：</strong> 总是要等待栈中的代码执行完毕后才会去读取事件队列中的事件</p>
+<h4 id="单独说说定时器"><a href="#单独说说定时器" class="headerlink" title="单独说说定时器"></a>单独说说定时器</h4><p>上述事件循环机制的核心是：JS引擎线程和事件触发线程。</p>
+<p>但事件上，里面还有一些隐藏细节，譬如调用 <code>setTimeout</code> 后，是如何等待特定时间后才添加到事件队列中的？</p>
+<p>是JS引擎检测的么？当然不是了。它是由<strong>定时器线程</strong>控制（因为JS引擎自己都忙不过来，根本无暇分身）</p>
+<p>为什么要单独的定时器线程？因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确，因此很有必要单独开一个线程用来计时。</p>
+<p>什么时候会用到定时器线程？当<strong>使用<code>setTimeout</code>或<code>setInterval</code>时</strong>，它需要定时器线程计时，计时完成后就会将特定的事件推入事件队列中。</p>
+<p>譬如:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'hello!'</span>);</div><div class="line">&#125;, <span class="number">1000</span>);</div></pre></td></tr></table></figure>
+<p>这段代码的作用是当 <strong>1000</strong> 毫秒计时完毕后（由定时器线程计时），将回调函数推入事件队列中，等待主线程执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'hello!'</span>);</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'begin'</span>);</div></pre></td></tr></table></figure>
+<p>这段代码的效果是最快的时间内将回调函数推入任务队列中，等待主线程执行</p>
+<p>注意：</p>
+<ul>
+<li>执行结果是：先<code>begin</code>后<code>hello!</code></li>
+<li>虽然代码本意是0毫秒推入事件队列，但是W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。</li>
+</ul>
+<p>(不过也有一说是不同浏览器有不同的最小时间设定)</p>
+<ul>
+<li>就算不等待4ms，就算假设0毫秒就推入事件队列，也会先执行<code>begin</code>（因为只有可执行栈内空了后才会主动读取事件队列）</li>
+</ul>
+<h3 id="setTimeout而不是setInterval"><a href="#setTimeout而不是setInterval" class="headerlink" title="setTimeout而不是setInterval"></a>setTimeout而不是setInterval</h3><p>用setTimeout模拟定期计时和直接用setInterval是有区别的。</p>
+<p>因为每次setTimeout计时到后就会去执行，然后执行一段时间后才会继续setTimeout，中间就多了误差<br>（误差多少与代码执行时间有关）</p>
+<p>而setInterval则是每次都精确的隔一段时间推入一个事件<br>（但是，事件的实际执行时间不一定就准确，还有可能是这个事件还没执行完毕，下一个事件就来了）</p>
+<p><strong>而且setInterval有一些比较致命的问题就是：</strong></p>
+<ul>
+<li>累计效应（上面提到的），如果setInterval代码在（setInterval）再次添加到队列之前还没有完成执行。</li>
+</ul>
+<p>就会导致定时器代码连续运行好几次，而之间没有间隔。</p>
+<p>就算正常间隔执行，多个setInterval的代码执行时间可能会比预期小（因为代码执行需要一定时间）</p>
+<ul>
+<li>譬如像iOS的webview,或者Safari等浏览器中都有一个特点，在滚动的时候是不执行JS的，如果使用了setInterval，会发现在滚动结束后会执行多次由于滚动不执行JS积攒回调，如果回调执行时间过长,就会非常容器造成卡顿问题和一些不可知的错误（这一块后续有补充，setInterval自带的优化，不会重复添加回调）</li>
+<li>而且把浏览器最小化显示等操作时，setInterval并不是不执行程序，</li>
+</ul>
+<p>它会把setInterval的回调函数放在队列中，等浏览器窗口再次打开时，一瞬间全部执行时</p>
+<p>所以，鉴于这么多但问题，目前一般认为的最佳方案是：<strong>用setTimeout模拟setInterval</strong>，<strong>或者特殊场合直接用requestAnimationFrame</strong></p>
+<p><strong>补充：JS高程中有提到，JS引擎会对setInterval进行优化，如果当前事件队列中有setInterval的回调，不会重复添加。不过，仍然是有很多问题。。。</strong></p>
+<h3 id="事件循环进阶：macrotask与microtask"><a href="#事件循环进阶：macrotask与microtask" class="headerlink" title="事件循环进阶：macrotask与microtask"></a>事件循环进阶：macrotask与microtask</h3><p>这段参考了参考来源中的第2篇文章（英文版的），（加了下自己的理解重新描述了下），强烈推荐有英文基础的同学直接观看原文，作者描述的很清晰，示例也很不错，如下：</p>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/</a></p>
+<p>上文中将JS事件循环机制梳理了一遍，在ES5的情况是够用了，但是在ES6盛行的现在，仍然会遇到一些问题，譬如下面这题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure>
+<p>它的正确执行顺序是这样子的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">script start</div><div class="line">script end</div><div class="line">promise1</div><div class="line">promise2</div><div class="line">setTimeout</div></pre></td></tr></table></figure>
+<p>为什么呢？因为Promise里有了一个一个新的概念：<code>microtask</code></p>
+<p>或者，进一步，JS中分为两种任务类型：<code>macrotask</code>和<code>microtask</code>，在ECMAScript中，microtask称为<code>jobs</code>（宏任务），macrotask可称为<code>task</code>（微任务）</p>
+<p>它们的定义？区别？简单点可以按如下理解：</p>
+<ul>
+<li><p>macrotask（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）</p>
+<ul>
+<li><p>每一个task(宏任务)会从头到尾将这个任务执行完毕，不会执行其它</p>
+</li>
+<li><p>浏览器为了能够使得JS内部task(宏任务)与DOM任务能够有序的执行，会在一个task(宏任务)执行结束后，在下一个 task(宏任务) 执行开始前，对页面进行重新渲染</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">（`task-&gt;渲染-&gt;task-&gt;...`）</div></pre></td></tr></table></figure>
+<ul>
+<li><p>microtask（又称为微任务），可以理解是在当前 task(宏任务) 执行结束后立即执行的任务</p>
+<ul>
+<li><p>也就是说，<strong>在当前task(宏任务)任务后，下一个task(宏任务)之前，在渲染之前</strong></p>
+</li>
+<li><p>所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染</p>
+</li>
+<li><p>也就是说，在某一个macrotask(宏任务)执行完后，就会将在它执行期间产生的所有microtask(微任务)都执行完毕（在渲染前）</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>分别很么样的场景会形成macrotask和microtask呢？</p>
+<ul>
+<li><p>macrotask：主代码块，setTimeout，setInterval等（可以看到，事件队列中的每一个事件都是一个macrotask）</p>
+</li>
+<li><p>microtask：Promise，process.nextTick等</p>
+</li>
+</ul>
+<p><strong>补充：在node环境下，process.nextTick的优先级高于Promise</strong>，也就是可以简单理解为：在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的Promise部分。</p>
+<p>参考：<a href="https://segmentfault.com/q/1010000011914016" target="_blank" rel="external">https://segmentfault.com/q/1010000011914016</a></p>
+<p>再根据线程来理解下：</p>
+<ul>
+<li><p>macrotask中的事件都是放在一个事件队列中的，而这个队列由<strong>事件触发线程</strong>维护</p>
+</li>
+<li><p>microtask中的所有微任务都是添加到微任务队列（Job Queues）中，等待当前macrotask执行完毕后执行，而这个队列由JS引擎线程维护</p>
+</li>
+</ul>
+<p><strong>自己的粗浅见解：</strong>  执行一个宏任务（栈中没有就从事件队列中获取） -&gt; 将异步的 web api 推入事件触发线程，将微任务推入为任务队列 -&gt; 微任务队列(jobs) -&gt; 在处理事件触发回调函数所在的 <code>任务队列</code></p>
+<p>所以，总结下运行机制：</p>
+<ul>
+<li>执行一个宏任务（栈中没有就从事件队列中获取）</li>
+<li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+<li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+<li>当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染</li>
+<li>渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）</li>
+</ul>
+<p>如图：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5mw3hoe3j30l0120jtj.jpg" alt=""></p>
+<p>另外，请注意下<code>Promise</code>的<code>polyfill</code>与官方版本的区别：</p>
+<ul>
+<li>官方版本中，是标准的microtask形式</li>
+<li>polyfill，一般都是通过setTimeout模拟的，所以是macrotask形式</li>
+<li>请特别注意这两点区别</li>
+</ul>
+<p>注意，有一些浏览器执行结果不一样（因为它们可能把microtask当成macrotask来执行了），但是为了简单，这里不描述一些不标准的浏览器下的场景（但记住，有些浏览器可能并不标准）</p>
+<h4 id="使用MutationObserver实现microtask"><a href="#使用MutationObserver实现microtask" class="headerlink" title="使用MutationObserver实现microtask"></a>使用MutationObserver实现microtask</h4><p>MutationObserver可以用来实现microtask, 它属于microtask，优先级小于Promise，一般是Promise不支持时才会这样做）</p>
+<p>它是HTML5中的新特性，作用是：监听一个DOM变动，<br>当DOM对象树发生任何变动时，Mutation Observer会得到通知</p>
+<p>像以前的Vue源码中就是利用它来模拟nextTick的，<br>具体原理是，创建一个TextNode并监听内容变化，<br>然后要nextTick的时候去改一下这个节点的文本内容，</p>
+<p>如下：（Vue的源码，未修改）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> counter = <span class="number">1</span></div><div class="line"><span class="keyword">var</span> observer = <span class="keyword">new</span> MutationObserver(nextTickHandler)</div><div class="line"><span class="keyword">var</span> textNode = <span class="built_in">document</span>.createTextNode(<span class="built_in">String</span>(counter))</div><div class="line"></div><div class="line">observer.observe(textNode, &#123;</div><div class="line">    <span class="attr">characterData</span>: <span class="literal">true</span></div><div class="line">&#125;)</div><div class="line">timerFunc = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    counter = (counter + <span class="number">1</span>) % <span class="number">2</span></div><div class="line">    textNode.data = <span class="built_in">String</span>(counter)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/vuejs/vue/blob/9cfd63a7d08c1eba029c8bd7463b3047c3347826/src/core/util/env.js#L86-L95" target="_blank" rel="external">对应Vue源码链接</a></p>
+<p>不过，现在的Vue（2.5+）的nextTick实现移除了MutationObserver的方式（据说是兼容性原因），<br>取而代之的是使用MessageChannel</p>
+<p>（当然，默认情况仍然是Promise，不支持才兼容的）。</p>
+<p>MessageChannel属于宏任务，优先级是：<code>setImmediate-&gt;MessageChannel-&gt;setTimeout</code>，<br>所以Vue（2.5+）内部的nextTick与2.4及之前的实现是不一样的，需要注意下。</p>
+<p>这里不展开，可以看下 <a href="https://juejin.im/post/5a1af88f5188254a701ec230" target="_blank" rel="external">https://juejin.im/post/5a1af88f5188254a701ec230</a></p>
+
       
 
       
@@ -224,16 +367,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/05/js_EventLoopChatJs/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2018/02/05/js_EventLoopChatJs/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/02/css_硬件加速坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CSS3硬件加速的坑</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -253,473 +455,12 @@
 
 
 
-
-  
-    <article id="post-css_硬件加速坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/02/css_硬件加速坑/">CSS3硬件加速的坑</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/02/css_硬件加速坑/" class="archive-article-date">
-  	<time datetime="2018-02-02T07:36:52.212Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>常听人说：</p>
-<blockquote>
-<p>移动端要想动画性能流畅，应该使用3d硬件加速</p>
-</blockquote>
-<p>最近深入了解了一些浏览器内核的细节，感觉这里面其实有些不在意的坑，很致命。</p>
-        
-          <a class="article-more-a" href="/2018/02/02/css_硬件加速坑/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/02/css_硬件加速坑/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css_普通图层与复合图层" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/02/css_普通图层与复合图层/">普通图层与复合图层</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/02/css_普通图层与复合图层/" class="archive-article-date">
-  	<time datetime="2018-02-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>为何会出现此文呢？</p>
-<p>最近正好在阅读 同事写的一篇文章 <a href="https://segmentfault.com/a/1190000012925872#articleHeader16" target="_blank" rel="external">从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a>， 当中有讲到普通图层与复合图层，为此来稍微梳理一下。</p>
-        
-          <a class="article-more-a" href="/2018/02/02/css_普通图层与复合图层/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/02/css_普通图层与复合图层/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eassy_mobilef2eimporant" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/01/eassy_mobilef2eimporant/">移动前端的一些坑和解决方法（外观表现）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/01/eassy_mobilef2eimporant/" class="archive-article-date">
-  	<time datetime="2017-11-01T02:23:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在github上看到一个专门收集这些问题的，对于移动方面由于自己做得不多，而且由于测试环境所限，无法重现具体bug，下面来一起看看这些坑以及是怎么解决，学习多一些移动前端的知识，以后做的时候就要所注意。</p>
-        
-          <a class="article-more-a" href="/2017/11/01/eassy_mobilef2eimporant/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/01/eassy_mobilef2eimporant/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eassy_chrome62" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/eassy_chrome62/">Chrome 62 Beta版已支持网络质量评估API，OpenType可变字体，从DOM元素捕获媒体</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/25/eassy_chrome62/" class="archive-article-date">
-  	<time datetime="2017-09-25T02:39:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>除非特别指出，本文介绍的特性适用于Android，Chrome OS，Linux，Mac和Windows平台上最新的Chrome Beta版本。</p>
-        
-          <a class="article-more-a" href="/2017/09/25/eassy_chrome62/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/25/eassy_chrome62/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eassy_chrome61" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/21/eassy_chrome61/">Chrome 61 里的新玩意！</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/21/eassy_chrome61/" class="archive-article-date">
-  	<time datetime="2017-09-21T00:51:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>让我们一起来看看 Chrome 61 给开发者带来了哪些新东西！</p>
-        
-          <a class="article-more-a" href="/2017/09/21/eassy_chrome61/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/21/eassy_chrome61/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css_px_em_rem" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/20/css_px_em_rem/">px、em、rem 详解</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/20/css_px_em_rem/" class="archive-article-date">
-  	<time datetime="2017-09-20T08:22:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>国内的设计师大都喜欢用px，而国外的网站大都喜欢用em和rem，那么三者有什么区别，又各自有什么优劣呢？</p>
-        
-          <a class="article-more-a" href="/2017/09/20/css_px_em_rem/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/20/css_px_em_rem/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -739,8 +480,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
