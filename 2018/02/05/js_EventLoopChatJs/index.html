@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5byh3ml8j30u00x0goh.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5c057zdtj30ve0qm76q.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fo5mw3hoe3j30l0120jtj.jpg">
-<meta property="og:updated_time" content="2018-02-05T08:17:18.347Z">
+<meta property="og:updated_time" content="2018-02-05T08:28:55.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Event Loop谈JS的运行机制">
 <meta name="twitter:description" content="本篇文章主要来分析一下JS引擎的一些运行机制分析。">
@@ -345,6 +345,20 @@
 <p>（当然，默认情况仍然是Promise，不支持才兼容的）。</p>
 <p>MessageChannel属于宏任务，优先级是：<code>setImmediate-&gt;MessageChannel-&gt;setTimeout</code>，<br>所以Vue（2.5+）内部的nextTick与2.4及之前的实现是不一样的，需要注意下。</p>
 <p>这里不展开，可以看下 <a href="https://juejin.im/post/5a1af88f5188254a701ec230" target="_blank" rel="external">https://juejin.im/post/5a1af88f5188254a701ec230</a></p>
+<h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h2><ul>
+<li>原文地址：<a href="https://segmentfault.com/a/1190000012925872#articleHeader17" target="_blank" rel="external">https://segmentfault.com/a/1190000012925872#articleHeader17</a></li>
+<li><a href="https://www.cnblogs.com/lhb25/p/how-browsers-work.html" target="_blank" rel="external">https://www.cnblogs.com/lhb25/p/how-browsers-work.html</a></li>
+<li><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/</a></li>
+<li><a href="https://segmentfault.com/p/1210000012780980" target="_blank" rel="external">https://segmentfault.com/p/1210000012780980</a></li>
+<li><a href="http://blog.csdn.net/u013510838/article/details/55211033" target="_blank" rel="external">http://blog.csdn.net/u013510838/article/details/55211033</a></li>
+<li><a href="http://blog.csdn.net/Steward2011/article/details/51319298" target="_blank" rel="external">http://blog.csdn.net/Steward2011/article/details/51319298</a></li>
+<li><a href="http://www.imweb.io/topic/58e3bfa845e5c13468f567d5" target="_blank" rel="external">http://www.imweb.io/topic/58e3bfa845e5c13468f567d5</a></li>
+<li><a href="https://segmentfault.com/a/1190000008015671" target="_blank" rel="external">https://segmentfault.com/a/1190000008015671</a></li>
+<li><a href="https://juejin.im/post/5a4ed917f265da3e317df515" target="_blank" rel="external">https://juejin.im/post/5a4ed917f265da3e317df515</a></li>
+<li><a href="http://www.cnblogs.com/iovec/p/7904416.html" target="_blank" rel="external">http://www.cnblogs.com/iovec/p/7904416.html</a></li>
+<li><a href="https://www.cnblogs.com/wyaocn/p/5761163.html" target="_blank" rel="external">https://www.cnblogs.com/wyaocn/p/5761163.html</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text</a></li>
+</ul>
 
       
 
