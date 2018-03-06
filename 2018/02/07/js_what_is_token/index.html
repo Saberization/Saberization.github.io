@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Archives | Altria</title>
+  <title>带你了解何为 Token | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Altria">
-<meta property="og:url" content="https://saberization.github.io/archives/page/3/index.html">
+  <meta name="description" content="前言：目前前后端开发模式火热，Token一次大家也能经常听到，可能有些小伙伴们对Token的认识相对比较模糊，或者说不是很清楚其中的作用，本篇文章就来让你彻底搞懂 Token。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带你了解何为 Token">
+<meta property="og:url" content="https://saberization.github.io/2018/02/07/js_what_is_token/index.html">
 <meta property="og:site_name" content="Altria">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="前言：目前前后端开发模式火热，Token一次大家也能经常听到，可能有些小伙伴们对Token的认识相对比较模糊，或者说不是很清楚其中的作用，本篇文章就来让你彻底搞懂 Token。">
+<meta property="og:updated_time" content="2018-02-07T16:13:18.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Altria">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="带你了解何为 Token">
+<meta name="twitter:description" content="前言：目前前后端开发模式火热，Token一次大家也能经常听到，可能有些小伙伴们对Token的认识相对比较模糊，或者说不是很清楚其中的作用，本篇文章就来让你彻底搞懂 Token。">
   
     <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
@@ -177,36 +179,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-js_what_is_token" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/js_CodeManagement/" class="archive-article-date">
-  	<time datetime="2017-09-12T01:42:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/js_CodeManagement/">代码质量管控的四个阶段</a>
+    <h1 class="article-title" itemprop="name">
+      带你了解何为 Token
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/02/07/js_what_is_token/" class="archive-article-date">
+  	<time datetime="2018-02-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>目前前后端开发模式火热，Token一次大家也能经常听到，可能有些小伙伴们对Token的认识相对比较模糊，或者说不是很清楚其中的作用，本篇文章就来让你彻底<br>搞懂 <code>Token</code>。</p>
+<a id="more"></a>
+<h3 id="开篇二问："><a href="#开篇二问：" class="headerlink" title="开篇二问："></a>开篇二问：</h3><ul>
+<li>为什么要用 <code>Token</code>？</li>
+<li><code>Token</code> 需要设置有效期吗？</li>
+</ul>
+<blockquote>
+<p>本篇主要带着两个疑问，由内向外扩展讲解何为token</p>
+</blockquote>
+<h3 id="为什么要用-Token？"><a href="#为什么要用-Token？" class="headerlink" title="为什么要用 Token？"></a>为什么要用 Token？</h3><p>其实这个问题很简单，因为它能给我们在开发过程中解决问题~。</p>
+<p>我们可以先看一下 <code>Token</code> 可以为我们解决的问题：</p>
+<ul>
+<li><code>Token</code> 完全由应用管理，所以它可以避开同源策略</li>
+<li><code>Token</code> 可以避免 <code>CSRF 攻击</code></li>
+<li><code>Token</code> 是无状态的，可以在多个服务间共享</li>
+</ul>
+<p><code>Token</code> 的产生一般都是在用户登录（前端使用用户名/密码请求服务器认证），用户登陆验证完成后（服务端认证成功后），服务端会将 <code>Token</code> 一并返回给前端。<br>前端可以每次请求的时候都带上 <code>Token</code> 证明自己的 <code>合法性</code>。如果这个 <code>Token</code> 在服务端通过存储进数据库，或者其他方式永久保存的话，那么这个 <code>Token</code> 就是一枚永久的身份令牌。</p>
+<p>这里，又产生了第二个问题 <code>Token</code> 需要设置有效期吗？</p>
+<h3 id="Token-需要设置有效期吗？"><a href="#Token-需要设置有效期吗？" class="headerlink" title="Token 需要设置有效期吗？"></a>Token 需要设置有效期吗？</h3><p>关于这个问题，我们可以先看两个例子：</p>
+<h5 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h5><p>比如说要求用户的密码定期修改。</p>
+<h5 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：</h5><p>SSL 安全证书都有有效期，目的是为了解决吊销的问题。</p>
+<p>关于例子2，知乎有段如下回答：</p>
+<p>最重要的原因在于吊销。当网站的私钥丢失时，网站应该向证书颁发机构（CA）申请将他们的证书加入到证书吊销列表（CRL）里。当用户访问https站点时，浏览器会自动向CA请求吊销列表，如果用户访问的站点提供的证书在CRL里，浏览器就不信任这个证书，因为攻击者可能拥有同样的证书。所以如果证书永久有效，随着越来越多的私钥丢失，吊销列表也越来越大（因为只有加进去的，没有剔出去的），这既给CA增加流量压力，也会增加浏览器的流量。而一旦有效期只有几年，那么CA就可以将那些已经过期了的证书从CRL里剔除，因为反正浏览器也不信任过期证书。</p>
+<p>作者：匿名用户</p>
+<p>链接：<a href="https://www.zhihu.com/question/20803288/answer/30486007" target="_blank" rel="external">https://www.zhihu.com/question/20803288/answer/30486007</a></p>
+<p>来源：知乎</p>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p><strong>由此可见：所以无论是从安全的角度考虑，还是从吊销的角度考虑，<code>Token</code> 都需要设有效期。</strong></p>
+<h4 id="那么有效期多长合适呢？"><a href="#那么有效期多长合适呢？" class="headerlink" title="那么有效期多长合适呢？"></a>那么有效期多长合适呢？</h4>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -218,250 +246,112 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2018/02/07/js_what_is_token/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/eassy_67_f2e_tool/" class="archive-article-date">
-  	<time datetime="2017-09-12T01:12:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/02/26/js_canvas入门整理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          canvas入门整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/05/html_viewport/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">viewport meta 说明及浅见</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/eassy_67_f2e_tool/">67 个提升效率的前端工具、库和资源</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/js_passive/" class="archive-article-date">
-  	<time datetime="2017-09-04T15:38:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/js_passive/">移动 Web 滚动性能优化：Passive Event Listeners</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/31/eassy_cssreflow/" class="archive-article-date">
-  	<time datetime="2017-08-31T00:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/31/eassy_cssreflow/">优化CSS重排重绘与浏览器性能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/08/css_fontdisplay/" class="archive-article-date">
-  	<time datetime="2017-08-08T06:02:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/08/css_fontdisplay/">使用 font-display 提升使用font-face时的性能与用户体验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/eassy_webpack初体验/" class="archive-article-date">
-  	<time datetime="2017-08-01T07:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/eassy_webpack初体验/">webpack初体验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/eassy_CSRF/" class="archive-article-date">
-  	<time datetime="2017-08-01T03:46:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/eassy_CSRF/">跨站请求伪造CSRF</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -482,8 +372,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
