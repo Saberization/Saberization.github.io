@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://saberization.github.io">
-  <title>Archives | Altria</title>
+  <title>页面渲染性能 | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不积跬步无以至千里，不积小流无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Altria">
-<meta property="og:url" content="https://saberization.github.io/archives/page/3/index.html">
+  <meta name="description" content="现在的网络用户，都希望他们所访问的页面具有良好的用户体验与流畅性能，这也正是我们作为开发者需要投入越来越多时间和精力的地方，页面不仅要快速加载，而且要能顺畅地运行; 页面的滚动应该要与手指的滑动一样快，并且动画与交互应如丝绸般顺滑。 要编写高性能的网站和应用，就需要了解浏览器如何处理 HTML、JavaScript 和 CSS，并确保编写的代码（与要包括的其他第三方代码）尽可能高效地运行。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="页面渲染性能">
+<meta property="og:url" content="https://saberization.github.io/2018/03/06/js_rendering/index.html">
 <meta property="og:site_name" content="Altria">
-<meta property="og:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta property="og:description" content="现在的网络用户，都希望他们所访问的页面具有良好的用户体验与流畅性能，这也正是我们作为开发者需要投入越来越多时间和精力的地方，页面不仅要快速加载，而且要能顺畅地运行; 页面的滚动应该要与手指的滑动一样快，并且动画与交互应如丝绸般顺滑。 要编写高性能的网站和应用，就需要了解浏览器如何处理 HTML、JavaScript 和 CSS，并确保编写的代码（与要包括的其他第三方代码）尽可能高效地运行。">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2x2pfn2uj314m062jve.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2xd6to4zj314g06c78c.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2xejbtcnj313q05yjv0.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2xfqdmwyj314q05kjuo.jpg">
+<meta property="og:updated_time" content="2018-03-06T03:44:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Altria">
-<meta name="twitter:description" content="不积跬步无以至千里，不积小流无以成江海">
+<meta name="twitter:title" content="页面渲染性能">
+<meta name="twitter:description" content="现在的网络用户，都希望他们所访问的页面具有良好的用户体验与流畅性能，这也正是我们作为开发者需要投入越来越多时间和精力的地方，页面不仅要快速加载，而且要能顺畅地运行; 页面的滚动应该要与手指的滑动一样快，并且动画与交互应如丝绸般顺滑。 要编写高性能的网站和应用，就需要了解浏览器如何处理 HTML、JavaScript 和 CSS，并确保编写的代码（与要包括的其他第三方代码）尽可能高效地运行。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2x2pfn2uj314m062jve.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
@@ -177,36 +184,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-js_rendering" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/js_CodeManagement/" class="archive-article-date">
-  	<time datetime="2017-09-12T01:42:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/js_CodeManagement/">代码质量管控的四个阶段</a>
+    <h1 class="article-title" itemprop="name">
+      页面渲染性能
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/03/06/js_rendering/" class="archive-article-date">
+  	<time datetime="2018-03-06T01:49:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在的网络用户，都希望他们所访问的页面具有良好的用户体验与流畅性能，这也正是我们作为开发者需要投入越来越多时间和精力的地方，页面不仅要快速加载，而且要能顺畅地运行; 页面的滚动应该要与手指的滑动一样快，并且动画与交互应如丝绸般顺滑。</p>
+<p>要编写高性能的网站和应用，就需要了解浏览器如何处理 HTML、JavaScript 和 CSS，并确保编写的代码（与要包括的其他第三方代码）尽可能高效地运行。</p>
+<a id="more"></a>
+<h2 id="60fps-与设备刷新率"><a href="#60fps-与设备刷新率" class="headerlink" title="60fps 与设备刷新率"></a>60fps 与设备刷新率</h2><p>目前大多数设备的屏幕刷新率为 <strong>60 次/秒</strong>。因此，如果在页面中有一个动画或渐变效果，或者用户正在滚动页面，那么浏览器渲染动画或页面的每一帧的速率也需要跟设备屏幕的刷新率保持一致。</p>
+<p>其中每个帧的预算时间仅比 16 毫秒多一点 (1 秒/ 60 = 16.66 毫秒)。但实际上，浏览器有整理工作要做，因此所有工作需要在 <strong>10 毫秒</strong>内完成。如果无法符合此条件，帧率将下降，并且内容会在屏幕上抖动。 此现象通常称为<strong>卡顿</strong>，会对用户体验产生负面影响。</p>
+<h2 id="像素管道"><a href="#像素管道" class="headerlink" title="像素管道"></a>像素管道</h2><p>我们在工作时需要了解并注意五个主要区域。 这些是我们拥有最大控制权的部分，也是像素至屏幕管道中的关键点：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2x2pfn2uj314m062jve.jpg" alt=""></p>
+<ul>
+<li><p><strong>JavaScript</strong>。一般来说，我们会使用 JavaScript 来实现一些视觉变化的效果。比如用 jQuery 的 <code>animate</code> 函数做一个动画、对一个数据集进行排序或者往页面里添加一些 DOM 元素等。当然，除了 JavaScript，还有其他一些常用方法也可以实现视觉变化效果，比如：CSS Animations、Transitions 和 Web Animation API。</p>
+</li>
+<li><p><strong>样式计算</strong>。此过程是根据匹配选择器（例如 .header 或 .header &gt; .list-item）计算出哪些元素应用哪些 CSS 规则的过程。从中知道规则之后，将应用规则计算每个元素的最终样式。</p>
+</li>
+<li><p><strong>布局</strong>。在知道对一个元素应用哪些规则之后，浏览器即可开始计算它要占据的空间大小及其在屏幕的位置。网页的布局模式意味着一个元素可能影响其他元素，例如 <code>&lt;body&gt;</code> 元素的宽度一般会影响其子元素的宽度以及树中各处的节点，因此对于浏览器来说，布局过程是经常发生的。</p>
+</li>
+<li><p><strong>绘制</strong>。绘制是填充像素的过程。它涉及绘出文本、颜色、图像、边框和阴影，基本上包括元素的每个可视部分。绘制一般是在多个表面（通常称为层）上完成的。</p>
+</li>
+<li><p><strong>合成</strong>。由于页面的各部分可能被绘制到多层，由此它们需要按正确顺序绘制到屏幕上，以便正确渲染页面。对于与另一元素重叠的元素来说，这点特别重要，因为一个错误可能使一个元素错误地出现在另一个元素的上层。</p>
+</li>
+</ul>
+<p>管道的每个部分都有可能会产生卡顿，因此务必准确了解代码触发管道的哪些部分。</p>
+<p>有时可能听到与绘制一起使用的术语“栅格化”。这是因为绘制实际上分为两个任务： </p>
+<ol>
+<li>创建绘图调用的列表</li>
+<li>填充像素。</li>
+</ol>
+<p>后者称为“栅格化”，因此在 DevTools 中看到绘制记录时，就应当将其视为包括栅格化。 （在某些架构下，绘图调用的列表创建以及栅格化是在不同的线程中完成，但是这不是开发者所能控制的。）</p>
+<p>不一定每帧都总是会经过管道每个部分的处理。实际上，不管是使用 JavaScript、CSS 还是网络动画，在实现视觉变化时，管道针对指定帧的运行通常有三种方式：</p>
+<h3 id="1-JS-CSS-gt-样式-gt-布局-gt-绘制-gt-合成"><a href="#1-JS-CSS-gt-样式-gt-布局-gt-绘制-gt-合成" class="headerlink" title="1. JS / CSS &gt; 样式 &gt; 布局 &gt; 绘制 &gt; 合成"></a>1. JS / CSS &gt; 样式 &gt; 布局 &gt; 绘制 &gt; 合成</h3><p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2xd6to4zj314g06c78c.jpg" alt=""></p>
+<p>如果修改元素的“layout”属性，也就是改变了元素的几何属性（例如宽度、高度、左侧或顶部位置等），那么浏览器将必须检查所有其他元素，然后 <code>自动重排</code> 页面。任何受影响的部分都需要 <code>重新绘制</code>，而且最终绘制的元素需进行合成。</p>
+<h3 id="2-JS-CSS-gt-样式-gt-绘制-gt-合成"><a href="#2-JS-CSS-gt-样式-gt-绘制-gt-合成" class="headerlink" title="2. JS / CSS &gt; 样式 &gt; 绘制 &gt; 合成"></a>2. JS / CSS &gt; 样式 &gt; 绘制 &gt; 合成</h3><p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2xejbtcnj313q05yjv0.jpg" alt=""></p>
+<p>如果修改 <code>paint only</code> 属性（例如背景图片、文字颜色或阴影等），即不会影响页面布局的属性，则浏览器会跳过布局，但仍将执行绘制。</p>
+<h3 id="3-JS-CSS-gt-样式-gt-合成"><a href="#3-JS-CSS-gt-样式-gt-合成" class="headerlink" title="3. JS / CSS &gt; 样式 &gt; 合成"></a>3. JS / CSS &gt; 样式 &gt; 合成</h3><p><img src="https://ws1.sinaimg.cn/large/006d7zD3gy1fp2xfqdmwyj314q05kjuo.jpg" alt=""></p>
+<p>如果更改一个既不要布局也不要绘制的属性，则浏览器将跳到只执行合成。</p>
+<p>这个最后的版本开销最小，最适合于应用生命周期中的高压力点，例如动画或滚动。</p>
+<p>注：如果想知道更改任何指定 CSS 属性将触发上述三个版本中的哪一个，请查看 <a href="https://csstriggers.com/" target="_blank" rel="external">CSS 触发器</a>。</p>
+<p>性能是一种避免执行工作的艺术，并且使您执行的任何操作尽可能高效。 许多情况下，这需要与浏览器配合，而不是跟它对着干。 值得谨记的是，上面列出的各项管道工作在计算开销上有所不同；一些任务比其他任务的开销要大！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -218,250 +259,103 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://saberization.github.io/2018/03/06/js_rendering/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/eassy_67_f2e_tool/" class="archive-article-date">
-  	<time datetime="2017-09-12T01:12:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/07/js_what_is_token/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">带你了解何为 Token</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/eassy_67_f2e_tool/">67 个提升效率的前端工具、库和资源</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/js_passive/" class="archive-article-date">
-  	<time datetime="2017-09-04T15:38:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/js_passive/">移动 Web 滚动性能优化：Passive Event Listeners</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/31/eassy_cssreflow/" class="archive-article-date">
-  	<time datetime="2017-08-31T00:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/31/eassy_cssreflow/">优化CSS重排重绘与浏览器性能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/08/css_fontdisplay/" class="archive-article-date">
-  	<time datetime="2017-08-08T06:02:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/08/css_fontdisplay/">使用 font-display 提升使用font-face时的性能与用户体验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/eassy_webpack初体验/" class="archive-article-date">
-  	<time datetime="2017-08-01T07:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/eassy_webpack初体验/">webpack初体验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/eassy_CSRF/" class="archive-article-date">
-  	<time datetime="2017-08-01T03:46:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/eassy_CSRF/">跨站请求伪造CSRF</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">eassy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -482,8 +376,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
