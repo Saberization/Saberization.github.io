@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://saberization.github.io">
   <title>M7 对比 微信小程序 | Altria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="调研微信小程序，与目前的m7框架最对比，哪些是可以用的，哪些是不可以用的，为什么？">
+  <meta name="description" content="调研微信小程序，与目前的m7框架最对比。">
 <meta name="keywords" content="eassy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="M7 对比 微信小程序">
 <meta property="og:url" content="https://saberization.github.io/2018/06/07/eassy_m7_compare_wechatapp/index.html">
 <meta property="og:site_name" content="Altria">
-<meta property="og:description" content="调研微信小程序，与目前的m7框架最对比，哪些是可以用的，哪些是不可以用的，为什么？">
-<meta property="og:updated_time" content="2018-06-07T09:41:59.702Z">
+<meta property="og:description" content="调研微信小程序，与目前的m7框架最对比。">
+<meta property="og:updated_time" content="2018-06-13T06:30:51.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="M7 对比 微信小程序">
-<meta name="twitter:description" content="调研微信小程序，与目前的m7框架最对比，哪些是可以用的，哪些是不可以用的，为什么？">
+<meta name="twitter:description" content="调研微信小程序，与目前的m7框架最对比。">
   
     <link rel="alternative" href="/atom.xml" title="Altria" type="application/atom+xml">
   
@@ -199,7 +199,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>调研微信小程序，与目前的m7框架最对比，哪些是可以用的，哪些是不可以用的，为什么？</p>
+        <p>调研微信小程序，与目前的m7框架最对比。</p>
 <a id="more"></a>
 <h2 id="M7框架主要实现"><a href="#M7框架主要实现" class="headerlink" title="M7框架主要实现"></a>M7框架主要实现</h2><ul>
 <li>基于移动端框架 <code>mui</code> 实现主要的前端 <code>UI</code> 部分。</li>
@@ -215,18 +215,22 @@
 <li>大部分 <code>css</code> 选择器（*、~、&gt;）在小程序中不支持，报错。</li>
 <li>开发h5 app 常用的html标签，例如：div，p，span，在小程序中均不推荐使用(低版本可能无法识别，直接报错)，采用更语义的比如：view, button, text </li>
 <li>小程序的整体语法风格与 vue 很像</li>
-<li>WXSS、JSON和JS文件中的写法稍有限制，但是整体相对来说还是差不多。</li>
+<li>WXSS、JSON和JS文件中的写法稍有限制，但是整体相对来说还是差不多的。</li>
 </ol>
-<p>个人理解：小程序的运行环境很有可能是微信开发团队基于浏览器内核完全重构的一个内置解析器，针对小程序专门做了优化，配合自己定义的开发语言标准，提升了小程序的性能。</p>
 <h2 id="小程序功能覆盖率"><a href="#小程序功能覆盖率" class="headerlink" title="小程序功能覆盖率"></a>小程序功能覆盖率</h2><p>小程序提供了视图层、逻辑层的数据处理例如：数据绑定、列表渲染、条件渲染、模板、事件、引用等，语法与vue类似。<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/MINA.html" target="_blank" rel="external">框架层面功能文档</a></p>
 <p>小程序组件方面提供了推荐使用的语义化标签来替代原先的 div、p、span 等元素，并且各个标签，均有各自的功能。<a href="https://developers.weixin.qq.com/miniprogram/dev/component/" target="_blank" rel="external">组件层面功能文档</a></p>
 <p>API方面提供了网络请求、上传下载、图片选择预览、录音、音频、视频、文件操作、下拉刷新、数据缓存等。<a href="https://developers.weixin.qq.com/miniprogram/dev/api/" target="_blank" rel="external">API功能文档</a></p>
-<p>对比项目中的需求，小程序所提供的基础功能可以覆盖当前业务中所需的功能。</p>
+<p>对比项目中的需求，小程序所提供的底层功能可以基本覆盖当前业务中的功能。</p>
 <h2 id="m7框架直接开发小程序存在的问题"><a href="#m7框架直接开发小程序存在的问题" class="headerlink" title="m7框架直接开发小程序存在的问题"></a>m7框架直接开发小程序存在的问题</h2><p>m7框架主要基于的前端ui框架是 <code>mui</code>，而 <code>mui</code> 中几乎所有的动画效果实现都是采用的 <code>dom</code> 操作，恰恰小程序明确了不支持 <code>dom</code> 操作，<br>并且 <code>mui.css</code> 当中许多原生 <code>css</code> 选择器 (*、~、&gt;) 在小程序中不支持，报错。</p>
-<p>m7框架中携带的为方便业务开发人员使用的第三方库 <code>Zepto</code> 在小程序当中也不支持。</p>
-<p><code>EJS</code>，是新点软件自主研发的混合App开发方案，故只能在我司容器中使用，在小程序中也无法使用。</p>
-<p>m7框架中的 <code>Utils</code> 部分无依赖(与mui、zepto无关)功能可以使用。</p>
-<h2 id="小程序开发模式"><a href="#小程序开发模式" class="headerlink" title="小程序开发模式"></a>小程序开发模式</h2>
+<p>m7框架中携带的为方便业务开发人员使用的第三方库 <code>Zepto</code> 在小程序当中也得不到支持。</p>
+<p><code>EJS</code>，是新点软件自主研发的混合App开发方案，故只能在我司容器中使用，在小程序中无法使用。</p>
+<p>m7框架中的 <code>Utils</code> 部分无依赖(与mui、zepto等依赖库无关)功能可以使用。</p>
+<p>m7框架的资源引入是采用 <code>script</code> 标签进行引入，而小程序均是采用 <code>es6</code> 中的 <code>import</code>、<code>export</code>，去引入文件、暴露方法，不支持直接采用 <code>script</code> 标签引入。</p>
+<p>总结一下：用m7框架无法用作小程序开发框架，包括框架内部资源的引入、底层依赖库、业务代码开发模式，均不能用作开发小程序。</p>
+<h2 id="小程序开发模式与m7开发模式的对比"><a href="#小程序开发模式与m7开发模式的对比" class="headerlink" title="小程序开发模式与m7开发模式的对比"></a>小程序开发模式与m7开发模式的对比</h2><p>小程序开发模式偏向前端工程化(性能上限很高)，并且搭载了神器(小程序开发工具)。</p>
+<p>m7开发模式是传统的手工页面开发模式，DOM操作模式，恰恰和前面提到的，小程序无法进行任何相关的dom操作，所以m7的开发模式，在小程序当中无法使用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>综合考虑，m7框架无法用于开发小程序，并且小程序直接生成的构建目录没有搭载前端ui框架(开发起来不够便捷，还需要开发者自己重构很多不必要的样式)，建议单独另外开发一套适配小程序的框架，搭载前端ui框架，例如<a href="https://github.com/youzan/zanui-weapp" target="_blank" rel="external">zanui</a>，封装一套便于调用的API，方便项目组快速开发。</p>
+
       
 
       
